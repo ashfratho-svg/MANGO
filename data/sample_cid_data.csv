@@ -1,0 +1,16 @@
+CustomerID,Name,Monthly_Spend,Last_Purchase_Days_Ago,Region,Industry,Years_as_Customer
+C001,ACME Corp,5000,15,West,Retail,3
+C002,XYZ Inc,2000,45,East,Tech,1
+C003,Global Ltd,8000,8,Central,Manufacturing,5
+C004,Local Biz,1500,90,West,Services,2
+C005,Tech Startup,3500,22,East,Tech,1
+C006,Big Brand,10000,3,Central,Retail,8
+C007,Mom Shop,500,120,West,Services,1
+C008,Corp 2000,6500,18,East,Manufacturing,4
+C009,Consulting Plus,4000,35,Central,Services,2
+C010,Online Store,2500,50,West,Retail,1
+C011,Regional Chain,7000,12,West,Retail,4
+C012,Startup Hub,1800,60,East,Tech,1
+C013,Factory Floor,9500,5,Central,Manufacturing,6
+C014,Service Center,2200,75,West,Services,1
+C015,E-comm Giant,12000,2,Central,Retail,10

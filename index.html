@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🥭 Mango — AI for Small Businesses & Nonprofits</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #0b0b0b;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* Header */
+    header {
+      background: #1F5E3A;
+      color: #F3EFDF;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #C6912F;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    header .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: #C6912F;
+    }
+
+    header .audience-toggle {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      font-size: 12px;
+      color: #C6912F;
+      font-weight: 600;
+    }
+
+    header select {
+      padding: 0.5rem 1rem;
+      background: #C4451B;
+      color: #F3EFDF;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #1F5E3A 0%, #2D7A4B 100%);
+      color: #F3EFDF;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero .subtitle {
+      font-size: 18px;
+      color: #C6912F;
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero .tagline {
+      font-size: 16px;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 14px 32px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: #C6912F;
+      color: #1F5E3A;
+    }
+
+    .btn-primary:hover {
+      background: #D4A642;
+      transform: scale(1.05);
+    }
+
+    .btn-secondary {
+      background: #1F5E3A;
+      color: #F3EFDF;
+    }
+
+    .btn-secondary:hover {
+      background: #2D7A4B;
+      transform: scale(1.05);
+    }
+
+    .btn-outline {
+      background: rgba(243, 239, 223, 0.2);
+      color: #F3EFDF;
+      border: 2px solid #F3EFDF;
+    }
+
+    .btn-outline:hover {
+      background: rgba(243, 239, 223, 0.3);
+    }
+
+    /* Sections */
+    section {
+      padding: 3rem 2rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Problem Section */
+    .problem-section {
+      background: #ffffff;
+    }
+
+    .problem-section h2 {
+      color: #C4451B;
+    }
+
+    .problem-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .problem-item {
+      display: flex;
+      gap: 12px;
+      padding: 1rem;
+      background: #F3EFDF;
+      border-radius: 6px;
+      border-left: 4px solid #C4451B;
+      font-size: 15px;
+    }
+
+    .problem-item span {
+      color: #C4451B;
+      font-weight: 700;
+      min-width: 24px;
+      flex-shrink: 0;
+    }
+
+    /* Quiz Section */
+    .quiz-section {
+      background: #F3EFDF;
+      text-align: center;
+    }
+
+    .quiz-section h2 {
+      color: #1F5E3A;
+    }
+
+    .quiz-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .quiz-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: #E0E0E0;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #1F5E3A;
+      transition: width 0.3s;
+    }
+
+    .quiz-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .quiz-buttons button {
+      padding: 12px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .quiz-buttons .no {
+      background: #E0E0E0;
+      color: #333;
+    }
+
+    .quiz-buttons .no:hover {
+      background: #D0D0D0;
+    }
+
+    .quiz-buttons .yes {
+      background: #1F5E3A;
+      color: #F3EFDF;
+    }
+
+    .quiz-buttons .yes:hover {
+      background: #2D7A4B;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Pain Points */
+    .pain-section {
+      background: #ffffff;
+    }
+
+    .pain-section h2 {
+      color: #1F5E3A;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+
+    .pain-card {
+      background: #F3EFDF;
+      padding: 2rem;
+      border-radius: 8px;
+      border-top: 4px solid #C4451B;
+    }
+
+    .pain-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #C4451B;
+    }
+
+    .pain-card p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* Opportunities */
+    .opp-section {
+      background: #1F5E3A;
+      color: #F3EFDF;
+    }
+
+    .opp-section h2 {
+      color: #C6912F;
+    }
+
+    .opp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .opp-card {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #C6912F;
+      text-align: center;
+    }
+
+    .opp-card .metric {
+      font-size: 32px;
+      font-weight: 700;
+      color: #C6912F;
+      margin-bottom: 0.5rem;
+    }
+
+    .opp-card p {
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+
+    /* Proof Points */
+    .proof-section {
+      background: #ffffff;
+    }
+
+    .proof-section h2 {
+      color: #1F5E3A;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .proof-card {
+      background: #F3EFDF;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+
+    .proof-card-1 {
+      border-left: 4px solid #C4451B;
+    }
+
+    .proof-card-2 {
+      border-left: 4px solid #C6912F;
+    }
+
+    .proof-card-3 {
+      border-left: 4px solid #1F5E3A;
+    }
+
+    .proof-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .proof-card-1 h3 {
+      color: #C4451B;
+    }
+
+    .proof-card-2 h3 {
+      color: #C6912F;
+    }
+
+    .proof-card-3 h3 {
+      color: #1F5E3A;
+    }
+
+    .proof-card .subtitle {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .proof-card ul {
+      font-size: 13px;
+      color: #333;
+      padding-left: 1.5rem;
+    }
+
+    .proof-card li {
+      margin-bottom: 0.5rem;
+    }
+
+    .creds-grid {
+      background: #1F5E3A;
+      color: #F3EFDF;
+      padding: 2rem;
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .cred {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cred .number {
+      font-size: 28px;
+      font-weight: 700;
+      color: #C6912F;
+      margin-bottom: 0.25rem;
+    }
+
+    .cred p {
+      font-size: 12px;
+      margin: 0;
+    }
+
+    /* SaaS Section */
+    .saas-section {
+      background: #ffffff;
+    }
+
+    .saas-section h2 {
+      color: #1F5E3A;
+      text-align: center;
+    }
+
+    .saas-intro {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 2rem;
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .saas-card {
+      background: linear-gradient(135deg, #1F5E3A 0%, #2D7A4B 100%);
+      color: #F3EFDF;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .agent-card {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #C6912F;
+    }
+
+    .agent-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #C6912F;
+    }
+
+    .agent-card p {
+      font-size: 13px;
+      color: #F3EFDF;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .agent-card ul {
+      font-size: 12px;
+      padding-left: 1.25rem;
+      color: #F3EFDF;
+      opacity: 0.85;
+    }
+
+    .agent-card li {
+      margin-bottom: 0.4rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .pricing-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pricing-item .price {
+      font-size: 32px;
+      font-weight: 700;
+      color: #C6912F;
+    }
+
+    .pricing-item p {
+      font-size: 12px;
+      margin: 0.5rem 0 0;
+    }
+
+    .saas-cta {
+      text-align: center;
+    }
+
+    .saas-cta .note {
+      font-size: 12px;
+      margin-top: 1rem;
+      opacity: 0.8;
+    }
+
+    .saas-guide {
+      background: #F3EFDF;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      border-left: 4px solid #1F5E3A;
+      font-size: 14px;
+      color: #1F5E3A;
+    }
+
+    /* Engagement */
+    .engagement-section {
+      background: #F3EFDF;
+    }
+
+    .engagement-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .engagement-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-top: 4px solid #C4451B;
+    }
+
+    .engagement-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: #C4451B;
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .engagement-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .engagement-card p {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .engagement-meta {
+      font-size: 12px;
+      color: #999;
+      border-top: 1px solid #EEE;
+      padding-top: 0.75rem;
+    }
+
+    .engagement-meta p {
+      margin: 0.5rem 0;
+    }
+
+    .engagement-guide {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: #1F5E3A;
+      color: #F3EFDF;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #C4451B 0%, #A83715 100%);
+      color: #F3EFDF;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      color: #F3EFDF;
+      font-size: 32px;
+    }
+
+    .cta-section p {
+      font-size: 16px;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    footer {
+      background: #1F5E3A;
+      color: #F3EFDF;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid #C6912F;
+    }
+
+    footer p {
+      margin: 0.5rem 0;
+      font-size: 14px;
+    }
+
+    footer .contact {
+      font-size: 13px;
+      color: #C6912F;
+    }
+
+    footer .credit {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal.hidden {
+      display: none;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    .modal-content h2 {
+      font-size: 24px;
+      margin-bottom: 0.5rem;
+      color: #1F5E3A;
+    }
+
+    .modal-content .subtext {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group input {
+      padding: 12px;
+      border: 1px solid #DDD;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .form-contact {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-contact p {
+      margin: 0.5rem 0;
+    }
+
+    .form-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .form-buttons button {
+      padding: 12px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .form-buttons .submit {
+      background: #1F5E3A;
+      color: white;
+    }
+
+    .form-buttons .close {
+      background: #E0E0E0;
+      color: #333;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .cta-buttons button {
+        width: 100%;
+      }
+
+      .quiz-buttons {
+        flex-direction: column;
+      }
+
+      .quiz-buttons button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="logo">🥭 Mango</div>
+  <div class="audience-toggle">
+    <label>Audience:</label>
+    <select id="audienceToggle">
+      <option value="business">Small Business</option>
+      <option value="nonprofit">Nonprofit</option>
+    </select>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1 id="heroTitle">Small businesses shouldn't watch the AI revolution. They should lead it.</h1>
+    <p class="subtitle" id="heroSubtitle">Production-grade agentic AI built for owners, not enterprises.</p>
+    <p class="tagline" id="heroTagline">From 'I don't know if AI helps' to 'AI powers our competitive edge'</p>
+    <button class="btn btn-primary" onclick="document.getElementById('contactModal').classList.remove('hidden')">
+      Book Your Free Assessment →
+    </button>
+  </div>
+</section>
+
+<!-- Problem Section -->
+<section class="problem-section">
+  <div class="container">
+    <h2 id="problemTitle">Your data is scattered. Your AI roadmap is nonexistent.</h2>
+    <div class="problem-list" id="problemList"></div>
+  </div>
+</section>
+
+<!-- Quiz Section -->
+<section class="quiz-section">
+  <div class="container">
+    <h2>Quick Assessment Quiz</h2>
+    <p>Answer 6 quick questions to see where you stand. Takes 2 minutes.</p>
+    
+    <div class="quiz-container">
+      <button class="btn btn-secondary" id="quizStartBtn" onclick="startQuiz()">Start Quiz</button>
+      
+      <div id="quizContent" class="hidden">
+        <div class="quiz-card">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <p id="quizCounter"></p>
+          <h3 id="quizQuestion"></h3>
+          <div class="quiz-buttons">
+            <button class="no" onclick="answerQuiz(false)">No</button>
+            <button class="yes" onclick="answerQuiz(true)">Yes</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="quizResults" class="hidden">
+        <div class="quiz-card">
+          <h3>Your AI Opportunity Level</h3>
+          <div id="riskLevel" style="font-size: 48px; font-weight: 700; margin-bottom: 1.5rem;"></div>
+          <p id="riskMessage" style="font-size: 15px; color: #666; margin-bottom: 2rem; line-height: 1.6;"></p>
+          <div class="quiz-buttons">
+            <button class="no" onclick="resetQuiz()">Retake Quiz</button>
+            <button class="yes" onclick="openContact(); resetQuiz();">Let's Talk</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pain Points -->
+<section class="pain-section">
+  <div class="container">
+    <h2 id="painTitle">Real struggles, real fast impact</h2>
+    <div class="pain-grid" id="painGrid"></div>
+  </div>
+</section>
+
+<!-- Opportunities -->
+<section class="opp-section">
+  <div class="container">
+    <h2 id="oppTitle">What AI can unlock for you</h2>
+    <div class="opp-grid" id="oppGrid"></div>
+  </div>
+</section>
+
+<!-- Proof Points -->
+<section class="proof-section">
+  <div class="container">
+    <h2>Proof: Real Systems, Real Users, Real ROI</h2>
+    <div class="proof-grid">
+      <div class="proof-card proof-card-1">
+        <h3>ExitReady</h3>
+        <p class="subtitle">Multi-tenant M&A readiness SaaS for small-business owners</p>
+        <ul>
+          <li>4 layers of tenant isolation (zero cross-tenant leakage)</li>
+          <li>Human-in-the-loop AI (every proposal must be confirmed)</li>
+          <li>Shipped production in days, not months</li>
+          <li>Live and scaling today</li>
+        </ul>
+      </div>
+      <div class="proof-card proof-card-2">
+        <h3>IntelSupX</h3>
+        <p class="subtitle">Supplier compliance & sustainability platform, role-based for 8 user types</p>
+        <ul>
+          <li>8 distinct role-based logins + dashboards</li>
+          <li>Live data parsing & validation (no offline review)</li>
+          <li>4 automated compliance checks at scale</li>
+          <li>Public demo: ag-intelsupx.netlify.app</li>
+        </ul>
+      </div>
+      <div class="proof-card proof-card-3">
+        <h3>BanQu (2015–Present)</h3>
+        <p class="subtitle">Supply-chain traceability SaaS at global scale</p>
+        <ul>
+          <li>6.5M+ producer accounts, 50+ countries</li>
+          <li>$100M+ in traceable payments processed</li>
+          <li>Clients: Coca-Cola, AB InBev, IKEA, Dow</li>
+          <li>AI-powered compliance automation embedded</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="creds-grid">
+      <div class="cred">
+        <div class="number">30+</div>
+        <p>Years tech leadership</p>
+      </div>
+      <div class="cred">
+        <div class="number">2x</div>
+        <p>Founder (built + scaled)</p>
+      </div>
+      <div class="cred">
+        <div class="number">6.5M+</div>
+        <p>Users on systems built</p>
+      </div>
+      <div class="cred">
+        <div class="number">F500</div>
+        <p>Enterprise clients</p>
+      </div>
+      <div class="cred">
+        <div class="number">15+</div>
+        <p>Yrs IT audit & SOX</p>
+      </div>
+      <div class="cred">
+        <div class="number">10</div>
+        <p>US patents</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Engagement Path -->
+<section class="engagement-section">
+  <div class="container">
+    <h2 id="engagementTitle">How we work with you</h2>
+    <div class="engagement-grid">
+      <div class="engagement-card">
+        <div class="engagement-number">1</div>
+        <h3>Strategy Sprint</h3>
+        <p>Use-case discovery, ROI framing, build-vs-buy analysis, 90-day roadmap.</p>
+        <div class="engagement-meta">
+          <p>⏱ 2–4 weeks</p>
+          <p style="font-weight: 600; color: #C4451B;">$5K–$10K fixed</p>
+        </div>
+      </div>
+      <div class="engagement-card">
+        <div class="engagement-number">2</div>
+        <h3>Agentic Build</h3>
+        <p>Production AI system, spec-first, human-in-the-loop, audit-ready architecture.</p>
+        <div class="engagement-meta">
+          <p>⏱ 4–8 weeks</p>
+          <p style="font-weight: 600; color: #C4451B;">$20K–$50K fixed</p>
+        </div>
+      </div>
+      <div class="engagement-card">
+        <div class="engagement-number">3</div>
+        <h3>Fractional CAIO/CTO</h3>
+        <p>Ongoing technical direction, architecture review, engineering mentorship.</p>
+        <div class="engagement-meta">
+          <p>⏱ 8–12 hrs/week</p>
+          <p style="font-weight: 600; color: #C4451B;">$3K–$6K/mo</p>
+        </div>
+      </div>
+      <div class="engagement-card">
+        <div class="engagement-number">4</div>
+        <h3>Advisory Retainer</h3>
+        <p>Strategy counsel, risk management, organizational design support.</p>
+        <div class="engagement-meta">
+          <p>⏱ 4–8 hrs/month</p>
+          <p style="font-weight: 600; color: #C4451B;">$1.5K–$3K/mo</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="engagement-guide">
+      <p>
+        <strong>Start here:</strong> Free one-week assessment. We map your data landscape, identify a high-impact AI opportunity, and build a working prototype you can see in action. No obligation.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SaaS Section -->
+<section class="saas-section">
+  <div class="container">
+    <h2>Mango SaaS — Ready-to-Use AI Agents</h2>
+    <p class="saas-intro">
+      Don't want to build custom? Try our packaged agents. Start free for 7 days, no credit card required (well, we'll ask for one to activate the trial, but you won't be charged until day 8).
+    </p>
+
+    <div class="saas-card">
+      <div class="agents-grid">
+        <div class="agent-card">
+          <h3>FHA — Financial Health Analyzer</h3>
+          <p>Understand your business's financial position instantly. Analyze key metrics, cost savings, and revenue opportunities from your data.</p>
+          <ul>
+            <li>Adjusted EBITDA & free-cash-flow analysis</li>
+            <li>Cost-saving opportunities identified</li>
+            <li>Revenue uplift scenarios modeled</li>
+            <li>Benchmark comparisons</li>
+          </ul>
+        </div>
+
+        <div class="agent-card">
+          <h3>CID — Customer Intelligence Dashboard</h3>
+          <p>Know your customers better than they know themselves. Segmentation, churn risk, lifetime value, and personalization at scale.</p>
+          <ul>
+            <li>Customer segmentation & profiling</li>
+            <li>Churn risk prediction</li>
+            <li>Lifetime value modeling</li>
+            <li>At-risk customer alerts</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-item">
+          <div class="price">$199</div>
+          <p>Per month</p>
+        </div>
+        <div class="pricing-item">
+          <div class="price">7 days</div>
+          <p>Free trial</p>
+        </div>
+        <div class="pricing-item">
+          <div class="price">Both</div>
+          <p>FHA + CID</p>
+        </div>
+      </div>
+
+      <div class="saas-cta">
+        <button class="btn btn-primary" onclick="alert('🥭 Mango SaaS checkout coming soon!\n\nYou\'ll add your Stripe Price ID here tonight.\n\nWhen ready, this button will redirect to Stripe checkout for the 7-day free trial.');">
+          Start Your 7-Day Free Trial →
+        </button>
+        <p class="note">No credit card required for 7 days. Auto-renews at $199/mo unless canceled.</p>
+      </div>
+    </div>
+
+    <div class="saas-guide">
+      <p>
+        <strong>Not sure which path is right?</strong> Take the quiz above. High score → try the SaaS agents. Looking for a custom build → book the free assessment.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Move from Idea to Production?</h2>
+    <p>Two paths. One outcome: AI that actually moves the needle for your <span id="ctaMission">business</span>.</p>
+    <div class="cta-buttons">
+      <button class="btn btn-primary" onclick="openContact();">
+        📋 Book Free Consultation
+      </button>
+      <button class="btn btn-outline" onclick="alert('🥭 Mango SaaS trial checkout coming soon!');">
+        🧪 Try Free Trial (7 days)
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>🥭 Mango | Agentic AI for small <span id="footerMission">businesses</span></p>
+  <p class="contact">
+    Austin, TX | ashishgadnis@gmail.com | +1 (651) 428-0749
+  </p>
+  <p class="credit">© 2026 Mango. All rights reserved.</p>
+</footer>
+
+<!-- Contact Modal -->
+<div id="contactModal" class="modal hidden" onclick="if(event.target === this) this.classList.add('hidden')">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <h2>Book Your Free Assessment</h2>
+    <p class="subtext">One week. One working prototype. No commitment.</p>
+    <div class="form-group">
+      <input type="text" id="name" placeholder="Your name">
+      <input type="email" id="email" placeholder="Your email">
+      <input type="tel" id="phone" placeholder="Your phone (optional)">
+    </div>
+    <div class="form-contact">
+      <p>📧 ashishgadnis@gmail.com</p>
+      <p>📱 +1 (651) 428-0749</p>
+    </div>
+    <div class="form-buttons">
+      <button class="submit" onclick="submitForm();">Send My Info</button>
+      <button class="close" onclick="document.getElementById('contactModal').classList.add('hidden');">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const content = {
+    business: {
+      heroTitle: "Small businesses shouldn't watch the AI revolution. They should lead it.",
+      heroSubtitle: "Production-grade agentic AI built for owners, not enterprises.",
+      heroTagline: "From 'I don't know if AI helps' to 'AI powers our competitive edge'",
+      problemTitle: "Your data is scattered. Your AI roadmap is nonexistent.",
+      problems: [
+        "Data lives in Excel, QuickBooks, Salesforce, homegrown systems—fragmented and hard to trust",
+        "You have no AI strategy, just marketing hype from vendors who don't understand small business",
+        "Your margins are thin. You can't afford enterprise consulting or year-long pilots",
+        "Rural markets and smaller cities are losing competitive ground to AI-ready competitors",
+        "Time to value matters: you need to see ROI in weeks, not quarters"
+      ],
+      painTitle: "Real SME struggles, real fast impact",
+      pains: [
+        { title: "Data sprawl", desc: "Excel, QuickBooks, Salesforce, or homegrown CRM. No single source of truth." },
+        { title: "Lost opportunities", desc: "Manual lead scoring, invoice follow-ups, pricing analysis—all friction, all money left on the table." },
+        { title: "Margin pressure", desc: "You need cost cuts AND revenue uplift, but your current tooling can't deliver either." },
+        { title: "Vendor lock-in fear", desc: "Enterprise AI vendors are too expensive and too slow. You need proof first." }
+      ],
+      oppTitle: "What AI can unlock for you",
+      oppPoints: [
+        { metric: "20–30%", desc: "Margin increase from cost automation and revenue optimization" },
+        { metric: "40%", desc: "Lead qualification time cut in half via AI scoring" },
+        { metric: "15–20%", desc: "Revenue uplift from smarter pricing and customer insights" },
+        { metric: "Weeks", desc: "Time to measurable ROI, not quarters" }
+      ],
+      engagementTitle: "How we work with SMEs",
+      ctaMission: "business",
+      footerMission: "businesses"
+    },
+    nonprofit: {
+      heroTitle: "Small nonprofits shouldn't watch the AI revolution. They should lead it.",
+      heroSubtitle: "Production-grade agentic AI for mission-driven organizations that need to move fast.",
+      heroTagline: "From adoption experiments to transformative AI systems",
+      problemTitle: "The adoption gap is costing you",
+      problems: [
+        "92% of nonprofits use AI, but only 7% say it's changed how they operate",
+        "Grant writing takes weeks when it should take days",
+        "Donor research is manual, incomplete, and inconsistent",
+        "Staff burnout is high because tooling is fragmented",
+        "You're losing opportunities to better-resourced competitors"
+      ],
+      painTitle: "Real nonprofit struggles, real fast impact",
+      pains: [
+        { title: "Grant writing delays", desc: "Weeks of research, writing, and compliance review—for proposals that get rejected anyway." },
+        { title: "Donor research scattered", desc: "Fragments of info across email, LinkedIn, and databases. No unified view." },
+        { title: "Staff doing manual work", desc: "Thank-yous, stewardship, data entry, reporting—all manual, all taking hours." },
+        { title: "Programs hard to measure", desc: "Impact reporting is reactive guesswork, not evidence-backed stories." }
+      ],
+      oppTitle: "What AI can unlock for you",
+      oppPoints: [
+        { metric: "70%", desc: "Time saved on grant research & initial drafts" },
+        { metric: "50%", desc: "Faster donor stewardship with smart nurture sequences" },
+        { metric: "40%", desc: "Manual data entry eliminated via AI extraction" },
+        { metric: "3x", desc: "Proposals completed per staff member per month" }
+      ],
+      engagementTitle: "How we work with nonprofits",
+      ctaMission: "mission",
+      footerMission: "nonprofits"
+    }
+  };
+
+  let quizState = {
+    active: false,
+    step: 0,
+    score: 0,
+    questions: []
+  };
+
+  function updateContent(audience) {
+    const copy = content[audience];
+    document.getElementById('heroTitle').textContent = copy.heroTitle;
+    document.getElementById('heroSubtitle').textContent = copy.heroSubtitle;
+    document.getElementById('heroTagline').textContent = copy.heroTagline;
+    document.getElementById('problemTitle').textContent = copy.problemTitle;
+    document.getElementById('painTitle').textContent = copy.painTitle;
+    document.getElementById('oppTitle').textContent = copy.oppTitle;
+    document.getElementById('engagementTitle').textContent = copy.engagementTitle;
+    document.getElementById('ctaMission').textContent = copy.ctaMission;
+    document.getElementById('footerMission').textContent = copy.footerMission;
+
+    // Problem list
+    const problemList = document.getElementById('problemList');
+    problemList.innerHTML = copy.problems.map(p => `
+      <div class="problem-item">
+        <span>•</span>
+        <p>${p}</p>
+      </div>
+    `).join('');
+
+    // Pain grid
+    const painGrid = document.getElementById('painGrid');
+    painGrid.innerHTML = copy.pains.map(p => `
+      <div class="pain-card">
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+      </div>
+    `).join('');
+
+    // Opp grid
+    const oppGrid = document.getElementById('oppGrid');
+    oppGrid.innerHTML = copy.oppPoints.map(o => `
+      <div class="opp-card">
+        <div class="metric">${o.metric}</div>
+        <p>${o.desc}</p>
+      </div>
+    `).join('');
+
+    // Quiz questions
+    quizState.questions = [
+      audience === 'business' ? "Does your data live across multiple disconnected systems?" : "Do you already use AI tools (ChatGPT, Copilot, etc.)?",
+      audience === 'business' ? "Have you tried AI tools but aren't sure what to do next?" : "Does your team struggle with grant-writing timelines?",
+      audience === 'business' ? "Are you losing deals or efficiency to better-tooled competitors?" : "Do you lack a coherent data strategy for donor insights?",
+      audience === 'business' ? "Could you articulate 2–3 concrete AI opportunities in your business right now?" : "Is staff burnout limiting your mission impact?",
+      audience === 'business' ? "Would a free week (with a working prototype) to explore AI fit your timeline?" : "Would a custom AI system tied to ROI (time/cost saved) matter to your board?",
+      audience === 'business' ? "Do you have budget for a fixed-scope AI build this year?" : "How confident is your team in measuring program impact?"
+    ];
+  }
+
+  document.getElementById('audienceToggle').addEventListener('change', (e) => {
+    updateContent(e.target.value);
+    resetQuiz();
+  });
+
+  function startQuiz() {
+    quizState.active = true;
+    quizState.step = 0;
+    quizState.score = 0;
+    document.getElementById('quizStartBtn').classList.add('hidden');
+    document.getElementById('quizContent').classList.remove('hidden');
+    document.getElementById('quizResults').classList.add('hidden');
+    updateQuizDisplay();
+  }
+
+  function updateQuizDisplay() {
+    const percent = ((quizState.step + 1) / quizState.questions.length) * 100;
+    document.getElementById('progressFill').style.width = percent + '%';
+    document.getElementById('quizCounter').textContent = `Question ${quizState.step + 1} of ${quizState.questions.length}`;
+    document.getElementById('quizQuestion').textContent = quizState.questions[quizState.step];
+  }
+
+  function answerQuiz(yes) {
+    if (yes) quizState.score++;
+    
+    if (quizState.step < quizState.questions.length - 1) {
+      quizState.step++;
+      updateQuizDisplay();
+    } else {
+      showResults();
+    }
+  }
+
+  function showResults() {
+    document.getElementById('quizContent').classList.add('hidden');
+    document.getElementById('quizResults').classList.remove('hidden');
+
+    let level, color, message;
+    if (quizState.score <= 2) {
+      level = 'High';
+      color = '#C4451B';
+      message = 'You\'re facing real gaps. Let\'s explore how a week-long assessment can uncover quick wins.';
+    } else if (quizState.score <= 4) {
+      level = 'Moderate';
+      color = '#C6912F';
+      message = 'You\'re on the right track but missing some strategic opportunities. We can help you crystallize them.';
+    } else {
+      level = 'Low';
+      color = '#1F5E3A';
+      message = 'You\'re ahead of the curve. Let\'s accelerate your advantage with production AI.';
+    }
+
+    const riskLevel = document.getElementById('riskLevel');
+    riskLevel.textContent = level;
+    riskLevel.style.color = color;
+    document.getElementById('riskMessage').textContent = message;
+  }
+
+  function resetQuiz() {
+    quizState.active = false;
+    quizState.step = 0;
+    quizState.score = 0;
+    document.getElementById('quizStartBtn').classList.remove('hidden');
+    document.getElementById('quizContent').classList.add('hidden');
+    document.getElementById('quizResults').classList.add('hidden');
+  }
+
+  function openContact() {
+    document.getElementById('contactModal').classList.remove('hidden');
+  }
+
+  function submitForm() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    if (!name || !email) {
+      alert('Please enter your name and email.');
+      return;
+    }
+    alert(`Thank you, ${name}! We'll reach out to ${email} soon.`);
+    document.getElementById('contactModal').classList.add('hidden');
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('phone').value = '';
+  }
+
+  // Initialize
+  updateContent('business');
+</script>
+
+</body>
+</html>
