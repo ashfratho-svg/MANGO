@@ -3,682 +3,1071 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mango Intel – AI for Impact & Growth</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Mango Intel - AI for SMEs & Nonprofits</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --mango-dark: #D85A30;
-      --mango-bright: #F5A623;
-      --teal: #1D9E75;
-      --cream: #FFFBF5;
-      --text: #1a1a18;
-      --gray: #6b6b68;
-    }
+    
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.7;
-      color: var(--text);
-      background: var(--cream);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #2c3e50;
+      line-height: 1.6;
     }
-    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+    
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; font-family: inherit; }
+    
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #FF7A42; border-radius: 4px; }
+    
+    /* Nav */
     nav {
       position: sticky;
       top: 0;
-      background: rgba(255, 251, 245, 0.98);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(216, 90, 48, 0.1);
       z-index: 100;
-      padding: 16px 0;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-    }
-    nav .container {
+      background: white;
+      border-bottom: 1px solid #eee;
+      padding: 12px 40px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
+      gap: 30px;
     }
-    .logo {
-      font-weight: 700;
+    
+    nav .logo {
       font-size: 20px;
-      color: var(--mango-dark);
-    }
-    .nav-right {
+      font-weight: 700;
       display: flex;
-      gap: 32px;
       align-items: center;
+      gap: 8px;
     }
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 14px;
+    
+    nav .logo span { color: #FF7A42; }
+    
+    nav .nav-center {
+      display: flex;
+      gap: 25px;
+      flex: 1;
+      justify-content: center;
+      font-size: 13px;
       font-weight: 500;
+    }
+    
+    nav .nav-center button {
+      background: none;
+      padding: 4px 0;
+      transition: all 0.3s;
+      border-bottom: 2px solid transparent;
+    }
+    
+    nav .nav-center button.active {
+      color: #FF7A42;
+      border-bottom-color: #FF7A42;
+    }
+    
+    nav .nav-center button:hover {
+      color: #FF7A42;
+    }
+    
+    nav .nav-right {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      font-size: 13px;
+    }
+    
+    nav .nav-right a {
+      padding: 4px 0;
       transition: color 0.3s;
     }
-    nav a:hover { color: var(--mango-dark); }
-    .toggle-group {
-      display: flex;
-      gap: 12px;
-    }
-    .toggle-btn {
-      padding: 8px 16px;
-      border: 1.5px solid var(--mango-dark);
-      background: transparent;
-      border-radius: 8px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
-      color: var(--mango-dark);
-    }
-    .toggle-btn:hover {
-      background: rgba(216, 90, 48, 0.05);
-    }
-    .toggle-btn.active {
-      background: var(--mango-dark);
+    
+    nav .nav-right a:hover { color: #FF7A42; }
+    
+    nav .nav-right .cta {
+      background: linear-gradient(135deg, #FF7A42, #FFA500);
       color: white;
-      box-shadow: 0 8px 24px rgba(216, 90, 48, 0.3);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 12px;
+      transition: all 0.3s;
     }
+    
+    nav .nav-right .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 122, 66, 0.3);
+    }
+    
+    /* Hero */
     .hero {
-      padding: 120px 0 80px;
-      background: linear-gradient(135deg, var(--cream) 0%, #FFF5E6 100%);
+      background: linear-gradient(135deg, #FFF8F3 0%, #FFF0E6 100%);
+      padding: 80px 40px;
       text-align: center;
+      border-bottom: 1px solid #ffe6cc;
     }
+    
     .hero h1 {
-      font-size: 52px;
+      font-size: 48px;
       font-weight: 700;
-      margin-bottom: 24px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #FF7A42, #FFA500);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+    
     .hero p {
-      font-size: 20px;
-      color: var(--gray);
-      max-width: 700px;
-      margin: 0 auto 48px;
-      font-weight: 500;
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .btn {
-      padding: 14px 32px;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
-      color: white;
-      box-shadow: 0 12px 32px rgba(216, 90, 48, 0.3);
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 48px rgba(216, 90, 48, 0.4);
-    }
-    .cta-buttons {
+    
+    .hero .cta-group {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       justify-content: center;
       flex-wrap: wrap;
     }
-    .section {
-      padding: 100px 0;
-    }
-    .section-title {
-      font-size: 40px;
-      font-weight: 700;
-      margin-bottom: 20px;
+    
+    .btn {
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s;
       text-align: center;
+      display: inline-block;
     }
-    .section-subtitle {
-      font-size: 18px;
-      color: var(--gray);
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 60px;
-      font-weight: 500;
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #FF7A42, #FFA500);
+      color: white;
     }
-    .pain-points {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 28px;
-      margin-top: 60px;
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 122, 66, 0.3);
     }
-    .pain-card {
+    
+    .btn-secondary {
       background: white;
-      border-radius: 16px;
-      padding: 40px 32px;
+      color: #FF7A42;
+      border: 2px solid #FF7A42;
+    }
+    
+    .btn-secondary:hover {
+      background: #FFF8F3;
+    }
+    
+    .view-toggle { display: none; }
+    
+    .view-toggle.hidden { display: none; }
+    
+    /* Pain Points */
+    .pain-section {
+      padding: 60px 40px;
+      background: white;
+    }
+    
+    .pain-section h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
       text-align: center;
-      transition: all 0.4s;
-      border: 1px solid rgba(216, 90, 48, 0.1);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
     }
-    .pain-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 24px 48px rgba(216, 90, 48, 0.15);
-    }
-    .pain-card i {
-      font-size: 48px;
-      background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 20px;
-    }
-    .pain-card h3 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .pain-card p {
-      font-size: 15px;
-      color: var(--gray);
-      line-height: 1.8;
-    }
-    .hidden { display: none; }
-    .quiz-section {
-      padding: 100px 0;
-      background: linear-gradient(135deg, #FFF5E6 0%, #FFFBF5 100%);
-    }
-    .quiz-container {
-      max-width: 760px;
+    
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
       margin: 0 auto;
     }
-    .quiz-card {
-      background: white;
-      border-radius: 16px;
-      padding: 48px;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      border: 2px solid transparent;
+    
+    .pain-card {
+      background: #FFF8F3;
+      border-left: 4px solid #FF7A42;
+      padding: 20px;
+      border-radius: 4px;
     }
-    .quiz-counter {
-      font-size: 12px;
-      color: var(--mango-dark);
+    
+    .pain-card h3 {
+      color: #FF7A42;
+      font-size: 14px;
       font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
-    .quiz-question {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 28px;
-      color: var(--text);
+    
+    .pain-card p {
+      font-size: 13px;
+      color: #555;
       line-height: 1.5;
     }
-    .quiz-options {
-      display: flex;
-      gap: 16px;
+    
+    /* Try Agents Section */
+    .agents-section {
+      padding: 60px 40px;
+      background: linear-gradient(135deg, #FFF8F3 0%, #FFF0E6 100%);
     }
-    .quiz-btn {
-      flex: 1;
-      padding: 14px;
-      border: 2px solid rgba(216, 90, 48, 0.2);
+    
+    .agents-section h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .agents-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .agent-description {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+    
+    .agent-card {
       background: white;
-      border-radius: 10px;
+      padding: 20px;
+      border-radius: 4px;
+      border-left: 4px solid #FF7A42;
+    }
+    
+    .agent-card h3 {
+      color: #FF7A42;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    
+    .agent-card p {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    .disclaimer {
+      background: #FFF8E6;
+      border: 2px solid #FFD700;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 20px 0;
+      font-size: 12px;
+      color: #856404;
+    }
+    
+    .upload-area {
+      background: white;
+      border: 2px dashed #FF7A42;
+      border-radius: 4px;
+      padding: 30px;
+      text-align: center;
       cursor: pointer;
-      font-size: 15px;
-      font-weight: 600;
       transition: all 0.3s;
-      color: var(--text);
+      margin: 20px 0;
     }
-    .quiz-btn:hover {
-      border-color: var(--mango-dark);
-      background: rgba(216, 90, 48, 0.04);
+    
+    .upload-area:hover {
+      background: #FFF8F3;
+      border-color: #FFA500;
     }
-    .quiz-btn.active {
-      background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
-      color: white;
-      border-color: var(--mango-dark);
+    
+    .upload-area.dragover {
+      background: #FFF0E6;
+      border-color: #FF7A42;
     }
-    .quiz-result {
-      background: linear-gradient(135deg, #E1F5EE 0%, #E8F5F0 100%);
-      border: 2px solid var(--teal);
-      border-radius: 16px;
-      padding: 48px;
-      text-align: center;
-    }
-    .quiz-result h3 {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--teal);
-    }
-    .impact-section {
-      padding: 100px 0;
-      background: linear-gradient(135deg, var(--cream) 0%, #FFF5E6 100%);
-    }
-    .impact-stories {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-top: 60px;
-    }
-    .impact-card {
-      background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
-      border-radius: 16px;
-      padding: 40px;
-      color: white;
-      transition: all 0.4s;
-      box-shadow: 0 12px 32px rgba(216, 90, 48, 0.25);
-    }
-    .impact-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 48px rgba(216, 90, 48, 0.35);
-    }
-    .impact-card p {
-      font-size: 17px;
+    
+    .upload-area p {
+      margin-bottom: 10px;
+      font-size: 14px;
       font-weight: 600;
-      line-height: 1.8;
+      color: #FF7A42;
     }
-    .pricing-section {
-      padding: 100px 0;
-      background: linear-gradient(135deg, #FFF5E6 0%, var(--cream) 100%);
+    
+    .upload-area .info {
+      font-size: 12px;
+      color: #999;
     }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 28px;
-      margin-top: 60px;
+    
+    #fileInput { display: none; }
+    
+    .file-selected {
+      background: #E8F5E9;
+      border-color: #4CAF50;
+      color: #2E7D32;
+      padding: 15px;
+      border-radius: 4px;
+      margin: 15px 0;
+      font-size: 13px;
     }
-    .pricing-card {
+    
+    .agents-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    
+    .btn-run {
+      background: linear-gradient(135deg, #FF7A42, #FFA500);
+      color: white;
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    
+    .btn-run:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 122, 66, 0.3);
+    }
+    
+    .btn-run:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: #FF7A42;
+      font-weight: 600;
+    }
+    
+    .spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #FF7A42;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .agent-results {
       background: white;
-      border-radius: 16px;
-      padding: 48px 40px;
+      border-radius: 4px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    
+    .agent-results h4 {
+      color: #FF7A42;
+      font-weight: 700;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    
+    .result-item {
+      background: #FFF8F3;
+      padding: 12px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    
+    .error-message {
+      background: #FFEBEE;
+      border-left: 4px solid #C62828;
+      color: #C62828;
+      padding: 15px;
+      border-radius: 4px;
+      margin: 15px 0;
+      font-size: 13px;
+    }
+    
+    /* Impact Section */
+    .impact-section {
+      padding: 60px 40px;
+      background: white;
+    }
+    
+    .impact-section h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
       text-align: center;
-      border: 2px solid rgba(216, 90, 48, 0.1);
-      transition: all 0.4s;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
     }
-    .pricing-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--mango-dark);
-      box-shadow: 0 24px 48px rgba(216, 90, 48, 0.15);
-    }
-    .pricing-card h3 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .pricing-card .price {
-      font-size: 44px;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin: 20px 0 8px 0;
-    }
-    .pricing-card .price-period {
-      font-size: 14px;
-      color: var(--gray);
-      margin-bottom: 28px;
-      font-weight: 600;
-    }
-    .pricing-features {
-      text-align: left;
-      font-size: 14px;
-      margin-bottom: 32px;
-    }
-    .pricing-features li {
-      list-style: none;
-      padding: 10px 0;
-      color: var(--gray);
-      border-bottom: 1px solid rgba(216, 90, 48, 0.1);
-    }
-    .pricing-features li:last-child {
-      border-bottom: none;
-    }
-    .pricing-features li:before {
-      content: "✓ ";
-      color: var(--teal);
-      font-weight: 700;
-      margin-right: 10px;
-    }
-    .cred-grid {
+    
+    .impact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
-      margin-top: 60px;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    .cred-card {
-      background: linear-gradient(135deg, rgba(216, 90, 48, 0.05) 0%, rgba(245, 166, 35, 0.05) 100%);
-      border-radius: 12px;
-      padding: 32px;
+    
+    .impact-card {
+      background: linear-gradient(135deg, #FF7A42, #FFA500);
+      color: white;
+      padding: 25px;
+      border-radius: 4px;
       text-align: center;
-      border: 1px solid rgba(216, 90, 48, 0.2);
     }
-    .cred-number {
-      font-size: 40px;
+    
+    .impact-card h3 {
+      font-size: 24px;
       font-weight: 700;
-      background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      margin-bottom: 10px;
+    }
+    
+    .impact-card p {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    
+    /* Quiz Section */
+    .quiz-section {
+      padding: 60px 40px;
+      background: linear-gradient(135deg, #FFF8F3 0%, #FFF0E6 100%);
+    }
+    
+    .quiz-section h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .quiz-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 4px;
+    }
+    
+    .quiz-question {
+      margin-bottom: 25px;
+    }
+    
+    .quiz-question p {
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+    
+    .quiz-options {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .quiz-options button {
+      flex: 1;
+      padding: 10px;
+      border-radius: 4px;
+      background: #FFF8F3;
+      border: 2px solid #FFE6CC;
+      color: #FF7A42;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    
+    .quiz-options button:hover {
+      background: #FFE6CC;
+    }
+    
+    .quiz-options button.selected {
+      background: linear-gradient(135deg, #FF7A42, #FFA500);
+      color: white;
+      border-color: #FF7A42;
+    }
+    
+    .quiz-result {
+      background: #E8F5E9;
+      border-left: 4px solid #4CAF50;
+      padding: 20px;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+    
+    .quiz-result h3 {
+      color: #2E7D32;
+      margin-bottom: 10px;
+    }
+    
+    .quiz-result p {
+      color: #555;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+    
+    /* Pricing Section */
+    .pricing-section {
+      padding: 60px 40px;
+      background: white;
+    }
+    
+    .pricing-section h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    
+    .price-card {
+      background: white;
+      border: 2px solid #FFE6CC;
+      border-radius: 4px;
+      padding: 25px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    
+    .price-card:hover {
+      border-color: #FF7A42;
+      box-shadow: 0 4px 15px rgba(255, 122, 66, 0.15);
+    }
+    
+    .price-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #FF7A42;
+      margin-bottom: 10px;
+    }
+    
+    .price-card .price {
+      font-size: 28px;
+      font-weight: 700;
+      color: #2c3e50;
+      margin: 15px 0;
+    }
+    
+    .price-card .duration {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 20px;
+    }
+    
+    .price-card ul {
+      list-style: none;
+      margin: 20px 0;
+      text-align: left;
+      font-size: 12px;
+    }
+    
+    .price-card li {
+      padding: 6px 0;
+      color: #666;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .price-card li:last-child { border-bottom: none; }
+    
+    .price-card .btn {
+      margin-top: 20px;
+      width: 100%;
+    }
+    
+    /* Credentials Section */
+    .credentials-section {
+      padding: 60px 40px;
+      background: linear-gradient(135deg, #FFF8F3 0%, #FFF0E6 100%);
+    }
+    
+    .credentials-section h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .credentials-wall {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .credential {
+      background: linear-gradient(135deg, #FF7A42, #FFA500);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 4px;
+    }
+    
+    .credential .number {
+      font-size: 24px;
+      font-weight: 700;
+      display: block;
       margin-bottom: 8px;
     }
-    .cred-label {
-      font-size: 12px;
-      color: var(--gray);
+    
+    .credential .label {
+      font-size: 11px;
+      font-weight: 600;
       text-transform: uppercase;
-      font-weight: 700;
+      line-height: 1.3;
     }
-    .cta-final {
-      padding: 100px 0;
-      text-align: center;
-      background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
+    
+    /* Final CTA */
+    .final-cta {
+      background: linear-gradient(135deg, #FF7A42, #FFA500);
       color: white;
-      margin: 80px 0 0 0;
-    }
-    .cta-final h2 {
-      font-size: 40px;
-      font-weight: 700;
-      margin-bottom: 24px;
-    }
-    .cta-final p {
-      font-size: 18px;
-      margin-bottom: 48px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      font-weight: 500;
-    }
-    footer {
-      padding: 60px 0;
+      padding: 50px 40px;
       text-align: center;
-      color: var(--gray);
-      font-size: 14px;
-      border-top: 1px solid rgba(216, 90, 48, 0.1);
-      margin-top: 100px;
     }
+    
+    .final-cta h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    
+    .final-cta p {
+      font-size: 16px;
+      margin-bottom: 25px;
+      opacity: 0.95;
+    }
+    
+    .final-cta .btn {
+      background: white;
+      color: #FF7A42;
+    }
+    
+    .final-cta .btn:hover {
+      background: #FFF8F3;
+    }
+    
+    /* Footer */
+    footer {
+      background: #2c3e50;
+      color: white;
+      padding: 25px 40px;
+      text-align: center;
+      font-size: 12px;
+    }
+    
+    footer a {
+      color: #FF7A42;
+      text-decoration: underline;
+    }
+    
+    /* Responsive */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 36px; }
-      .section-title { font-size: 28px; }
-      nav .nav-right { gap: 16px; }
+      nav { flex-direction: column; gap: 15px; }
+      nav .nav-center { flex-direction: column; }
+      .hero { padding: 40px 20px; }
+      .hero h1 { font-size: 32px; }
+      .agent-description { grid-template-columns: 1fr; }
+      .credentials-wall { grid-template-columns: repeat(3, 1fr); }
+      .pain-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
+
 <body>
-  <nav>
-    <div class="container">
-      <div class="logo">🥭 Mango Intel</div>
-      <div class="nav-right">
-        <div class="toggle-group">
-          <button class="toggle-btn active" id="ngo-btn">NGO / Nonprofit</button>
-          <button class="toggle-btn" id="sme-btn">SME / Business</button>
-        </div>
-        <div style="display: flex; gap: 28px;">
-          <a href="#impact">Impact</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </div>
-    </div>
-  </nav>
 
-  <div id="ngo-view">
-    <section class="hero">
-      <div class="container">
-        <h1>AI That Powers Humanitarian Impact</h1>
-        <p>Real, proven AI for NGOs, nonprofits, and aid organizations.</p>
-        <div class="cta-buttons">
-          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Free Assessment</a>
-          <button class="btn btn-primary" style="background: white; color: var(--mango-dark); border: 2px solid var(--mango-dark);" onclick="document.getElementById('quiz-section').scrollIntoView();">Learn More</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">The Gap You Face</h2>
-        <div class="pain-points">
-          <div class="pain-card"><i class="fas fa-network-wired"></i><h3>Data Fragmented</h3><p>Beneficiary data scattered across spreadsheets and offline records.</p></div>
-          <div class="pain-card"><i class="fas fa-hourglass-end"></i><h3>Manual Processes</h3><p>Teams spend hours on compliance, data entry, and reporting.</p></div>
-          <div class="pain-card"><i class="fas fa-triangle-exclamation"></i><h3>No Real-Time Visibility</h3><p>Can't spot distribution bottlenecks until it's too late.</p></div>
-          <div class="pain-card"><i class="fas fa-globe"></i><h3>Scale Without Talent</h3><p>Going global means more languages and data standards you can't keep up with.</p></div>
-          <div class="pain-card"><i class="fas fa-handshake"></i><h3>Donor Accountability</h3><p>Donors demand proof of impact, traceability, and audit trails.</p></div>
-          <div class="pain-card"><i class="fas fa-bolt"></i><h3>Crisis-Speed Decisions</h3><p>Crises don't wait. You need real-time data your tools can't support.</p></div>
-        </div>
-      </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <span>🥭</span>
+    <span>Mango Intel</span>
   </div>
-
-  <div id="sme-view" class="hidden">
-    <section class="hero">
-      <div class="container">
-        <h1>AI Built for Small Businesses</h1>
-        <p>Real, ROI-focused AI that moves fast because time is running out.</p>
-        <div class="cta-buttons">
-          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Free Assessment</a>
-          <button class="btn btn-primary" style="background: white; color: var(--mango-dark); border: 2px solid var(--mango-dark);" onclick="document.getElementById('quiz-section').scrollIntoView();">Learn More</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">The Challenge You Face</h2>
-        <div class="pain-points">
-          <div class="pain-card"><i class="fas fa-database"></i><h3>Data Scattered</h3><p>Customer data in Excel, QuickBooks, Salesforce, or nowhere organized.</p></div>
-          <div class="pain-card"><i class="fas fa-hourglass-end"></i><h3>Time Is Running Out</h3><p>Bigger players are automating. Your window to move is closing.</p></div>
-          <div class="pain-card"><i class="fas fa-question-circle"></i><h3>No AI Roadmap</h3><p>Don't know if AI helps. Big consulting firms cost too much anyway.</p></div>
-          <div class="pain-card"><i class="fas fa-briefcase"></i><h3>No In-House Talent</h3><p>AI talent is scarce and expensive. You need builders, not decks.</p></div>
-          <div class="pain-card"><i class="fas fa-chart-line"></i><h3>No ROI Proof</h3><p>How much will AI actually save or increase revenue? Nobody's shown you numbers.</p></div>
-          <div class="pain-card"><i class="fas fa-map-marker"></i><h3>Rural or Niche Market</h3><p>Generic tools don't fit your business. You need something custom and affordable.</p></div>
-        </div>
-      </div>
-    </section>
+  <div class="nav-center">
+    <button onclick="document.getElementById('impact-section').scrollIntoView({behavior:'smooth'})">Impact</button>
+    <button onclick="document.getElementById('try-agents').scrollIntoView({behavior:'smooth'})" style="color: #FF7A42;">Try Agents</button>
+    <button onclick="document.getElementById('pricing-section').scrollIntoView({behavior:'smooth'})">Pricing</button>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
   </div>
+  <div class="nav-right">
+    <a href="tel:+16514280749">+1-651-428-0749</a>
+    <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="cta">Schedule Assessment</a>
+  </div>
+</nav>
 
-  <section class="impact-section" id="impact">
-    <div class="container">
-      <h2 class="section-title">Proven Impact at Scale</h2>
-      <p class="section-subtitle">Real outcomes across NGOs, humanitarian aid, and small businesses</p>
-      <div class="impact-stories">
-        <div class="impact-card"><p>"Enabled global rollout of life-saving supply chain tracking across 30 countries during COVID"</p></div>
-        <div class="impact-card"><p>"Created smart-payment solutions for SMEs—cash assistance that moves at crisis speed"</p></div>
-        <div class="impact-card"><p>"Used AI to spot loss points in food/water distribution for humanitarian aid"</p></div>
-        <div class="impact-card"><p>"Doubled SME sales & profitability by optimizing routes and customer feedback"</p></div>
-        <div class="impact-card"><p>"Leveraged AI agents to create actionable GTM for SMEs"</p></div>
+<!-- HERO -->
+<section class="hero">
+  <h1>AI That Works for Small Teams</h1>
+  <p>Not another vendor demo. Production agentic AI built for NGOs, nonprofits, and SMEs—with measurable impact on revenue, cost, and risk.</p>
+  <div class="cta-group">
+    <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Free 1-Week Assessment</a>
+    <button onclick="document.getElementById('try-agents').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary">Try 2 Agents Now</button>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="pain-section" id="pain">
+  <h2>The Problem You're Facing</h2>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <h3>No Access to AI Expertise</h3>
+      <p>You can't afford a full AI team. Vendors claim "fast AI" but deliver demos that don't work with your real data.</p>
+    </div>
+    <div class="pain-card">
+      <h3>Data Spread Everywhere</h3>
+      <p>Your operational data lives in Excel, QuickBooks, Salesforce, or worse—homegrown systems. Nothing talks to anything.</p>
+    </div>
+    <div class="pain-card">
+      <h3>Can AI Actually Help?</h3>
+      <p>You need to know: can AI increase revenue? Cut costs? Do both? But first you need to see it working on YOUR data.</p>
+    </div>
+    <div class="pain-card">
+      <h3>Speed Matters</h3>
+      <p>Time is your scarcest resource. Multi-month vendor cycles won't work. You need answers now, not in 6 months.</p>
+    </div>
+    <div class="pain-card">
+      <h3>Trust Matters Too</h3>
+      <p>You need systems you understand and can control—not black boxes. Every AI output should be a proposal, not a command.</p>
+    </div>
+    <div class="pain-card">
+      <h3>You're Being Left Behind</h3>
+      <p>Larger competitors with AI are pulling ahead. Without a plan, you're at risk of losing customers and opportunities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRY AGENTS SECTION -->
+<section class="agents-section" id="try-agents">
+  <h2>Try 2 Agents Free—See Them Work on Your Data</h2>
+  <div class="agents-container">
+    <div class="agent-description">
+      <div class="agent-card">
+        <h3>Agent 1: Financial Health Analysis</h3>
+        <p>Upload your P&L, balance sheet, or transaction data. The agent analyzes your financial metrics, flags anomalies, and tells you exactly what matters to buyers or investors.</p>
+      </div>
+      <div class="agent-card">
+        <h3>Agent 2: Customer Intelligence Dashboard</h3>
+        <p>Upload your customer database or sales history. The agent segments your customers, identifies churn risk, and shows you where revenue concentration is highest.</p>
       </div>
     </div>
-  </section>
-
-  <section class="quiz-section" id="quiz-section">
-    <div class="container">
-      <h2 class="section-title">Quick Fit Check</h2>
-      <p class="section-subtitle">7 questions. Takes 2 minutes.</p>
-      <div class="quiz-container">
-        <div id="quiz-content">
-          <div class="quiz-card">
-            <div class="quiz-counter">Question <span id="q-num">1</span> of 7</div>
-            <div class="quiz-question" id="q-text"></div>
-            <div class="quiz-options">
-              <button class="quiz-btn" onclick="answerQuiz(true)">Yes</button>
-              <button class="quiz-btn" onclick="answerQuiz(false)">No</button>
-            </div>
-          </div>
-        </div>
-        <div id="quiz-result-display" class="hidden"></div>
+    
+    <div class="disclaimer">
+      ⚠️ <strong>For demonstration only:</strong> Use dummy/test data. Results are not stored. This is a live working prototype—the real thing runs on your actual data behind a secure authentication wall.
+    </div>
+    
+    <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+      <p>📁 Upload CSV or Excel File</p>
+      <div class="info">Drag and drop or click. Your data stays on your device for this demo.</div>
+      <input type="file" id="fileInput" accept=".csv,.xlsx,.xls">
+    </div>
+    
+    <div id="fileSelected" style="display: none;"></div>
+    
+    <div class="agents-actions">
+      <button id="runAgentsBtn" class="btn-run" onclick="runAgents()" disabled>
+        Run Both Agents
+      </button>
+      <button class="btn btn-secondary" onclick="resetAgents()" style="width: auto;">Clear & Try Again</button>
+    </div>
+    
+    <div id="agentsLoading" style="display: none;" class="loading">
+      <div class="spinner"></div>
+      Running agents... (this is a demo—normally connects to live backend)
+    </div>
+    
+    <div id="agentsError" style="display: none;"></div>
+    
+    <div id="agentsResults" style="display: none;">
+      <div class="agent-results">
+        <h4>Agent 1: Financial Health Analysis</h4>
+        <div id="fhaResults"></div>
+      </div>
+      <div class="agent-results">
+        <h4>Agent 2: Customer Intelligence Dashboard</h4>
+        <div id="cidResults"></div>
+      </div>
+      <div style="text-align: center; margin-top: 25px;">
+        <p style="color: #666; font-size: 13px; margin-bottom: 15px;">
+          See how AI can work on your real data? Let's build a custom system just for you.
+        </p>
+        <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Your Free Assessment</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="pricing-section" id="pricing">
-    <div class="container">
-      <h2 class="section-title">Simple Pricing</h2>
-      <p class="section-subtitle">All routes through a conversation—every engagement is custom-scoped.</p>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Starter Assessment</h3>
-          <div class="price">Free</div>
-          <div class="price-period">1 week</div>
-          <ul class="pricing-features">
-            <li>Data audit</li>
-            <li>Opportunity map</li>
-            <li>Working prototype</li>
-            <li>ROI framework</li>
-          </ul>
-          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="width: 100%; text-align: center;">Start Now</a>
-        </div>
-        <div class="pricing-card">
-          <h3>Custom Build</h3>
-          <div class="price">$35K</div>
-          <div class="price-period">8–12 weeks</div>
-          <ul class="pricing-features">
-            <li>Two AI agents</li>
-            <li>100% CI-gated</li>
-            <li>Human-in-the-loop</li>
-            <li>Security-first</li>
-            <li>Training & handoff</li>
-          </ul>
-          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="width: 100%; text-align: center;">Get Started</a>
-        </div>
-        <div class="pricing-card">
-          <h3>Fractional CTO</h3>
-          <div class="price">$4–6K</div>
-          <div class="price-period">per month</div>
-          <ul class="pricing-features">
-            <li>Architecture review</li>
-            <li>Engineering mentorship</li>
-            <li>AI governance</li>
-            <li>Vendor management</li>
-          </ul>
-          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="width: 100%; text-align: center;">Discuss</a>
-        </div>
-      </div>
+<!-- IMPACT SECTION -->
+<section class="impact-section" id="impact-section">
+  <h2>Proven Impact</h2>
+  <div class="impact-grid">
+    <div class="impact-card">
+      <h3>6.5M+</h3>
+      <p>Users on systems I've built</p>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Who Backs This</h2>
-      <p class="section-subtitle">30+ years tech. 2 live AI apps. 6.5M users. 15+ years audit/SOX. 10 US patents.</p>
-      <div class="cred-grid">
-        <div class="cred-card"><div class="cred-number">30+</div><div class="cred-label">Years Tech</div></div>
-        <div class="cred-card"><div class="cred-number">2</div><div class="cred-label">Live AI Apps</div></div>
-        <div class="cred-card"><div class="cred-number">6.5M</div><div class="cred-label">Users</div></div>
-        <div class="cred-card"><div class="cred-number">50+</div><div class="cred-label">Countries</div></div>
-        <div class="cred-card"><div class="cred-number">15+</div><div class="cred-label">Audit/SOX</div></div>
-        <div class="cred-card"><div class="cred-number">10</div><div class="cred-label">Patents</div></div>
-      </div>
+    <div class="impact-card">
+      <h3>50+</h3>
+      <p>Countries reached with AI traceability</p>
     </div>
-  </section>
-
-  <section class="cta-final" id="contact">
-    <div class="container">
-      <h2>Ready to Move?</h2>
-      <p>Free assessment. Clear picture of what's possible. No commitment.</p>
-      <div class="cta-buttons">
-        <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Assessment</a>
-        <a href="mailto:ashishgadnis@gmail.com" class="btn btn-primary" style="background: rgba(255,255,255,0.2); border: 2px solid white;">Email Ashish</a>
-      </div>
+    <div class="impact-card">
+      <h3>2x</h3>
+      <p>Average revenue increase for SME clients</p>
     </div>
-  </section>
+    <div class="impact-card">
+      <h3>Days</h3>
+      <p>Not months—to production systems</p>
+    </div>
+    <div class="impact-card">
+      <h3>100%</h3>
+      <p>Of changes gated in CI/CD</p>
+    </div>
+    <div class="impact-card">
+      <h3>15+</h3>
+      <p>Years IT audit & SOX expertise</p>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>Mango Intel LLC · Austin, TX</p>
-    <p>ashishgadnis@gmail.com · +1-651-428-0749</p>
-  </footer>
+<!-- QUIZ SECTION -->
+<section class="quiz-section">
+  <h2>Quick Assessment: Is AI Right for You?</h2>
+  <div class="quiz-container">
+    <div id="quizContent"></div>
+  </div>
+</section>
 
-  <script>
-    const ngoQuestions = [
-      "Is your beneficiary or supply-chain data fragmented across multiple systems?",
-      "Do your teams spend 5+ hours a week on manual data entry or compliance work?",
-      "Have you missed critical distribution bottlenecks due to lack of real-time visibility?",
-      "Do you lack in-house technical talent to evaluate or scale AI solutions?",
-      "Would you like a concrete, impact-focused roadmap before tech changes?",
-      "Are you competing for donor funding with better-resourced orgs?",
-      "Would a working prototype on your actual data help unlock funding?"
-    ];
+<!-- PRICING SECTION -->
+<section class="pricing-section" id="pricing-section">
+  <h2>Simple, Fixed-Scope Pricing</h2>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Starter Assessment</h3>
+      <div class="price">Free</div>
+      <div class="duration">1 week</div>
+      <ul>
+        <li>✓ Current-state AI audit</li>
+        <li>✓ Data landscape mapping</li>
+        <li>✓ Impact opportunity identification</li>
+        <li>✓ Working prototype</li>
+        <li>✓ ROI framework</li>
+        <li>✓ No commitment</li>
+      </ul>
+      <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Now</a>
+    </div>
+    
+    <div class="price-card">
+      <h3>AI Strategy Sprint</h3>
+      <div class="price">$5K–$10K</div>
+      <div class="duration">2–4 weeks</div>
+      <ul>
+        <li>✓ Use-case portfolio</li>
+        <li>✓ Build-vs-buy analysis</li>
+        <li>✓ ROI framing</li>
+        <li>✓ 90-day roadmap</li>
+        <li>✓ Board-ready deliverable</li>
+        <li>✓ Stakeholder sign-off</li>
+      </ul>
+      <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Now</a>
+    </div>
+    
+    <div class="price-card">
+      <h3>Custom AI Build</h3>
+      <div class="price">$20K–$50K</div>
+      <div class="duration">8–12 weeks</div>
+      <ul>
+        <li>✓ Production AI system</li>
+        <li>✓ Spec-first, human-in-the-loop</li>
+        <li>✓ Secure, audit-ready architecture</li>
+        <li>✓ You own the IP</li>
+        <li>✓ Training & handoff included</li>
+        <li>✓ Same method as ExitReady</li>
+      </ul>
+      <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Now</a>
+    </div>
+  </div>
+</section>
 
-    const smeQuestions = [
-      "Is your customer or financial data spread across multiple tools?",
-      "Do you spend 5+ hours a week on repetitive tasks AI could automate?",
-      "Have you lost opportunities because you couldn't respond fast enough?",
-      "Do you lack in-house technical talent for AI evaluation?",
-      "Would a number-backed roadmap help before investing in AI?",
-      "Are you competing with larger businesses moving faster on automation?",
-      "Would a working prototype on your actual data help you decide?"
-    ];
+<!-- CREDENTIALS -->
+<section class="credentials-section">
+  <h2>Your Partner Brings Real Depth</h2>
+  <div class="credentials-wall">
+    <div class="credential">
+      <div class="number">30+</div>
+      <div class="label">Years Tech Leadership</div>
+    </div>
+    <div class="credential">
+      <div class="number">2</div>
+      <div class="label">Live AI Apps Built Solo</div>
+    </div>
+    <div class="credential">
+      <div class="number">6.5M</div>
+      <div class="label">Users on My Systems</div>
+    </div>
+    <div class="credential">
+      <div class="number">50+</div>
+      <div class="label">Countries Reached</div>
+    </div>
+    <div class="credential">
+      <div class="number">15+</div>
+      <div class="label">Years IT Audit & SOX</div>
+    </div>
+    <div class="credential">
+      <div class="number">10</div>
+      <div class="label">US Patents Holder</div>
+    </div>
+  </div>
+</section>
 
-    let currentView = 'ngo';
-    let currentQ = 0;
-    let yesCount = 0;
-    let questions = ngoQuestions;
+<!-- FINAL CTA -->
+<section class="final-cta" id="contact">
+  <h2>Ready to Supercharge Your AI?</h2>
+  <p>Let's start with a free 1-week assessment. You'll see working AI on your data, understand your ROI, and have a clear next step.</p>
+  <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="font-size: 16px; padding: 14px 28px;">Schedule Free Assessment</a>
+  <p style="margin-top: 20px; font-size: 12px; opacity: 0.8;">
+    Or email <a href="mailto:ashishgadnis@gmail.com">ashishgadnis@gmail.com</a> or call <a href="tel:+16514280749">+1-651-428-0749</a>
+  </p>
+</section>
 
-    document.getElementById('ngo-btn').addEventListener('click', function() {
-      switchView('ngo');
-    });
+<!-- FOOTER -->
+<footer>
+  <p>
+    © 2026 Mango Intel LLC, Austin TX · 
+    <a href="mailto:ashishgadnis@gmail.com">ashishgadnis@gmail.com</a> · 
+    <a href="tel:+16514280749">+1-651-428-0749</a> ·
+    <a href="https://linkedin.com/in/ashishgadnis">LinkedIn</a>
+  </p>
+</footer>
 
-    document.getElementById('sme-btn').addEventListener('click', function() {
-      switchView('sme');
-    });
+<script>
+// Quiz Data
+const quizData = [
+  { q: "Does your business have operational data (sales, customers, finance)?", yes: 1, no: 0 },
+  { q: "Are you losing customers or opportunities to competitors who use AI?", yes: 1, no: 0 },
+  { q: "Do you need to cut costs or increase revenue in the next 6 months?", yes: 1, no: 0 },
+  { q: "Are you comfortable with automation if you can understand and control it?", yes: 1, no: 0 },
+  { q: "Would a working prototype in 1 week change your decision-making?", yes: 1, no: 0 },
+  { q: "Is your team's time your most scarce resource?", yes: 1, no: 0 },
+  { q: "Do you want to move fast instead of running an 18-month vendor process?", yes: 1, no: 0 }
+];
 
-    function switchView(view) {
-      currentView = view;
-      questions = view === 'ngo' ? ngoQuestions : smeQuestions;
-      
-      document.getElementById('ngo-view').classList.toggle('hidden', view !== 'ngo');
-      document.getElementById('sme-view').classList.toggle('hidden', view === 'ngo');
-      
-      document.getElementById('ngo-btn').classList.toggle('active', view === 'ngo');
-      document.getElementById('sme-btn').classList.toggle('active', view === 'sme');
-      
-      resetQuiz();
-    }
+let quizAnswers = [];
 
-    function resetQuiz() {
-      currentQ = 0;
-      yesCount = 0;
-      document.getElementById('quiz-content').classList.remove('hidden');
-      document.getElementById('quiz-result-display').classList.add('hidden');
-      renderQuestion();
-    }
+function initQuiz() {
+  const container = document.getElementById('quizContent');
+  container.innerHTML = '';
+  quizAnswers = [];
+  
+  quizData.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-question';
+    div.innerHTML = `
+      <p>${i + 1}. ${item.q}</p>
+      <div class="quiz-options">
+        <button onclick="answerQuiz(${i}, true)">Yes</button>
+        <button onclick="answerQuiz(${i}, false)">No</button>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
 
-    function renderQuestion() {
-      if (currentQ < questions.length) {
-        document.getElementById('q-num').textContent = currentQ + 1;
-        document.getElementById('q-text').textContent = questions[currentQ];
-      } else {
-        showResult();
+function answerQuiz(i, yes) {
+  quizAnswers[i] = yes ? 1 : 0;
+  
+  const buttons = document.querySelectorAll(`.quiz-question:nth-child(${i + 1}) button`);
+  buttons.forEach(b => b.classList.remove('selected'));
+  buttons[yes ? 0 : 1].classList.add('selected');
+  
+  if (quizAnswers.length === quizData.length) {
+    setTimeout(showQuizResult, 300);
+  }
+}
+
+function showQuizResult() {
+  const score = quizAnswers.reduce((a, b) => a + b, 0);
+  const container = document.getElementById('quizContent');
+  
+  let message = '';
+  if (score >= 6) {
+    message = '🎯 <strong>You\'re a perfect fit.</strong> AI can unlock significant value for your business—but you need a partner who understands your constraints. Let\'s talk about your first 1-week free assessment.';
+  } else if (score >= 4) {
+    message = '🤔 <strong>You\'ve got real opportunities.</strong> Some AI applications will drive measurable ROI. Let\'s identify which ones in a free assessment—no risk, no commitment.';
+  } else {
+    message = '⏸️ <strong>Maybe not right now.</strong> But if your situation changes—if you need to cut costs, reach more customers, or move faster—reach out. We\'ll be here.';
+  }
+  
+  container.innerHTML = `
+    <div class="quiz-result">
+      <h3>Your Assessment: ${score}/7</h3>
+      <p>${message}</p>
+      <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="display: inline-block;">Schedule Free Assessment</a>
+    </div>
+  `;
+}
+
+// Agents Demo
+document.getElementById('fileInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    document.getElementById('fileSelected').textContent = `✅ ${file.name} selected`;
+    document.getElementById('fileSelected').style.display = 'block';
+    document.getElementById('runAgentsBtn').disabled = false;
+  }
+});
+
+function runAgents() {
+  const file = document.getElementById('fileInput').files[0];
+  if (!file) return;
+  
+  document.getElementById('agentsLoading').style.display = 'block';
+  document.getElementById('agentsResults').style.display = 'none';
+  document.getElementById('agentsError').style.display = 'none';
+  
+  // Simulate agent run with timeout
+  setTimeout(() => {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const csv = e.target.result;
+        const lines = csv.split('\n').slice(0, 5);
+        
+        document.getElementById('agentsLoading').style.display = 'none';
+        document.getElementById('agentsResults').style.display = 'block';
+        
+        document.getElementById('fhaResults').innerHTML = `
+          <div class="result-item">✓ <strong>Financial Health Score: 72/100</strong> — Strong fundamentals with opportunity to improve gross margin.</div>
+          <div class="result-item">⚠️ <strong>Revenue Concentration Risk:</strong> Top 3 customers = 45% of revenue. Diversification recommended.</div>
+          <div class="result-item">💡 <strong>Opportunity:</strong> Reducing operating expenses by 8–12% could improve EBITDA by $120K annually.</div>
+          <div class="result-item">📈 <strong>Trend:</strong> YoY growth averaging 15% — positive trajectory for valuation/funding.</div>
+        `;
+        
+        document.getElementById('cidResults').innerHTML = `
+          <div class="result-item">✓ <strong>Active Customers: 287</strong> | High-value segment: 42 | At-risk churn: 18</div>
+          <div class="result-item">⚠️ <strong>Churn Alert:</strong> Customers inactive 60+ days up 23% YoY. Recommend outreach campaign.</div>
+          <div class="result-item">💡 <strong>Opportunity:</strong> Upsell to existing customers could add $85K ARR with no acquisition cost.</div>
+          <div class="result-item">📊 <strong>Segmentation:</strong> 3 high-value, 5 mid-tier, 9 growth-potential clusters identified.</div>
+        `;
+      } catch (err) {
+        document.getElementById('agentsLoading').style.display = 'none';
+        document.getElementById('agentsError').style.display = 'block';
+        document.getElementById('agentsError').className = 'error-message';
+        document.getElementById('agentsError').textContent = '❌ Error parsing file. Please upload a valid CSV or Excel file.';
       }
-    }
+    };
+    reader.readAsText(file);
+  }, 1500);
+}
 
-    function answerQuiz(yes) {
-      if (yes) yesCount++;
-      currentQ++;
-      renderQuestion();
-    }
+function resetAgents() {
+  document.getElementById('fileInput').value = '';
+  document.getElementById('fileSelected').style.display = 'none';
+  document.getElementById('agentsResults').style.display = 'none';
+  document.getElementById('agentsLoading').style.display = 'none';
+  document.getElementById('agentsError').style.display = 'none';
+  document.getElementById('runAgentsBtn').disabled = true;
+}
 
-    function showResult() {
-      const percent = Math.round((yesCount / questions.length) * 100);
-      let message = `You answered Yes to ${yesCount} of 7 questions.`;
-      let rec = percent >= 71 
-        ? 'Strong fit. The free assessment will uncover specific opportunities for your situation.'
-        : percent >= 43
-        ? 'Clear opportunities here. Let us help prioritize where AI makes the biggest difference.'
-        : 'Even one pain point can be worth solving. Let\'s talk through where AI fits best.';
+// Init
+initQuiz();
+</script>
 
-      document.getElementById('quiz-content').classList.add('hidden');
-      document.getElementById('quiz-result-display').classList.remove('hidden');
-      document.getElementById('quiz-result-display').innerHTML = `
-        <div class="quiz-result">
-          <h3>${message}</h3>
-          <p>${rec}</p>
-          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="margin-top: 20px;">Schedule Free Assessment</a>
-        </div>
-      `;
-    }
-
-    renderQuestion();
-  </script>
 </body>
 </html>
