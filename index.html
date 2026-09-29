@@ -1027,12 +1027,23 @@
     let questions = ngoQuestions;
 
     function setView(view) {
+      console.log('setView called with:', view);
       currentView = view;
-      document.getElementById('ngo-view').classList.toggle('hidden', view !== 'ngo');
-      document.getElementById('sme-view').classList.toggle('hidden', view !== 'sme');
+      
+      // Show/hide views
+      if (view === 'ngo') {
+        document.getElementById('ngo-view').style.display = 'block';
+        document.getElementById('sme-view').style.display = 'none';
+      } else {
+        document.getElementById('ngo-view').style.display = 'none';
+        document.getElementById('sme-view').style.display = 'block';
+      }
+      
+      // Update button states
       document.getElementById('ngo-toggle').classList.toggle('active', view === 'ngo');
       document.getElementById('sme-toggle').classList.toggle('active', view === 'sme');
 
+      // Reset quiz
       currentQ = 0;
       yesCount = 0;
       answers = [];
