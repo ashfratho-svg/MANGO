@@ -6,40 +6,22 @@
   <title>Mango Intel – AI for Impact & Growth</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --mango-dark: #D85A30;
       --mango-bright: #F5A623;
-      --mango-gold: #FDB813;
-      --teal-accent: #1D9E75;
-      --cream-bg: #FFFBF5;
-      --text-primary: #1a1a18;
-      --text-secondary: #6b6b68;
+      --teal: #1D9E75;
+      --cream: #FFFBF5;
+      --text: #1a1a18;
+      --gray: #6b6b68;
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.7;
-      color: var(--text-primary);
-      background: var(--cream-bg);
-      overflow-x: hidden;
+      color: var(--text);
+      background: var(--cream);
     }
-
-    .container {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
     nav {
       position: sticky;
       top: 0;
@@ -50,43 +32,33 @@
       padding: 16px 0;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
     }
-
     nav .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
     .logo {
       font-weight: 700;
       font-size: 20px;
-      letter-spacing: -0.5px;
       color: var(--mango-dark);
     }
-
-    .logo::before {
-      content: "🥭 ";
-      margin-right: 4px;
-    }
-
     .nav-right {
       display: flex;
       gap: 32px;
       align-items: center;
     }
-
     nav a {
-      color: var(--text-primary);
+      color: var(--text);
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
       transition: color 0.3s;
     }
-
-    nav a:hover {
-      color: var(--mango-dark);
+    nav a:hover { color: var(--mango-dark); }
+    .toggle-group {
+      display: flex;
+      gap: 12px;
     }
-
     .toggle-btn {
       padding: 8px 16px;
       border: 1.5px solid var(--mango-dark);
@@ -97,44 +69,20 @@
       transition: all 0.3s ease;
       font-weight: 600;
       color: var(--mango-dark);
-      letter-spacing: 0.3px;
     }
-
     .toggle-btn:hover {
       background: rgba(216, 90, 48, 0.05);
     }
-
     .toggle-btn.active {
       background: var(--mango-dark);
       color: white;
       box-shadow: 0 8px 24px rgba(216, 90, 48, 0.3);
     }
-
     .hero {
       padding: 120px 0 80px;
-      background: linear-gradient(135deg, var(--cream-bg) 0%, #FFF5E6 100%);
+      background: linear-gradient(135deg, var(--cream) 0%, #FFF5E6 100%);
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(245, 166, 35, 0.1) 0%, transparent 70%);
-      border-radius: 50%;
-      top: -100px;
-      right: -100px;
-      z-index: 0;
-    }
-
-    .hero .container {
-      position: relative;
-      z-index: 1;
-    }
-
     .hero h1 {
       font-size: 52px;
       font-weight: 700;
@@ -142,30 +90,18 @@
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
-      line-height: 1.2;
       background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
     .hero p {
       font-size: 20px;
-      color: var(--text-secondary);
+      color: var(--gray);
       max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 48px;
+      margin: 0 auto 48px;
       font-weight: 500;
     }
-
-    .cta-buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
     .btn {
       padding: 14px 32px;
       border: none;
@@ -176,82 +112,58 @@
       transition: all 0.3s ease;
       text-decoration: none;
       display: inline-block;
-      letter-spacing: 0.3px;
     }
-
     .btn-primary {
       background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
       color: white;
       box-shadow: 0 12px 32px rgba(216, 90, 48, 0.3);
     }
-
     .btn-primary:hover {
       transform: translateY(-3px);
       box-shadow: 0 18px 48px rgba(216, 90, 48, 0.4);
     }
-
-    .btn-secondary {
-      background: white;
-      border: 2px solid var(--mango-dark);
-      color: var(--mango-dark);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
-
-    .btn-secondary:hover {
-      background: rgba(216, 90, 48, 0.04);
-      transform: translateY(-3px);
-    }
-
     .section {
       padding: 100px 0;
-      position: relative;
     }
-
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(216, 90, 48, 0.2) 50%, transparent 100%);
-    }
-
     .section-title {
       font-size: 40px;
       font-weight: 700;
       margin-bottom: 20px;
       text-align: center;
-      color: var(--text-primary);
     }
-
     .section-subtitle {
       font-size: 18px;
-      color: var(--text-secondary);
+      color: var(--gray);
       text-align: center;
       max-width: 600px;
       margin: 0 auto 60px;
       font-weight: 500;
     }
-
     .pain-points {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 28px;
       margin-top: 60px;
     }
-
     .pain-card {
       background: white;
       border-radius: 16px;
       padding: 40px 32px;
       text-align: center;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.4s;
       border: 1px solid rgba(216, 90, 48, 0.1);
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
     }
-
     .pain-card:hover {
       transform: translateY(-8px);
       box-shadow: 0 24px 48px rgba(216, 90, 48, 0.15);
-      border-color: var(--mango-dark);
     }
-
     .pain-card i {
       font-size: 48px;
       background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
@@ -260,29 +172,25 @@
       background-clip: text;
       margin-bottom: 20px;
     }
-
     .pain-card h3 {
       font-size: 20px;
       font-weight: 700;
       margin-bottom: 12px;
     }
-
     .pain-card p {
       font-size: 15px;
-      color: var(--text-secondary);
+      color: var(--gray);
       line-height: 1.8;
     }
-
+    .hidden { display: none; }
     .quiz-section {
       padding: 100px 0;
       background: linear-gradient(135deg, #FFF5E6 0%, #FFFBF5 100%);
     }
-
     .quiz-container {
       max-width: 760px;
       margin: 0 auto;
     }
-
     .quiz-card {
       background: white;
       border-radius: 16px;
@@ -290,31 +198,25 @@
       margin-bottom: 24px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
       border: 2px solid transparent;
-      transition: all 0.3s;
     }
-
     .quiz-counter {
       font-size: 12px;
       color: var(--mango-dark);
       font-weight: 700;
-      letter-spacing: 1px;
       text-transform: uppercase;
       margin-bottom: 12px;
     }
-
     .quiz-question {
       font-size: 18px;
       font-weight: 700;
       margin-bottom: 28px;
-      color: var(--text-primary);
+      color: var(--text);
       line-height: 1.5;
     }
-
     .quiz-options {
       display: flex;
       gap: 16px;
     }
-
     .quiz-btn {
       flex: 1;
       padding: 14px;
@@ -325,158 +227,67 @@
       font-size: 15px;
       font-weight: 600;
       transition: all 0.3s;
-      color: var(--text-primary);
+      color: var(--text);
     }
-
     .quiz-btn:hover {
       border-color: var(--mango-dark);
       background: rgba(216, 90, 48, 0.04);
     }
-
     .quiz-btn.active {
       background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
       color: white;
       border-color: var(--mango-dark);
     }
-
     .quiz-result {
       background: linear-gradient(135deg, #E1F5EE 0%, #E8F5F0 100%);
-      border: 2px solid var(--teal-accent);
+      border: 2px solid var(--teal);
       border-radius: 16px;
       padding: 48px;
       text-align: center;
     }
-
     .quiz-result h3 {
       font-size: 24px;
       font-weight: 700;
       margin-bottom: 16px;
-      color: var(--teal-accent);
+      color: var(--teal);
     }
-
     .impact-section {
       padding: 100px 0;
-      background: linear-gradient(135deg, var(--cream-bg) 0%, #FFF5E6 100%);
+      background: linear-gradient(135deg, var(--cream) 0%, #FFF5E6 100%);
     }
-
     .impact-stories {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 24px;
       margin-top: 60px;
     }
-
     .impact-card {
       background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
       border-radius: 16px;
       padding: 40px;
-      position: relative;
-      overflow: hidden;
       color: white;
       transition: all 0.4s;
       box-shadow: 0 12px 32px rgba(216, 90, 48, 0.25);
     }
-
-    .impact-card::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 200px;
-      height: 200px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      z-index: 0;
-    }
-
-    .impact-card p {
-      font-size: 17px;
-      font-weight: 600;
-      line-height: 1.8;
-      position: relative;
-      z-index: 1;
-    }
-
     .impact-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 20px 48px rgba(216, 90, 48, 0.35);
     }
-
-    .case-studies {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 28px;
-      margin-top: 60px;
-    }
-
-    .case-study-card {
-      background: white;
-      border-radius: 16px;
-      padding: 40px;
-      border: 1px solid rgba(216, 90, 48, 0.1);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-      transition: all 0.4s;
-    }
-
-    .case-study-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 24px 48px rgba(216, 90, 48, 0.15);
-      border-color: var(--mango-dark);
-    }
-
-    .case-study-card .badge {
-      display: inline-block;
-      background: linear-gradient(135deg, rgba(216, 90, 48, 0.1) 0%, rgba(245, 166, 35, 0.1) 100%);
-      color: var(--mango-dark);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 8px 14px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-    }
-
-    .case-study-card h3 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .case-study-card p {
-      font-size: 15px;
-      color: var(--text-secondary);
-      margin-bottom: 20px;
+    .impact-card p {
+      font-size: 17px;
+      font-weight: 600;
       line-height: 1.8;
     }
-
-    .case-study-card a {
-      font-size: 14px;
-      color: var(--mango-dark);
-      text-decoration: none;
-      font-weight: 700;
-      transition: all 0.3s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .case-study-card a:hover {
-      gap: 12px;
-    }
-
     .pricing-section {
       padding: 100px 0;
-      background: linear-gradient(135deg, #FFF5E6 0%, var(--cream-bg) 100%);
+      background: linear-gradient(135deg, #FFF5E6 0%, var(--cream) 100%);
     }
-
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 28px;
       margin-top: 60px;
     }
-
     .pricing-card {
       background: white;
       border-radius: 16px;
@@ -486,25 +297,16 @@
       transition: all 0.4s;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
     }
-
     .pricing-card:hover {
       transform: translateY(-8px);
       border-color: var(--mango-dark);
       box-shadow: 0 24px 48px rgba(216, 90, 48, 0.15);
     }
-
-    .pricing-card.featured {
-      border: 2px solid var(--mango-dark);
-      transform: translateY(-12px);
-      box-shadow: 0 24px 48px rgba(216, 90, 48, 0.2);
-    }
-
     .pricing-card h3 {
       font-size: 22px;
       font-weight: 700;
       margin-bottom: 16px;
     }
-
     .pricing-card .price {
       font-size: 44px;
       font-weight: 700;
@@ -514,49 +316,38 @@
       background-clip: text;
       margin: 20px 0 8px 0;
     }
-
     .pricing-card .price-period {
       font-size: 14px;
-      color: var(--text-secondary);
+      color: var(--gray);
       margin-bottom: 28px;
       font-weight: 600;
     }
-
     .pricing-features {
       text-align: left;
       font-size: 14px;
       margin-bottom: 32px;
     }
-
     .pricing-features li {
       list-style: none;
       padding: 10px 0;
-      color: var(--text-secondary);
+      color: var(--gray);
       border-bottom: 1px solid rgba(216, 90, 48, 0.1);
     }
-
     .pricing-features li:last-child {
       border-bottom: none;
     }
-
-    .pricing-features li::before {
+    .pricing-features li:before {
       content: "✓ ";
-      color: var(--teal-accent);
+      color: var(--teal);
       font-weight: 700;
       margin-right: 10px;
     }
-
-    .credentials-section {
-      padding: 100px 0;
-    }
-
     .cred-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 24px;
       margin-top: 60px;
     }
-
     .cred-card {
       background: linear-gradient(135deg, rgba(216, 90, 48, 0.05) 0%, rgba(245, 166, 35, 0.05) 100%);
       border-radius: 12px;
@@ -564,7 +355,6 @@
       text-align: center;
       border: 1px solid rgba(216, 90, 48, 0.2);
     }
-
     .cred-number {
       font-size: 40px;
       font-weight: 700;
@@ -574,51 +364,24 @@
       background-clip: text;
       margin-bottom: 8px;
     }
-
     .cred-label {
       font-size: 12px;
-      color: var(--text-secondary);
+      color: var(--gray);
       text-transform: uppercase;
-      letter-spacing: 0.8px;
       font-weight: 700;
     }
-
-    .blog-placeholder {
-      background: white;
-      border: 2px dashed rgba(216, 90, 48, 0.3);
-      border-radius: 16px;
-      padding: 80px;
-      text-align: center;
-      margin-top: 60px;
-    }
-
-    .blog-placeholder h3 {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--mango-dark);
-    }
-
-    .blog-placeholder p {
-      color: var(--text-secondary);
-      font-size: 16px;
-    }
-
     .cta-final {
       padding: 100px 0;
       text-align: center;
       background: linear-gradient(135deg, var(--mango-dark) 0%, var(--mango-bright) 100%);
       color: white;
-      border-radius: 20px;
       margin: 80px 0 0 0;
     }
-
     .cta-final h2 {
       font-size: 40px;
       font-weight: 700;
       margin-bottom: 24px;
     }
-
     .cta-final p {
       font-size: 18px;
       margin-bottom: 48px;
@@ -627,51 +390,29 @@
       margin-right: auto;
       font-weight: 500;
     }
-
     footer {
       padding: 60px 0;
       text-align: center;
-      color: var(--text-secondary);
+      color: var(--gray);
       font-size: 14px;
       border-top: 1px solid rgba(216, 90, 48, 0.1);
       margin-top: 100px;
     }
-
-    .hidden {
-      display: none !important;
-    }
-
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 36px;
-      }
-
-      .section-title {
-        font-size: 28px;
-      }
-
-      .pricing-card.featured {
-        transform: none;
-      }
-
-      .quiz-card {
-        padding: 32px;
-      }
-
-      nav .nav-right {
-        gap: 16px;
-      }
+      .hero h1 { font-size: 36px; }
+      .section-title { font-size: 28px; }
+      nav .nav-right { gap: 16px; }
     }
   </style>
 </head>
 <body>
   <nav>
     <div class="container">
-      <div class="logo">Mango Intel</div>
+      <div class="logo">🥭 Mango Intel</div>
       <div class="nav-right">
-        <div style="display: flex; gap: 12px;">
-          <button class="toggle-btn active" onclick="setView('ngo')" id="ngo-toggle">NGO / Nonprofit</button>
-          <button class="toggle-btn" onclick="setView('sme')" id="sme-toggle">SME / Business</button>
+        <div class="toggle-group">
+          <button class="toggle-btn active" id="ngo-btn">NGO / Nonprofit</button>
+          <button class="toggle-btn" id="sme-btn">SME / Business</button>
         </div>
         <div style="display: flex; gap: 28px;">
           <a href="#impact">Impact</a>
@@ -686,10 +427,10 @@
     <section class="hero">
       <div class="container">
         <h1>AI That Powers Humanitarian Impact</h1>
-        <p>Real, proven AI for NGOs, nonprofits, and aid organizations—built to scale impact from first-mile to last-mile beneficiaries.</p>
+        <p>Real, proven AI for NGOs, nonprofits, and aid organizations.</p>
         <div class="cta-buttons">
-          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Start Free Assessment</a>
-          <button class="btn btn-secondary" onclick="document.getElementById('quiz-section').scrollIntoView();">See How</button>
+          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Free Assessment</a>
+          <button class="btn btn-primary" style="background: white; color: var(--mango-dark); border: 2px solid var(--mango-dark);" onclick="document.getElementById('quiz-section').scrollIntoView();">Learn More</button>
         </div>
       </div>
     </section>
@@ -698,49 +439,25 @@
       <div class="container">
         <h2 class="section-title">The Gap You Face</h2>
         <div class="pain-points">
-          <div class="pain-card">
-            <i class="fas fa-network-wired"></i>
-            <h3>Data Fragmented</h3>
-            <p>Beneficiary data, supply chains, outcomes scattered across spreadsheets and offline records.</p>
-          </div>
-          <div class="pain-card">
-            <i class="fas fa-hourglass-end"></i>
-            <h3>Manual Processes</h3>
-            <p>Teams spend hours on compliance, data entry, and reporting—time that should go to impact.</p>
-          </div>
-          <div class="pain-card">
-            <i class="fas fa-triangle-exclamation"></i>
-            <h3>No Real-Time Visibility</h3>
-            <p>Can't spot distribution bottlenecks or loss points until it's too late.</p>
-          </div>
-          <div class="pain-card">
-            <i class="fas fa-globe"></i>
-            <h3>Scale Without Talent</h3>
-            <p>Going global means more stakeholders, languages, data standards you can't keep up with.</p>
-          </div>
-          <div class="pain-card">
-            <i class="fas fa-handshake"></i>
-            <h3>Donor Accountability</h3>
-            <p>Donors demand proof of impact, traceability, and audit trails at scale.</p>
-          </div>
-          <div class="pain-card">
-            <i class="fas fa-bolt"></i>
-            <h3>Crisis-Speed Decisions</h3>
-            <p>Crises don't wait for reports. You need real-time data and decisions your tools can't support.</p>
-          </div>
+          <div class="pain-card"><i class="fas fa-network-wired"></i><h3>Data Fragmented</h3><p>Beneficiary data scattered across spreadsheets and offline records.</p></div>
+          <div class="pain-card"><i class="fas fa-hourglass-end"></i><h3>Manual Processes</h3><p>Teams spend hours on compliance, data entry, and reporting.</p></div>
+          <div class="pain-card"><i class="fas fa-triangle-exclamation"></i><h3>No Real-Time Visibility</h3><p>Can't spot distribution bottlenecks until it's too late.</p></div>
+          <div class="pain-card"><i class="fas fa-globe"></i><h3>Scale Without Talent</h3><p>Going global means more languages and data standards you can't keep up with.</p></div>
+          <div class="pain-card"><i class="fas fa-handshake"></i><h3>Donor Accountability</h3><p>Donors demand proof of impact, traceability, and audit trails.</p></div>
+          <div class="pain-card"><i class="fas fa-bolt"></i><h3>Crisis-Speed Decisions</h3><p>Crises don't wait. You need real-time data your tools can't support.</p></div>
         </div>
       </div>
     </section>
   </div>
 
-  <div id="sme-view" style="display: none;">
+  <div id="sme-view" class="hidden">
     <section class="hero">
       <div class="container">
         <h1>AI Built for Small Businesses</h1>
-        <p>Not strategy decks. Real, ROI-focused AI that moves fast because time is running out.</p>
+        <p>Real, ROI-focused AI that moves fast because time is running out.</p>
         <div class="cta-buttons">
-          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Start Free Assessment</a>
-          <button class="btn btn-secondary" onclick="document.getElementById('quiz-section').scrollIntoView();">See How</button>
+          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Free Assessment</a>
+          <button class="btn btn-primary" style="background: white; color: var(--mango-dark); border: 2px solid var(--mango-dark);" onclick="document.getElementById('quiz-section').scrollIntoView();">Learn More</button>
         </div>
       </div>
     </section>
@@ -749,63 +466,27 @@
       <div class="container">
         <h2 class="section-title">The Challenge You Face</h2>
         <div class="pain-points">
-          <div class="pain-card">
-            <i class="fas fa-database"></i>
-            <h3>Data Scattered</h3>
-            <p>Customer data, sales, finances in Excel, QuickBooks, Salesforce, or nowhere organized.</p>
-          </div>
-          <div class="pain-card">
-            <i class="fas fa-hourglass-end"></i>
-            <h3>Time Is Running Out</h3>
-            <p>Bigger players are automating. Your window to move is closing fast.</p>
-          </div>
-          <div class="pain-card">
-            <i class="fas fa-question-circle"></i>
-            <h3>No AI Roadmap</h3>
-            <p>Don't know if AI can help. Big consulting firms cost too much anyway.</p>
-          </div>
-          <div class="pain-card">
-            <i class="fas fa-briefcase"></i>
-            <h3>No In-House Talent</h3>
-            <p>AI talent is scarce and expensive. You need builders, not decks.</p>
-          </div>
-          <div class="pain-card">
-            <i class="fas fa-chart-line"></i>
-            <h3>No ROI Proof</h3>
-            <p>How much will AI actually save or increase revenue? Nobody's shown you the real numbers.</p>
-          </div>
-          <div class="pain-card">
-            <i class="fas fa-map-marker"></i>
-            <h3>Rural or Niche Market</h3>
-            <p>Generic tools don't fit your business. You need something custom and affordable.</p>
-          </div>
+          <div class="pain-card"><i class="fas fa-database"></i><h3>Data Scattered</h3><p>Customer data in Excel, QuickBooks, Salesforce, or nowhere organized.</p></div>
+          <div class="pain-card"><i class="fas fa-hourglass-end"></i><h3>Time Is Running Out</h3><p>Bigger players are automating. Your window to move is closing.</p></div>
+          <div class="pain-card"><i class="fas fa-question-circle"></i><h3>No AI Roadmap</h3><p>Don't know if AI helps. Big consulting firms cost too much anyway.</p></div>
+          <div class="pain-card"><i class="fas fa-briefcase"></i><h3>No In-House Talent</h3><p>AI talent is scarce and expensive. You need builders, not decks.</p></div>
+          <div class="pain-card"><i class="fas fa-chart-line"></i><h3>No ROI Proof</h3><p>How much will AI actually save or increase revenue? Nobody's shown you numbers.</p></div>
+          <div class="pain-card"><i class="fas fa-map-marker"></i><h3>Rural or Niche Market</h3><p>Generic tools don't fit your business. You need something custom and affordable.</p></div>
         </div>
       </div>
     </section>
   </div>
-
-  <div class="section-divider"></div>
 
   <section class="impact-section" id="impact">
     <div class="container">
       <h2 class="section-title">Proven Impact at Scale</h2>
       <p class="section-subtitle">Real outcomes across NGOs, humanitarian aid, and small businesses</p>
       <div class="impact-stories">
-        <div class="impact-card">
-          <p>"Enabled global rollout of life-saving supply chain tracking across 30 countries during COVID pandemic"</p>
-        </div>
-        <div class="impact-card">
-          <p>"Created 'smart-payment' solutions for SMEs and micro-SMEs—cash assistance that moves at crisis speed"</p>
-        </div>
-        <div class="impact-card">
-          <p>"Used AI/ML to spot loss points in food/water and aid distribution for humanitarian assistance"</p>
-        </div>
-        <div class="impact-card">
-          <p>"Doubled SME business sales & profitability by optimizing geo-routes and customer feedback"</p>
-        </div>
-        <div class="impact-card">
-          <p>"Leveraged AI agents to sharpen and create actionable GTM for SMEs"</p>
-        </div>
+        <div class="impact-card"><p>"Enabled global rollout of life-saving supply chain tracking across 30 countries during COVID"</p></div>
+        <div class="impact-card"><p>"Created smart-payment solutions for SMEs—cash assistance that moves at crisis speed"</p></div>
+        <div class="impact-card"><p>"Used AI to spot loss points in food/water distribution for humanitarian aid"</p></div>
+        <div class="impact-card"><p>"Doubled SME sales & profitability by optimizing routes and customer feedback"</p></div>
+        <div class="impact-card"><p>"Leveraged AI agents to create actionable GTM for SMEs"</p></div>
       </div>
     </div>
   </section>
@@ -813,7 +494,7 @@
   <section class="quiz-section" id="quiz-section">
     <div class="container">
       <h2 class="section-title">Quick Fit Check</h2>
-      <p class="section-subtitle">7 questions. Takes 2 minutes. Personalized for your situation.</p>
+      <p class="section-subtitle">7 questions. Takes 2 minutes.</p>
       <div class="quiz-container">
         <div id="quiz-content">
           <div class="quiz-card">
@@ -830,139 +511,63 @@
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">How We've Delivered</h2>
-      <p class="section-subtitle">Production systems. Real impact. Two different problem domains, one repeatable method.</p>
-      <div class="case-studies">
-        <div class="case-study-card">
-          <span class="badge">AI Native SaaS</span>
-          <h3>ExitReady</h3>
-          <p>Multi-tenant M&A readiness platform helping small-business owners prepare for sale with security-first isolation and human-in-the-loop AI.</p>
-          <a href="#">Read case study <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="case-study-card">
-          <span class="badge">Enterprise Portal</span>
-          <h3>IntelSupX</h3>
-          <p>Supplier sustainability platform with role-based dashboards, live validation, and automated anomaly detection. Deployed publicly and in production.</p>
-          <a href="#">Read case study <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="case-study-card">
-          <span class="badge">Global Platform</span>
-          <h3>BanQu</h3>
-          <p>6.5M+ users, 50+ countries. Supply-chain traceability and ESG compliance with generative and agentic AI for document extraction and anomaly detection.</p>
-          <a href="#">Read case study <i class="fas fa-arrow-right"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
   <section class="pricing-section" id="pricing">
     <div class="container">
-      <h2 class="section-title">Simple, Transparent Pricing</h2>
-      <p class="section-subtitle">All routes go through a conversation, because every engagement is custom-scoped.</p>
+      <h2 class="section-title">Simple Pricing</h2>
+      <p class="section-subtitle">All routes through a conversation—every engagement is custom-scoped.</p>
       <div class="pricing-grid">
         <div class="pricing-card">
           <h3>Starter Assessment</h3>
           <div class="price">Free</div>
           <div class="price-period">1 week</div>
-          <p style="margin-bottom: 28px; color: var(--text-secondary);">Current-state audit. Opportunity map. Working prototype.</p>
           <ul class="pricing-features">
-            <li>Data landscape audit</li>
-            <li>Impact opportunity map</li>
+            <li>Data audit</li>
+            <li>Opportunity map</li>
             <li>Working prototype</li>
             <li>ROI framework</li>
-            <li>No commitment</li>
           </ul>
-          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-secondary" style="width: 100%;">Start Now</a>
+          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="width: 100%; text-align: center;">Start Now</a>
         </div>
-
-        <div class="pricing-card featured">
-          <h3>2-Agent Custom Build</h3>
+        <div class="pricing-card">
+          <h3>Custom Build</h3>
           <div class="price">$35K</div>
           <div class="price-period">8–12 weeks</div>
-          <p style="margin-bottom: 28px;">Two production AI agents, audit-ready, built for your mission.</p>
           <ul class="pricing-features">
-            <li>Free assessment included</li>
-            <li>Spec-first development</li>
-            <li>100% CI-gated changes</li>
-            <li>Human-in-the-loop design</li>
-            <li>Security-first architecture</li>
+            <li>Two AI agents</li>
+            <li>100% CI-gated</li>
+            <li>Human-in-the-loop</li>
+            <li>Security-first</li>
             <li>Training & handoff</li>
           </ul>
-          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="width: 100%;">Get Started</a>
+          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="width: 100%; text-align: center;">Get Started</a>
         </div>
-
         <div class="pricing-card">
           <h3>Fractional CTO</h3>
           <div class="price">$4–6K</div>
           <div class="price-period">per month</div>
-          <p style="margin-bottom: 28px; color: var(--text-secondary);">Hands-on technical leadership. 8–12 hours weekly.</p>
           <ul class="pricing-features">
             <li>Architecture review</li>
             <li>Engineering mentorship</li>
-            <li>AI governance setup</li>
+            <li>AI governance</li>
             <li>Vendor management</li>
-            <li>Roadmap planning</li>
           </ul>
-          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-secondary" style="width: 100%;">Discuss</a>
+          <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="width: 100%; text-align: center;">Discuss</a>
         </div>
       </div>
     </div>
   </section>
-
-  <div class="section-divider"></div>
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title">Resources & Insights</h2>
-      <div class="blog-placeholder">
-        <h3>Blog Coming Soon</h3>
-        <p>Practical guides on AI governance, agentic architecture, and ROI-first implementation.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section class="credentials-section">
-    <div class="container">
       <h2 class="section-title">Who Backs This</h2>
-      <p class="section-subtitle">Ashish Gadnis. Hands-on technologist, founder, and builder behind BanQu, ExitReady, and IntelSupX.</p>
-
+      <p class="section-subtitle">30+ years tech. 2 live AI apps. 6.5M users. 15+ years audit/SOX. 10 US patents.</p>
       <div class="cred-grid">
-        <div class="cred-card">
-          <div class="cred-number">30+</div>
-          <div class="cred-label">Years Tech</div>
-        </div>
-        <div class="cred-card">
-          <div class="cred-number">2</div>
-          <div class="cred-label">Live AI Apps</div>
-        </div>
-        <div class="cred-card">
-          <div class="cred-number">6.5M</div>
-          <div class="cred-label">Users Built</div>
-        </div>
-        <div class="cred-card">
-          <div class="cred-number">50+</div>
-          <div class="cred-label">Countries</div>
-        </div>
-        <div class="cred-card">
-          <div class="cred-number">15+</div>
-          <div class="cred-label">Years Audit/SOX</div>
-        </div>
-        <div class="cred-card">
-          <div class="cred-number">10</div>
-          <div class="cred-label">US Patents</div>
-        </div>
-      </div>
-
-      <div style="background: linear-gradient(135deg, rgba(216, 90, 48, 0.05) 0%, rgba(245, 166, 35, 0.05) 100%); border: 2px solid rgba(216, 90, 48, 0.2); border-radius: 16px; padding: 48px; margin-top: 60px;">
-        <p style="font-size: 15px; line-height: 1.9; color: var(--text-primary);">Founded and scaled <strong>BanQu</strong> (ended Oct 2026), the world's largest non-crypto blockchain SaaS for supply-chain traceability—serving 6.5M+ users across 50+ countries for Coca-Cola, AB InBev, IKEA, and Dow. Now building <strong>Mango Intel LLC</strong> (Oct 2026–Present) to bring production-grade, audit-ready AI delivery to NGOs, nonprofits, and SMEs. Built production AI-native SaaS end-to-end with Claude Code and MCP. Brings 15+ years of IT audit and SOX compliance to make systems audit-ready by design. Not a consultant who hands off specs—a builder who ships production code.</p>
+        <div class="cred-card"><div class="cred-number">30+</div><div class="cred-label">Years Tech</div></div>
+        <div class="cred-card"><div class="cred-number">2</div><div class="cred-label">Live AI Apps</div></div>
+        <div class="cred-card"><div class="cred-number">6.5M</div><div class="cred-label">Users</div></div>
+        <div class="cred-card"><div class="cred-number">50+</div><div class="cred-label">Countries</div></div>
+        <div class="cred-card"><div class="cred-number">15+</div><div class="cred-label">Audit/SOX</div></div>
+        <div class="cred-card"><div class="cred-number">10</div><div class="cred-label">Patents</div></div>
       </div>
     </div>
   </section>
@@ -970,89 +575,84 @@
   <section class="cta-final" id="contact">
     <div class="container">
       <h2>Ready to Move?</h2>
-      <p>The free assessment is the first step. Clear picture of what's possible. No commitment. No sales pitch.</p>
+      <p>Free assessment. Clear picture of what's possible. No commitment.</p>
       <div class="cta-buttons">
-        <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-secondary" style="background: white; color: var(--mango-dark); border: none;">Schedule Free Assessment</a>
-        <a href="mailto:ashishgadnis@gmail.com?subject=Mango%20Intel%20Inquiry" class="btn btn-secondary" style="background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid white;">Email Ashish</a>
+        <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Assessment</a>
+        <a href="mailto:ashishgadnis@gmail.com" class="btn btn-primary" style="background: rgba(255,255,255,0.2); border: 2px solid white;">Email Ashish</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="container">
-      <p>Mango Intel LLC · Austin, TX · Available for contract, fractional, and advisory engagements</p>
-      <p style="margin-top: 12px;">ashishgadnis@gmail.com · +1-651-428-0749 · <a href="https://linkedin.com/in/ashishgadnis" style="color: var(--mango-dark); text-decoration: none; font-weight: 600;">LinkedIn</a></p>
-    </div>
+    <p>Mango Intel LLC · Austin, TX</p>
+    <p>ashishgadnis@gmail.com · +1-651-428-0749</p>
   </footer>
 
   <script>
-    let currentView = 'ngo';
     const ngoQuestions = [
-      "Is your beneficiary or supply-chain data fragmented across multiple systems or spreadsheets?",
-      "Do your teams spend more than 5 hours a week on manual data entry, compliance audits, or reporting?",
-      "Have you missed critical distribution bottlenecks or loss points because you lacked real-time visibility?",
-      "Do you lack in-house technical talent to evaluate or scale AI solutions across regions?",
-      "Would you like a concrete, impact-focused roadmap before committing to technology changes?",
-      "Are you competing for donor funding with larger orgs that have better data systems and reporting?",
-      "Would seeing a working prototype of an AI solution on your actual data help you unlock funding or scale?"
+      "Is your beneficiary or supply-chain data fragmented across multiple systems?",
+      "Do your teams spend 5+ hours a week on manual data entry or compliance work?",
+      "Have you missed critical distribution bottlenecks due to lack of real-time visibility?",
+      "Do you lack in-house technical talent to evaluate or scale AI solutions?",
+      "Would you like a concrete, impact-focused roadmap before tech changes?",
+      "Are you competing for donor funding with better-resourced orgs?",
+      "Would a working prototype on your actual data help unlock funding?"
     ];
 
     const smeQuestions = [
-      "Is your customer or financial data spread across multiple tools (Excel, QuickBooks, Salesforce, etc.)?",
-      "Do you spend more than 5 hours a week on repetitive tasks that AI could automate?",
-      "Have you lost opportunities or deals because you couldn't respond fast enough?",
-      "Do you lack in-house technical talent to evaluate or implement AI?",
-      "Would you like a concrete, number-backed roadmap before investing in any AI solution?",
-      "Are you competing with larger businesses that are moving faster because of automation?",
-      "Would seeing a working prototype of an AI solution on your actual data help you decide?"
+      "Is your customer or financial data spread across multiple tools?",
+      "Do you spend 5+ hours a week on repetitive tasks AI could automate?",
+      "Have you lost opportunities because you couldn't respond fast enough?",
+      "Do you lack in-house technical talent for AI evaluation?",
+      "Would a number-backed roadmap help before investing in AI?",
+      "Are you competing with larger businesses moving faster on automation?",
+      "Would a working prototype on your actual data help you decide?"
     ];
 
+    let currentView = 'ngo';
     let currentQ = 0;
     let yesCount = 0;
-    let answers = [];
     let questions = ngoQuestions;
 
-    function setView(view) {
-      console.log('setView called:', view);
-      currentView = view;
-      
-      const ngoView = document.getElementById('ngo-view');
-      const smeView = document.getElementById('sme-view');
-      const ngoToggle = document.getElementById('ngo-toggle');
-      const smeToggle = document.getElementById('sme-toggle');
-      
-      if (view === 'ngo') {
-        ngoView.style.display = 'block';
-        smeView.style.display = 'none';
-        ngoToggle.classList.add('active');
-        smeToggle.classList.remove('active');
-      } else {
-        ngoView.style.display = 'none';
-        smeView.style.display = 'block';
-        ngoToggle.classList.remove('active');
-        smeToggle.classList.add('active');
-      }
+    document.getElementById('ngo-btn').addEventListener('click', function() {
+      switchView('ngo');
+    });
 
+    document.getElementById('sme-btn').addEventListener('click', function() {
+      switchView('sme');
+    });
+
+    function switchView(view) {
+      currentView = view;
+      questions = view === 'ngo' ? ngoQuestions : smeQuestions;
+      
+      document.getElementById('ngo-view').classList.toggle('hidden', view !== 'ngo');
+      document.getElementById('sme-view').classList.toggle('hidden', view === 'ngo');
+      
+      document.getElementById('ngo-btn').classList.toggle('active', view === 'ngo');
+      document.getElementById('sme-btn').classList.toggle('active', view === 'sme');
+      
+      resetQuiz();
+    }
+
+    function resetQuiz() {
       currentQ = 0;
       yesCount = 0;
-      answers = [];
-      questions = view === 'ngo' ? ngoQuestions : smeQuestions;
-      document.getElementById('quiz-content').style.display = 'block';
-      document.getElementById('quiz-result-display').style.display = 'none';
+      document.getElementById('quiz-content').classList.remove('hidden');
+      document.getElementById('quiz-result-display').classList.add('hidden');
       renderQuestion();
     }
 
     function renderQuestion() {
       if (currentQ < questions.length) {
-        document.getElementById('q-text').textContent = questions[currentQ];
         document.getElementById('q-num').textContent = currentQ + 1;
+        document.getElementById('q-text').textContent = questions[currentQ];
       } else {
         showResult();
       }
     }
 
     function answerQuiz(yes) {
-      answers.push(yes);
       if (yes) yesCount++;
       currentQ++;
       renderQuestion();
@@ -1060,155 +660,25 @@
 
     function showResult() {
       const percent = Math.round((yesCount / questions.length) * 100);
-      let message = '';
-      let recommendation = '';
+      let message = `You answered Yes to ${yesCount} of 7 questions.`;
+      let rec = percent >= 71 
+        ? 'Strong fit. The free assessment will uncover specific opportunities for your situation.'
+        : percent >= 43
+        ? 'Clear opportunities here. Let us help prioritize where AI makes the biggest difference.'
+        : 'Even one pain point can be worth solving. Let\'s talk through where AI fits best.';
 
-      if (percent >= 71) {
-        message = `You answered Yes to ${yesCount} of 7 questions.`;
-        recommendation = currentView === 'ngo'
-          ? 'Your organization is a strong fit for custom AI. The free assessment will uncover specific impact opportunities tailored to your data and operations.'
-          : 'Your business is a strong fit for custom AI. The free assessment will uncover specific ROI opportunities tailored to your data and workflow.';
-      } else if (percent >= 43) {
-        message = `You answered Yes to ${yesCount} of 7 questions.`;
-        recommendation = 'There are clear opportunities here. The assessment will prioritize where AI makes the biggest difference.';
-      } else {
-        message = `You answered Yes to ${yesCount} of 7 questions.`;
-        recommendation = 'Even one pain point can be worth solving. Let's talk through where AI fits best.';
-      }
-
-      document.getElementById('quiz-content').style.display = 'none';
-      const resultDiv = document.getElementById('quiz-result-display');
-      resultDiv.innerHTML = `
+      document.getElementById('quiz-content').classList.add('hidden');
+      document.getElementById('quiz-result-display').classList.remove('hidden');
+      document.getElementById('quiz-result-display').innerHTML = `
         <div class="quiz-result">
           <h3>${message}</h3>
-          <p>${recommendation}</p>
+          <p>${rec}</p>
           <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="margin-top: 20px;">Schedule Free Assessment</a>
         </div>
       `;
-      resultDiv.style.display = 'block';
     }
 
     renderQuestion();
-  <script>
-  console.log('Script starting...');
-  
-  let currentView = 'ngo';
-  const ngoQuestions = [
-    "Is your beneficiary or supply-chain data fragmented across multiple systems or spreadsheets?",
-    "Do your teams spend more than 5 hours a week on manual data entry, compliance audits, or reporting?",
-    "Have you missed critical distribution bottlenecks or loss points because you lacked real-time visibility?",
-    "Do you lack in-house technical talent to evaluate or scale AI solutions across regions?",
-    "Would you like a concrete, impact-focused roadmap before committing to technology changes?",
-    "Are you competing for donor funding with larger orgs that have better data systems and reporting?",
-    "Would seeing a working prototype of an AI solution on your actual data help you unlock funding or scale?"
-  ];
-
-  const smeQuestions = [
-    "Is your customer or financial data spread across multiple tools (Excel, QuickBooks, Salesforce, etc.)?",
-    "Do you spend more than 5 hours a week on repetitive tasks that AI could automate?",
-    "Have you lost opportunities or deals because you couldn't respond fast enough?",
-    "Do you lack in-house technical talent to evaluate or implement AI?",
-    "Would you like a concrete, number-backed roadmap before investing in any AI solution?",
-    "Are you competing with larger businesses that are moving faster because of automation?",
-    "Would seeing a working prototype of an AI solution on your actual data help you decide?"
-  ];
-
-  let currentQ = 0;
-  let yesCount = 0;
-  let answers = [];
-  let questions = ngoQuestions;
-
-  function setView(view) {
-    console.log('setView called with:', view);
-    currentView = view;
-    
-    const ngoView = document.getElementById('ngo-view');
-    const smeView = document.getElementById('sme-view');
-    const ngoToggle = document.getElementById('ngo-toggle');
-    const smeToggle = document.getElementById('sme-toggle');
-    
-    console.log('Elements found:', { ngoView, smeView, ngoToggle, smeToggle });
-
-    if (view === 'ngo') {
-      if (ngoView) ngoView.style.display = 'block';
-      if (smeView) smeView.style.display = 'none';
-      if (ngoToggle) ngoToggle.classList.add('active');
-      if (smeToggle) smeToggle.classList.remove('active');
-      questions = ngoQuestions;
-    } else {
-      if (ngoView) ngoView.style.display = 'none';
-      if (smeView) smeView.style.display = 'block';
-      if (ngoToggle) ngoToggle.classList.remove('active');
-      if (smeToggle) smeToggle.classList.add('active');
-      questions = smeQuestions;
-    }
-
-    currentQ = 0;
-    yesCount = 0;
-    answers = [];
-    const quizContent = document.getElementById('quiz-content');
-    const quizResult = document.getElementById('quiz-result-display');
-    if (quizContent) quizContent.style.display = 'block';
-    if (quizResult) quizResult.style.display = 'none';
-    
-    renderQuestion();
-    console.log('View switched to:', view);
-  }
-
-  function renderQuestion() {
-    const qNum = document.getElementById('q-num');
-    const qText = document.getElementById('q-text');
-    
-    if (currentQ < questions.length) {
-      if (qNum) qNum.textContent = currentQ + 1;
-      if (qText) qText.textContent = questions[currentQ];
-      console.log('Rendered Q' + (currentQ + 1));
-    } else {
-      showResult();
-    }
-  }
-
-  function answerQuiz(yes) {
-    console.log('Answered:', yes);
-    answers.push(yes);
-    if (yes) yesCount++;
-    currentQ++;
-    renderQuestion();
-  }
-
-  function showResult() {
-    const percent = Math.round((yesCount / questions.length) * 100);
-    let message = '';
-    let recommendation = '';
-
-    if (percent >= 71) {
-      message = `You answered Yes to ${yesCount} of 7 questions.`;
-      recommendation = currentView === 'ngo'
-        ? 'Your organization is a strong fit for custom AI. The free assessment will uncover specific impact opportunities tailored to your data and operations.'
-        : 'Your business is a strong fit for custom AI. The free assessment will uncover specific ROI opportunities tailored to your data and workflow.';
-    } else if (percent >= 43) {
-      message = `You answered Yes to ${yesCount} of 7 questions.`;
-      recommendation = 'There are clear opportunities here. The assessment will prioritize where AI makes the biggest difference.';
-    } else {
-      message = `You answered Yes to ${yesCount} of 7 questions.`;
-      recommendation = 'Even one pain point can be worth solving. Let\'s talk through where AI fits best.';
-    }
-
-    document.getElementById('quiz-content').style.display = 'none';
-    const resultDiv = document.getElementById('quiz-result-display');
-    resultDiv.innerHTML = `
-      <div class="quiz-result">
-        <h3>${message}</h3>
-        <p>${recommendation}</p>
-        <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="margin-top: 20px;">Schedule Free Assessment</a>
-      </div>
-    `;
-    resultDiv.style.display = 'block';
-  }
-
-  // Initialize
-  console.log('Initializing with NGO view');
-  renderQuestion();
-</script>
+  </script>
 </body>
 </html>
