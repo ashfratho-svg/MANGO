@@ -16,7 +16,6 @@
     a { color: inherit; text-decoration: none; }
     button { cursor: pointer; border: none; font-family: inherit; }
     
-    /* Scrollbar */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { background: #FF7A42; border-radius: 4px; }
@@ -302,7 +301,7 @@
       color: #999;
     }
     
-    #fileInput { display: none; }
+    #fileInput1, #fileInput2 { display: none; }
     
     .file-selected {
       background: #E8F5E9;
@@ -470,8 +469,33 @@
     
     .quiz-section h2 {
       font-size: 32px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       text-align: center;
+    }
+    
+    .quiz-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .quiz-toggle button {
+      padding: 10px 20px;
+      border-radius: 12px;
+      background: white;
+      border: 2px solid #FFE6CC;
+      color: #FF7A42;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    
+    .quiz-toggle button.active {
+      background: linear-gradient(135deg, #FF7A42, #FFA500);
+      color: white;
+      border-color: #FF7A42;
     }
     
     .quiz-container {
@@ -706,6 +730,7 @@
       .agent-description { grid-template-columns: 1fr; }
       .credentials-wall { grid-template-columns: repeat(3, 1fr); }
       .pain-grid { grid-template-columns: 1fr; }
+      .quiz-toggle { flex-direction: column; }
     }
   </style>
 </head>
@@ -733,7 +758,7 @@
 <!-- HERO -->
 <section class="hero">
   <h1>AI That Works for Small Teams</h1>
-  <p>Not another vendor demo. Production agentic AI built for NGOs, nonprofits, and SMEs—with measurable impact on revenue, cost, and risk.</p>
+  <p>Not another vendor demo. Production agentic AI built for SMEs & nonprofits—with measurable impact on revenue, cost, and risk.</p>
   <div class="cta-group">
     <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Free 1-Week Assessment</a>
     <button onclick="document.getElementById('try-agents').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary">Try Agents Now</button>
@@ -802,7 +827,7 @@
     <div id="agent1Section">
       <h3 style="color: #FF7A42; margin-bottom: 15px; font-size: 16px;">💰 Step 1: Try Financial Health Analysis</h3>
       
-      <div class="upload-area" onclick="document.getElementById('fileInput1').click()">
+      <div class="upload-area" onclick="document.getElementById('fileInput1').click()" id="uploadArea1">
         <p>📁 Upload CSV or Excel (P&L, Transactions, etc.)</p>
         <div class="info">Drag and drop or click. Your data stays on your device for this demo.</div>
         <input type="file" id="fileInput1" accept=".csv,.xlsx,.xls">
@@ -844,7 +869,7 @@
     <div id="agent2Section" style="display: none;">
       <h3 style="color: #FF7A42; margin-bottom: 15px; font-size: 16px;">👥 Step 2: Try Customer Intelligence Dashboard</h3>
       
-      <div class="upload-area" onclick="document.getElementById('fileInput2').click()">
+      <div class="upload-area" onclick="document.getElementById('fileInput2').click()" id="uploadArea2">
         <p>📁 Upload CSV or Excel (Customer Data, Sales History, etc.)</p>
         <div class="info">Drag and drop or click. Your data stays on your device for this demo.</div>
         <input type="file" id="fileInput2" accept=".csv,.xlsx,.xls">
@@ -894,23 +919,23 @@
     </div>
     <div class="impact-card">
       <h3>50+</h3>
-      <p>Countries reached with AI traceability</p>
+      <p>Countries reached with AI</p>
     </div>
     <div class="impact-card">
       <h3>2x</h3>
-      <p>Average revenue increase for SME clients</p>
+      <p>Average revenue increase</p>
     </div>
     <div class="impact-card">
       <h3>Days</h3>
-      <p>Not months—to production systems</p>
+      <p>Not months—to production</p>
     </div>
     <div class="impact-card">
       <h3>100%</h3>
-      <p>Of changes gated in CI/CD</p>
+      <p>Changes gated in CI/CD</p>
     </div>
     <div class="impact-card">
       <h3>15+</h3>
-      <p>Years IT audit & SOX expertise</p>
+      <p>Years IT audit & SOX</p>
     </div>
   </div>
 </section>
@@ -918,6 +943,12 @@
 <!-- QUIZ SECTION -->
 <section class="quiz-section">
   <h2>Quick Assessment: Is AI Right for You?</h2>
+  
+  <div class="quiz-toggle">
+    <button id="sme-btn" class="active" onclick="switchView('sme')">🏢 SME/Small Business</button>
+    <button id="ngo-btn" onclick="switchView('ngo')">🤝 Nonprofit/NGO</button>
+  </div>
+  
   <div class="quiz-container">
     <div id="quizContent"></div>
   </div>
@@ -934,7 +965,7 @@
       <ul>
         <li>✓ Current-state AI audit</li>
         <li>✓ Data landscape mapping</li>
-        <li>✓ Impact opportunity identification</li>
+        <li>✓ Impact opportunity</li>
         <li>✓ Working prototype</li>
         <li>✓ ROI framework</li>
         <li>✓ No commitment</li>
@@ -964,9 +995,9 @@
       <ul>
         <li>✓ Production AI system</li>
         <li>✓ Spec-first, human-in-the-loop</li>
-        <li>✓ Secure, audit-ready architecture</li>
+        <li>✓ Secure, audit-ready</li>
         <li>✓ You own the IP</li>
-        <li>✓ Training & handoff included</li>
+        <li>✓ Training & handoff</li>
         <li>✓ Same method as ExitReady</li>
       </ul>
       <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Now</a>
@@ -984,11 +1015,11 @@
     </div>
     <div class="credential">
       <div class="number">2</div>
-      <div class="label">Live AI Apps Built Solo</div>
+      <div class="label">Live AI Apps Built</div>
     </div>
     <div class="credential">
       <div class="number">6.5M</div>
-      <div class="label">Users on My Systems</div>
+      <div class="label">Users on Systems</div>
     </div>
     <div class="credential">
       <div class="number">50+</div>
@@ -1026,8 +1057,8 @@
 </footer>
 
 <script>
-// Quiz Data
-const quizData = [
+// Quiz Data - SME and Nonprofit variants
+const smeQuestions = [
   { q: "Does your business have operational data (sales, customers, finance)?", yes: 1, no: 0 },
   { q: "Are you losing customers or opportunities to competitors who use AI?", yes: 1, no: 0 },
   { q: "Do you need to cut costs or increase revenue in the next 6 months?", yes: 1, no: 0 },
@@ -1037,14 +1068,40 @@ const quizData = [
   { q: "Do you want to move fast instead of running an 18-month vendor process?", yes: 1, no: 0 }
 ];
 
+const ngoQuestions = [
+  { q: "Does your organization collect donor, beneficiary, or program data?", yes: 1, no: 0 },
+  { q: "Are you struggling to demonstrate impact and ROI to donors?", yes: 1, no: 0 },
+  { q: "Do you need to scale your impact with limited operational budget?", yes: 1, no: 0 },
+  { q: "Would AI help you reach more beneficiaries or improve outcomes?", yes: 1, no: 0 },
+  { q: "Would a working proof-of-concept help you secure funding?", yes: 1, no: 0 },
+  { q: "Is your team stretched thin trying to do everything manually?", yes: 1, no: 0 },
+  { q: "Do you want to adopt AI without vendor lock-in or long contracts?", yes: 1, no: 0 }
+];
+
+let currentView = 'sme';
+let questions = smeQuestions;
 let quizAnswers = [];
+
+function switchView(view) {
+  currentView = view;
+  questions = view === 'sme' ? smeQuestions : ngoQuestions;
+  
+  document.getElementById('sme-btn').classList.toggle('active', view === 'sme');
+  document.getElementById('ngo-btn').classList.toggle('active', view === 'ngo');
+  
+  resetQuiz();
+}
+
+function resetQuiz() {
+  quizAnswers = [];
+  initQuiz();
+}
 
 function initQuiz() {
   const container = document.getElementById('quizContent');
   container.innerHTML = '';
-  quizAnswers = [];
   
-  quizData.forEach((item, i) => {
+  questions.forEach((item, i) => {
     const div = document.createElement('div');
     div.className = 'quiz-question';
     div.innerHTML = `
@@ -1065,7 +1122,7 @@ function answerQuiz(i, yes) {
   buttons.forEach(b => b.classList.remove('selected'));
   buttons[yes ? 0 : 1].classList.add('selected');
   
-  if (quizAnswers.length === quizData.length) {
+  if (quizAnswers.length === questions.length) {
     setTimeout(showQuizResult, 300);
   }
 }
@@ -1073,14 +1130,15 @@ function answerQuiz(i, yes) {
 function showQuizResult() {
   const score = quizAnswers.reduce((a, b) => a + b, 0);
   const container = document.getElementById('quizContent');
+  const typeLabel = currentView === 'sme' ? 'business' : 'organization';
   
   let message = '';
   if (score >= 6) {
-    message = '🎯 <strong>You\'re a perfect fit.</strong> AI can unlock significant value for your business—but you need a partner who understands your constraints. Let\'s talk about your first 1-week free assessment.';
+    message = `🎯 <strong>You're a perfect fit.</strong> AI can unlock significant value for your ${typeLabel}—but you need a partner who understands your constraints. Let's talk about your first 1-week free assessment.`;
   } else if (score >= 4) {
-    message = '🤔 <strong>You\'ve got real opportunities.</strong> Some AI applications will drive measurable ROI. Let\'s identify which ones in a free assessment—no risk, no commitment.';
+    message = `🤔 <strong>You've got real opportunities.</strong> Some AI applications will drive measurable ROI. Let's identify which ones in a free assessment—no risk, no commitment.`;
   } else {
-    message = '⏸️ <strong>Maybe not right now.</strong> But if your situation changes—if you need to cut costs, reach more customers, or move faster—reach out. We\'ll be here.';
+    message = `⏸️ <strong>Maybe not right now.</strong> But if your situation changes—if you need to cut costs, reach more impact, or move faster—reach out. We'll be here.`;
   }
   
   container.innerHTML = `
@@ -1092,28 +1150,66 @@ function showQuizResult() {
   `;
 }
 
-// Agents Demo - Sequential
-document.getElementById('fileInput1').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (file) {
-    document.getElementById('fileSelected1').textContent = `✅ ${file.name} selected`;
-    document.getElementById('fileSelected1').style.display = 'block';
-    document.getElementById('runAgent1Btn').disabled = false;
-  }
+// Drag & Drop for file uploads
+function setupDragDrop(fileInputId, uploadAreaId) {
+  const uploadArea = document.getElementById(uploadAreaId);
+  const fileInput = document.getElementById(fileInputId);
+  
+  uploadArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadArea.classList.add('dragover');
+  });
+  
+  uploadArea.addEventListener('dragleave', () => {
+    uploadArea.classList.remove('dragover');
+  });
+  
+  uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove('dragover');
+    fileInput.files = e.dataTransfer.files;
+    handleFileSelect(fileInputId);
+  });
+}
+
+// File upload handlers
+document.getElementById('fileInput1').addEventListener('change', function() {
+  handleFileSelect('fileInput1');
 });
 
-document.getElementById('fileInput2').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (file) {
-    document.getElementById('fileSelected2').textContent = `✅ ${file.name} selected`;
-    document.getElementById('fileSelected2').style.display = 'block';
-    document.getElementById('runAgent2Btn').disabled = false;
-  }
+document.getElementById('fileInput2').addEventListener('change', function() {
+  handleFileSelect('fileInput2');
 });
+
+function handleFileSelect(fileInputId) {
+  const fileInput = document.getElementById(fileInputId);
+  const file = fileInput.files[0];
+  
+  if (!file) return;
+  
+  const agentNum = fileInputId === 'fileInput1' ? 1 : 2;
+  const selectedEl = document.getElementById(`fileSelected${agentNum}`);
+  const btnEl = document.getElementById(`runAgent${agentNum}Btn`);
+  
+  // Validate file
+  if (!file.name.match(/\.(csv|xlsx|xls)$/i)) {
+    selectedEl.innerHTML = `❌ Invalid file type. Please upload CSV or Excel file.`;
+    selectedEl.className = 'error-message';
+    selectedEl.style.display = 'block';
+    btnEl.disabled = true;
+    return;
+  }
+  
+  selectedEl.innerHTML = `✅ ${file.name} (${(file.size / 1024).toFixed(1)} KB) selected`;
+  selectedEl.className = 'file-selected';
+  selectedEl.style.display = 'block';
+  btnEl.disabled = false;
+}
 
 function runAgent(agentNum) {
   const fileInput = document.getElementById(`fileInput${agentNum}`);
   const file = fileInput.files[0];
+  
   if (!file) return;
   
   const loadingEl = document.getElementById(`agent${agentNum}Loading`);
@@ -1124,10 +1220,11 @@ function runAgent(agentNum) {
   resultsEl.style.display = 'none';
   errorEl.style.display = 'none';
   
+  // Simulate processing delay
   setTimeout(() => {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      try {
+    try {
+      const reader = new FileReader();
+      reader.onload = function(e) {
         loadingEl.style.display = 'none';
         resultsEl.style.display = 'block';
         
@@ -1150,14 +1247,14 @@ function runAgent(agentNum) {
           document.getElementById('agent2Prompt').style.display = 'none';
           document.getElementById('agentsCTA').style.display = 'block';
         }
-      } catch (err) {
-        loadingEl.style.display = 'none';
-        errorEl.style.display = 'block';
-        errorEl.className = 'error-message';
-        errorEl.textContent = '❌ Error parsing file. Please upload a valid CSV or Excel file.';
-      }
-    };
-    reader.readAsText(file);
+      };
+      reader.readAsText(file);
+    } catch (err) {
+      loadingEl.style.display = 'none';
+      errorEl.style.display = 'block';
+      errorEl.className = 'error-message';
+      errorEl.textContent = '❌ Error processing file. Please check file format and try again.';
+    }
   }, 1500);
 }
 
@@ -1177,7 +1274,11 @@ function resetAgent2() {
   document.getElementById('runAgent2Btn').disabled = true;
 }
 
-// Init
+// Setup drag-drop for both file inputs
+setupDragDrop('fileInput1', 'uploadArea1');
+setupDragDrop('fileInput2', 'uploadArea2');
+
+// Initialize quiz
 initQuiz();
 </script>
 
