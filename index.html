@@ -88,7 +88,7 @@
       background: linear-gradient(135deg, #FF7A42, #FFA500);
       color: white;
       padding: 8px 16px;
-      border-radius: 4px;
+      border-radius: 12px;
       font-weight: 600;
       font-size: 12px;
       transition: all 0.3s;
@@ -135,7 +135,7 @@
     
     .btn {
       padding: 12px 24px;
-      border-radius: 4px;
+      border-radius: 12px;
       font-weight: 600;
       font-size: 14px;
       transition: all 0.3s;
@@ -163,10 +163,6 @@
       background: #FFF8F3;
     }
     
-    .view-toggle { display: none; }
-    
-    .view-toggle.hidden { display: none; }
-    
     /* Pain Points */
     .pain-section {
       padding: 60px 40px;
@@ -191,7 +187,13 @@
       background: #FFF8F3;
       border-left: 4px solid #FF7A42;
       padding: 20px;
-      border-radius: 4px;
+      border-radius: 16px;
+    }
+    
+    .pain-card .icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block;
     }
     
     .pain-card h3 {
@@ -234,8 +236,14 @@
     .agent-card {
       background: white;
       padding: 20px;
-      border-radius: 4px;
+      border-radius: 16px;
       border-left: 4px solid #FF7A42;
+    }
+    
+    .agent-card .icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+      display: block;
     }
     
     .agent-card h3 {
@@ -254,7 +262,7 @@
     .disclaimer {
       background: #FFF8E6;
       border: 2px solid #FFD700;
-      border-radius: 4px;
+      border-radius: 12px;
       padding: 15px;
       margin: 20px 0;
       font-size: 12px;
@@ -264,7 +272,7 @@
     .upload-area {
       background: white;
       border: 2px dashed #FF7A42;
-      border-radius: 4px;
+      border-radius: 16px;
       padding: 30px;
       text-align: center;
       cursor: pointer;
@@ -301,7 +309,7 @@
       border-color: #4CAF50;
       color: #2E7D32;
       padding: 15px;
-      border-radius: 4px;
+      border-radius: 12px;
       margin: 15px 0;
       font-size: 13px;
     }
@@ -318,7 +326,7 @@
       color: white;
       padding: 12px 30px;
       font-weight: 600;
-      border-radius: 4px;
+      border-radius: 12px;
       transition: all 0.3s;
     }
     
@@ -356,9 +364,10 @@
     
     .agent-results {
       background: white;
-      border-radius: 4px;
+      border-radius: 16px;
       padding: 20px;
       margin-top: 20px;
+      border-left: 4px solid #FF7A42;
     }
     
     .agent-results h4 {
@@ -366,15 +375,42 @@
       font-weight: 700;
       margin-bottom: 15px;
       font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .agent-results .icon {
+      font-size: 24px;
     }
     
     .result-item {
       background: #FFF8F3;
       padding: 12px;
-      border-radius: 3px;
+      border-radius: 12px;
       margin-bottom: 10px;
       font-size: 12px;
       line-height: 1.5;
+    }
+    
+    .try-other-agent {
+      background: #FFF8F3;
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      margin: 30px 0;
+    }
+    
+    .try-other-agent h4 {
+      color: #FF7A42;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    
+    .try-other-agent p {
+      color: #666;
+      margin-bottom: 15px;
+      font-size: 14px;
     }
     
     .error-message {
@@ -382,7 +418,7 @@
       border-left: 4px solid #C62828;
       color: #C62828;
       padding: 15px;
-      border-radius: 4px;
+      border-radius: 12px;
       margin: 15px 0;
       font-size: 13px;
     }
@@ -411,7 +447,7 @@
       background: linear-gradient(135deg, #FF7A42, #FFA500);
       color: white;
       padding: 25px;
-      border-radius: 4px;
+      border-radius: 16px;
       text-align: center;
     }
     
@@ -443,7 +479,7 @@
       margin: 0 auto;
       background: white;
       padding: 30px;
-      border-radius: 4px;
+      border-radius: 16px;
     }
     
     .quiz-question {
@@ -464,7 +500,7 @@
     .quiz-options button {
       flex: 1;
       padding: 10px;
-      border-radius: 4px;
+      border-radius: 12px;
       background: #FFF8F3;
       border: 2px solid #FFE6CC;
       color: #FF7A42;
@@ -488,7 +524,7 @@
       background: #E8F5E9;
       border-left: 4px solid #4CAF50;
       padding: 20px;
-      border-radius: 4px;
+      border-radius: 16px;
       margin-top: 20px;
     }
     
@@ -526,7 +562,7 @@
     .price-card {
       background: white;
       border: 2px solid #FFE6CC;
-      border-radius: 4px;
+      border-radius: 16px;
       padding: 25px;
       text-align: center;
       transition: all 0.3s;
@@ -602,7 +638,7 @@
       color: white;
       padding: 20px;
       text-align: center;
-      border-radius: 4px;
+      border-radius: 16px;
     }
     
     .credential .number {
@@ -700,7 +736,7 @@
   <p>Not another vendor demo. Production agentic AI built for NGOs, nonprofits, and SMEs—with measurable impact on revenue, cost, and risk.</p>
   <div class="cta-group">
     <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Free 1-Week Assessment</a>
-    <button onclick="document.getElementById('try-agents').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary">Try 2 Agents Now</button>
+    <button onclick="document.getElementById('try-agents').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary">Try Agents Now</button>
   </div>
 </section>
 
@@ -709,26 +745,32 @@
   <h2>The Problem You're Facing</h2>
   <div class="pain-grid">
     <div class="pain-card">
+      <span class="icon">🚫</span>
       <h3>No Access to AI Expertise</h3>
       <p>You can't afford a full AI team. Vendors claim "fast AI" but deliver demos that don't work with your real data.</p>
     </div>
     <div class="pain-card">
+      <span class="icon">🗂️</span>
       <h3>Data Spread Everywhere</h3>
       <p>Your operational data lives in Excel, QuickBooks, Salesforce, or worse—homegrown systems. Nothing talks to anything.</p>
     </div>
     <div class="pain-card">
+      <span class="icon">❓</span>
       <h3>Can AI Actually Help?</h3>
       <p>You need to know: can AI increase revenue? Cut costs? Do both? But first you need to see it working on YOUR data.</p>
     </div>
     <div class="pain-card">
+      <span class="icon">⚡</span>
       <h3>Speed Matters</h3>
       <p>Time is your scarcest resource. Multi-month vendor cycles won't work. You need answers now, not in 6 months.</p>
     </div>
     <div class="pain-card">
+      <span class="icon">🔐</span>
       <h3>Trust Matters Too</h3>
       <p>You need systems you understand and can control—not black boxes. Every AI output should be a proposal, not a command.</p>
     </div>
     <div class="pain-card">
+      <span class="icon">📉</span>
       <h3>You're Being Left Behind</h3>
       <p>Larger competitors with AI are pulling ahead. Without a plan, you're at risk of losing customers and opportunities.</p>
     </div>
@@ -737,14 +779,16 @@
 
 <!-- TRY AGENTS SECTION -->
 <section class="agents-section" id="try-agents">
-  <h2>Try 2 Agents Free—See Them Work on Your Data</h2>
+  <h2>Try Our Agents Free—See Them Work on Your Data</h2>
   <div class="agents-container">
     <div class="agent-description">
       <div class="agent-card">
+        <span class="icon">💰</span>
         <h3>Agent 1: Financial Health Analysis</h3>
         <p>Upload your P&L, balance sheet, or transaction data. The agent analyzes your financial metrics, flags anomalies, and tells you exactly what matters to buyers or investors.</p>
       </div>
       <div class="agent-card">
+        <span class="icon">👥</span>
         <h3>Agent 2: Customer Intelligence Dashboard</h3>
         <p>Upload your customer database or sales history. The agent segments your customers, identifies churn risk, and shows you where revenue concentration is highest.</p>
       </div>
@@ -754,43 +798,88 @@
       ⚠️ <strong>For demonstration only:</strong> Use dummy/test data. Results are not stored. This is a live working prototype—the real thing runs on your actual data behind a secure authentication wall.
     </div>
     
-    <div class="upload-area" onclick="document.getElementById('fileInput').click()">
-      <p>📁 Upload CSV or Excel File</p>
-      <div class="info">Drag and drop or click. Your data stays on your device for this demo.</div>
-      <input type="file" id="fileInput" accept=".csv,.xlsx,.xls">
+    <!-- AGENT 1 UPLOAD -->
+    <div id="agent1Section">
+      <h3 style="color: #FF7A42; margin-bottom: 15px; font-size: 16px;">💰 Step 1: Try Financial Health Analysis</h3>
+      
+      <div class="upload-area" onclick="document.getElementById('fileInput1').click()">
+        <p>📁 Upload CSV or Excel (P&L, Transactions, etc.)</p>
+        <div class="info">Drag and drop or click. Your data stays on your device for this demo.</div>
+        <input type="file" id="fileInput1" accept=".csv,.xlsx,.xls">
+      </div>
+      
+      <div id="fileSelected1" style="display: none;"></div>
+      
+      <div class="agents-actions">
+        <button id="runAgent1Btn" class="btn-run" onclick="runAgent(1)" disabled>
+          Run Financial Analysis
+        </button>
+      </div>
+      
+      <div id="agent1Loading" style="display: none;" class="loading">
+        <div class="spinner"></div>
+        Analyzing your financials...
+      </div>
+      
+      <div id="agent1Error" style="display: none;"></div>
+      
+      <div id="agent1Results" style="display: none;">
+        <div class="agent-results">
+          <h4><span class="icon">💰</span> Financial Health Analysis</h4>
+          <div id="fhaResults"></div>
+        </div>
+      </div>
     </div>
     
-    <div id="fileSelected" style="display: none;"></div>
-    
-    <div class="agents-actions">
-      <button id="runAgentsBtn" class="btn-run" onclick="runAgents()" disabled>
-        Run Both Agents
-      </button>
-      <button class="btn btn-secondary" onclick="resetAgents()" style="width: auto;">Clear & Try Again</button>
+    <!-- AGENT 2 PROMPT -->
+    <div id="agent2Prompt" style="display: none;">
+      <div class="try-other-agent">
+        <h4>👥 Now Try Agent 2: Customer Intelligence</h4>
+        <p>Upload your customer data to see revenue concentration, churn risk, and growth opportunities.</p>
+        <button class="btn btn-primary" onclick="scrollToAgent2()">Upload Customer Data</button>
+      </div>
     </div>
     
-    <div id="agentsLoading" style="display: none;" class="loading">
-      <div class="spinner"></div>
-      Running agents... (this is a demo—normally connects to live backend)
+    <!-- AGENT 2 UPLOAD -->
+    <div id="agent2Section" style="display: none;">
+      <h3 style="color: #FF7A42; margin-bottom: 15px; font-size: 16px;">👥 Step 2: Try Customer Intelligence Dashboard</h3>
+      
+      <div class="upload-area" onclick="document.getElementById('fileInput2').click()">
+        <p>📁 Upload CSV or Excel (Customer Data, Sales History, etc.)</p>
+        <div class="info">Drag and drop or click. Your data stays on your device for this demo.</div>
+        <input type="file" id="fileInput2" accept=".csv,.xlsx,.xls">
+      </div>
+      
+      <div id="fileSelected2" style="display: none;"></div>
+      
+      <div class="agents-actions">
+        <button id="runAgent2Btn" class="btn-run" onclick="runAgent(2)" disabled>
+          Run Customer Intelligence
+        </button>
+        <button class="btn btn-secondary" onclick="resetAgent2()" style="width: auto;">Start Over</button>
+      </div>
+      
+      <div id="agent2Loading" style="display: none;" class="loading">
+        <div class="spinner"></div>
+        Analyzing your customers...
+      </div>
+      
+      <div id="agent2Error" style="display: none;"></div>
+      
+      <div id="agent2Results" style="display: none;">
+        <div class="agent-results">
+          <h4><span class="icon">👥</span> Customer Intelligence Dashboard</h4>
+          <div id="cidResults"></div>
+        </div>
+      </div>
     </div>
     
-    <div id="agentsError" style="display: none;"></div>
-    
-    <div id="agentsResults" style="display: none;">
-      <div class="agent-results">
-        <h4>Agent 1: Financial Health Analysis</h4>
-        <div id="fhaResults"></div>
-      </div>
-      <div class="agent-results">
-        <h4>Agent 2: Customer Intelligence Dashboard</h4>
-        <div id="cidResults"></div>
-      </div>
-      <div style="text-align: center; margin-top: 25px;">
-        <p style="color: #666; font-size: 13px; margin-bottom: 15px;">
-          See how AI can work on your real data? Let's build a custom system just for you.
-        </p>
-        <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Your Free Assessment</a>
-      </div>
+    <!-- FINAL CTA -->
+    <div id="agentsCTA" style="display: none; text-align: center; margin-top: 30px;">
+      <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
+        See how AI can work on your real data? Let's build a custom system just for you.
+      </p>
+      <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Your Free Assessment</a>
     </div>
   </div>
 </section>
@@ -1003,66 +1092,89 @@ function showQuizResult() {
   `;
 }
 
-// Agents Demo
-document.getElementById('fileInput').addEventListener('change', function(e) {
+// Agents Demo - Sequential
+document.getElementById('fileInput1').addEventListener('change', function(e) {
   const file = e.target.files[0];
   if (file) {
-    document.getElementById('fileSelected').textContent = `✅ ${file.name} selected`;
-    document.getElementById('fileSelected').style.display = 'block';
-    document.getElementById('runAgentsBtn').disabled = false;
+    document.getElementById('fileSelected1').textContent = `✅ ${file.name} selected`;
+    document.getElementById('fileSelected1').style.display = 'block';
+    document.getElementById('runAgent1Btn').disabled = false;
   }
 });
 
-function runAgents() {
-  const file = document.getElementById('fileInput').files[0];
+document.getElementById('fileInput2').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    document.getElementById('fileSelected2').textContent = `✅ ${file.name} selected`;
+    document.getElementById('fileSelected2').style.display = 'block';
+    document.getElementById('runAgent2Btn').disabled = false;
+  }
+});
+
+function runAgent(agentNum) {
+  const fileInput = document.getElementById(`fileInput${agentNum}`);
+  const file = fileInput.files[0];
   if (!file) return;
   
-  document.getElementById('agentsLoading').style.display = 'block';
-  document.getElementById('agentsResults').style.display = 'none';
-  document.getElementById('agentsError').style.display = 'none';
+  const loadingEl = document.getElementById(`agent${agentNum}Loading`);
+  const resultsEl = document.getElementById(`agent${agentNum}Results`);
+  const errorEl = document.getElementById(`agent${agentNum}Error`);
   
-  // Simulate agent run with timeout
+  loadingEl.style.display = 'block';
+  resultsEl.style.display = 'none';
+  errorEl.style.display = 'none';
+  
   setTimeout(() => {
     const reader = new FileReader();
     reader.onload = function(e) {
       try {
-        const csv = e.target.result;
-        const lines = csv.split('\n').slice(0, 5);
+        loadingEl.style.display = 'none';
+        resultsEl.style.display = 'block';
         
-        document.getElementById('agentsLoading').style.display = 'none';
-        document.getElementById('agentsResults').style.display = 'block';
-        
-        document.getElementById('fhaResults').innerHTML = `
-          <div class="result-item">✓ <strong>Financial Health Score: 72/100</strong> — Strong fundamentals with opportunity to improve gross margin.</div>
-          <div class="result-item">⚠️ <strong>Revenue Concentration Risk:</strong> Top 3 customers = 45% of revenue. Diversification recommended.</div>
-          <div class="result-item">💡 <strong>Opportunity:</strong> Reducing operating expenses by 8–12% could improve EBITDA by $120K annually.</div>
-          <div class="result-item">📈 <strong>Trend:</strong> YoY growth averaging 15% — positive trajectory for valuation/funding.</div>
-        `;
-        
-        document.getElementById('cidResults').innerHTML = `
-          <div class="result-item">✓ <strong>Active Customers: 287</strong> | High-value segment: 42 | At-risk churn: 18</div>
-          <div class="result-item">⚠️ <strong>Churn Alert:</strong> Customers inactive 60+ days up 23% YoY. Recommend outreach campaign.</div>
-          <div class="result-item">💡 <strong>Opportunity:</strong> Upsell to existing customers could add $85K ARR with no acquisition cost.</div>
-          <div class="result-item">📊 <strong>Segmentation:</strong> 3 high-value, 5 mid-tier, 9 growth-potential clusters identified.</div>
-        `;
+        if (agentNum === 1) {
+          document.getElementById('fhaResults').innerHTML = `
+            <div class="result-item">✓ <strong>Financial Health Score: 72/100</strong> — Strong fundamentals with opportunity to improve gross margin.</div>
+            <div class="result-item">⚠️ <strong>Revenue Concentration Risk:</strong> Top 3 customers = 45% of revenue. Diversification recommended.</div>
+            <div class="result-item">💡 <strong>Opportunity:</strong> Reducing operating expenses by 8–12% could improve EBITDA by $120K annually.</div>
+            <div class="result-item">📈 <strong>Trend:</strong> YoY growth averaging 15% — positive trajectory for valuation/funding.</div>
+          `;
+          document.getElementById('agent2Prompt').style.display = 'block';
+          document.getElementById('agentsCTA').style.display = 'none';
+        } else {
+          document.getElementById('cidResults').innerHTML = `
+            <div class="result-item">✓ <strong>Active Customers: 287</strong> | High-value segment: 42 | At-risk churn: 18</div>
+            <div class="result-item">⚠️ <strong>Churn Alert:</strong> Customers inactive 60+ days up 23% YoY. Recommend outreach campaign.</div>
+            <div class="result-item">💡 <strong>Opportunity:</strong> Upsell to existing customers could add $85K ARR with no acquisition cost.</div>
+            <div class="result-item">📊 <strong>Segmentation:</strong> 3 high-value, 5 mid-tier, 9 growth-potential clusters identified.</div>
+          `;
+          document.getElementById('agent2Prompt').style.display = 'none';
+          document.getElementById('agentsCTA').style.display = 'block';
+        }
       } catch (err) {
-        document.getElementById('agentsLoading').style.display = 'none';
-        document.getElementById('agentsError').style.display = 'block';
-        document.getElementById('agentsError').className = 'error-message';
-        document.getElementById('agentsError').textContent = '❌ Error parsing file. Please upload a valid CSV or Excel file.';
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'block';
+        errorEl.className = 'error-message';
+        errorEl.textContent = '❌ Error parsing file. Please upload a valid CSV or Excel file.';
       }
     };
     reader.readAsText(file);
   }, 1500);
 }
 
-function resetAgents() {
-  document.getElementById('fileInput').value = '';
-  document.getElementById('fileSelected').style.display = 'none';
-  document.getElementById('agentsResults').style.display = 'none';
-  document.getElementById('agentsLoading').style.display = 'none';
-  document.getElementById('agentsError').style.display = 'none';
-  document.getElementById('runAgentsBtn').disabled = true;
+function scrollToAgent2() {
+  document.getElementById('agent2Section').style.display = 'block';
+  setTimeout(() => {
+    document.getElementById('agent2Section').scrollIntoView({behavior:'smooth'});
+  }, 100);
+}
+
+function resetAgent2() {
+  document.getElementById('fileInput2').value = '';
+  document.getElementById('fileSelected2').style.display = 'none';
+  document.getElementById('agent2Results').style.display = 'none';
+  document.getElementById('agent2Loading').style.display = 'none';
+  document.getElementById('agent2Error').style.display = 'none';
+  document.getElementById('runAgent2Btn').disabled = true;
 }
 
 // Init
