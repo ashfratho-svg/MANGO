@@ -1089,6 +1089,126 @@
     }
 
     renderQuestion();
-  </script>
+  <script>
+  console.log('Script starting...');
+  
+  let currentView = 'ngo';
+  const ngoQuestions = [
+    "Is your beneficiary or supply-chain data fragmented across multiple systems or spreadsheets?",
+    "Do your teams spend more than 5 hours a week on manual data entry, compliance audits, or reporting?",
+    "Have you missed critical distribution bottlenecks or loss points because you lacked real-time visibility?",
+    "Do you lack in-house technical talent to evaluate or scale AI solutions across regions?",
+    "Would you like a concrete, impact-focused roadmap before committing to technology changes?",
+    "Are you competing for donor funding with larger orgs that have better data systems and reporting?",
+    "Would seeing a working prototype of an AI solution on your actual data help you unlock funding or scale?"
+  ];
+
+  const smeQuestions = [
+    "Is your customer or financial data spread across multiple tools (Excel, QuickBooks, Salesforce, etc.)?",
+    "Do you spend more than 5 hours a week on repetitive tasks that AI could automate?",
+    "Have you lost opportunities or deals because you couldn't respond fast enough?",
+    "Do you lack in-house technical talent to evaluate or implement AI?",
+    "Would you like a concrete, number-backed roadmap before investing in any AI solution?",
+    "Are you competing with larger businesses that are moving faster because of automation?",
+    "Would seeing a working prototype of an AI solution on your actual data help you decide?"
+  ];
+
+  let currentQ = 0;
+  let yesCount = 0;
+  let answers = [];
+  let questions = ngoQuestions;
+
+  function setView(view) {
+    console.log('setView called with:', view);
+    currentView = view;
+    
+    const ngoView = document.getElementById('ngo-view');
+    const smeView = document.getElementById('sme-view');
+    const ngoToggle = document.getElementById('ngo-toggle');
+    const smeToggle = document.getElementById('sme-toggle');
+    
+    console.log('Elements found:', { ngoView, smeView, ngoToggle, smeToggle });
+
+    if (view === 'ngo') {
+      if (ngoView) ngoView.style.display = 'block';
+      if (smeView) smeView.style.display = 'none';
+      if (ngoToggle) ngoToggle.classList.add('active');
+      if (smeToggle) smeToggle.classList.remove('active');
+      questions = ngoQuestions;
+    } else {
+      if (ngoView) ngoView.style.display = 'none';
+      if (smeView) smeView.style.display = 'block';
+      if (ngoToggle) ngoToggle.classList.remove('active');
+      if (smeToggle) smeToggle.classList.add('active');
+      questions = smeQuestions;
+    }
+
+    currentQ = 0;
+    yesCount = 0;
+    answers = [];
+    const quizContent = document.getElementById('quiz-content');
+    const quizResult = document.getElementById('quiz-result-display');
+    if (quizContent) quizContent.style.display = 'block';
+    if (quizResult) quizResult.style.display = 'none';
+    
+    renderQuestion();
+    console.log('View switched to:', view);
+  }
+
+  function renderQuestion() {
+    const qNum = document.getElementById('q-num');
+    const qText = document.getElementById('q-text');
+    
+    if (currentQ < questions.length) {
+      if (qNum) qNum.textContent = currentQ + 1;
+      if (qText) qText.textContent = questions[currentQ];
+      console.log('Rendered Q' + (currentQ + 1));
+    } else {
+      showResult();
+    }
+  }
+
+  function answerQuiz(yes) {
+    console.log('Answered:', yes);
+    answers.push(yes);
+    if (yes) yesCount++;
+    currentQ++;
+    renderQuestion();
+  }
+
+  function showResult() {
+    const percent = Math.round((yesCount / questions.length) * 100);
+    let message = '';
+    let recommendation = '';
+
+    if (percent >= 71) {
+      message = `You answered Yes to ${yesCount} of 7 questions.`;
+      recommendation = currentView === 'ngo'
+        ? 'Your organization is a strong fit for custom AI. The free assessment will uncover specific impact opportunities tailored to your data and operations.'
+        : 'Your business is a strong fit for custom AI. The free assessment will uncover specific ROI opportunities tailored to your data and workflow.';
+    } else if (percent >= 43) {
+      message = `You answered Yes to ${yesCount} of 7 questions.`;
+      recommendation = 'There are clear opportunities here. The assessment will prioritize where AI makes the biggest difference.';
+    } else {
+      message = `You answered Yes to ${yesCount} of 7 questions.`;
+      recommendation = 'Even one pain point can be worth solving. Let\'s talk through where AI fits best.';
+    }
+
+    document.getElementById('quiz-content').style.display = 'none';
+    const resultDiv = document.getElementById('quiz-result-display');
+    resultDiv.innerHTML = `
+      <div class="quiz-result">
+        <h3>${message}</h3>
+        <p>${recommendation}</p>
+        <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="margin-top: 20px;">Schedule Free Assessment</a>
+      </div>
+    `;
+    resultDiv.style.display = 'block';
+  }
+
+  // Initialize
+  console.log('Initializing with NGO view');
+  renderQuestion();
+</script>
 </body>
 </html>
