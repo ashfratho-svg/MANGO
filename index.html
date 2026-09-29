@@ -40,7 +40,6 @@
       padding: 0 24px;
     }
 
-    /* Navigation */
     nav {
       position: sticky;
       top: 0;
@@ -111,7 +110,6 @@
       box-shadow: 0 8px 24px rgba(216, 90, 48, 0.3);
     }
 
-    /* Hero */
     .hero {
       padding: 120px 0 80px;
       background: linear-gradient(135deg, var(--cream-bg) 0%, #FFF5E6 100%);
@@ -204,7 +202,6 @@
       transform: translateY(-3px);
     }
 
-    /* Section Styling */
     .section {
       padding: 100px 0;
       position: relative;
@@ -232,7 +229,6 @@
       font-weight: 500;
     }
 
-    /* Pain Points */
     .pain-points {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -277,7 +273,6 @@
       line-height: 1.8;
     }
 
-    /* Quiz */
     .quiz-section {
       padding: 100px 0;
       background: linear-gradient(135deg, #FFF5E6 0%, #FFFBF5 100%);
@@ -359,7 +354,6 @@
       color: var(--teal-accent);
     }
 
-    /* Impact Stories */
     .impact-section {
       padding: 100px 0;
       background: linear-gradient(135deg, var(--cream-bg) 0%, #FFF5E6 100%);
@@ -408,7 +402,6 @@
       box-shadow: 0 20px 48px rgba(216, 90, 48, 0.35);
     }
 
-    /* Case Studies */
     .case-studies {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -472,7 +465,6 @@
       gap: 12px;
     }
 
-    /* Pricing */
     .pricing-section {
       padding: 100px 0;
       background: linear-gradient(135deg, #FFF5E6 0%, var(--cream-bg) 100%);
@@ -554,7 +546,6 @@
       margin-right: 10px;
     }
 
-    /* Credentials */
     .credentials-section {
       padding: 100px 0;
     }
@@ -592,7 +583,6 @@
       font-weight: 700;
     }
 
-    /* Blog */
     .blog-placeholder {
       background: white;
       border: 2px dashed rgba(216, 90, 48, 0.3);
@@ -614,7 +604,6 @@
       font-size: 16px;
     }
 
-    /* CTA Final */
     .cta-final {
       padding: 100px 0;
       text-align: center;
@@ -639,7 +628,6 @@
       font-weight: 500;
     }
 
-    /* Footer */
     footer {
       padding: 60px 0;
       text-align: center;
@@ -650,7 +638,7 @@
     }
 
     .hidden {
-      display: none;
+      display: none !important;
     }
 
     @media (max-width: 768px) {
@@ -694,7 +682,6 @@
     </div>
   </nav>
 
-  <!-- NGO VIEW -->
   <div id="ngo-view">
     <section class="hero">
       <div class="container">
@@ -746,8 +733,7 @@
     </section>
   </div>
 
-  <!-- SME VIEW (hidden by default) -->
-  <div id="sme-view" class="hidden">
+  <div id="sme-view" style="display: none;">
     <section class="hero">
       <div class="container">
         <h1>AI Built for Small Businesses</h1>
@@ -1027,29 +1013,32 @@
     let questions = ngoQuestions;
 
     function setView(view) {
-      console.log('setView called with:', view);
+      console.log('setView called:', view);
       currentView = view;
       
-      // Show/hide views
-      if (view === 'ngo') {
-        document.getElementById('ngo-view').style.display = 'block';
-        document.getElementById('sme-view').style.display = 'none';
-      } else {
-        document.getElementById('ngo-view').style.display = 'none';
-        document.getElementById('sme-view').style.display = 'block';
-      }
+      const ngoView = document.getElementById('ngo-view');
+      const smeView = document.getElementById('sme-view');
+      const ngoToggle = document.getElementById('ngo-toggle');
+      const smeToggle = document.getElementById('sme-toggle');
       
-      // Update button states
-      document.getElementById('ngo-toggle').classList.toggle('active', view === 'ngo');
-      document.getElementById('sme-toggle').classList.toggle('active', view === 'sme');
+      if (view === 'ngo') {
+        ngoView.style.display = 'block';
+        smeView.style.display = 'none';
+        ngoToggle.classList.add('active');
+        smeToggle.classList.remove('active');
+      } else {
+        ngoView.style.display = 'none';
+        smeView.style.display = 'block';
+        ngoToggle.classList.remove('active');
+        smeToggle.classList.add('active');
+      }
 
-      // Reset quiz
       currentQ = 0;
       yesCount = 0;
       answers = [];
       questions = view === 'ngo' ? ngoQuestions : smeQuestions;
-      document.getElementById('quiz-content').classList.remove('hidden');
-      document.getElementById('quiz-result-display').classList.add('hidden');
+      document.getElementById('quiz-content').style.display = 'block';
+      document.getElementById('quiz-result-display').style.display = 'none';
       renderQuestion();
     }
 
@@ -1087,7 +1076,7 @@
         recommendation = 'Even one pain point can be worth solving. Let's talk through where AI fits best.';
       }
 
-      document.getElementById('quiz-content').classList.add('hidden');
+      document.getElementById('quiz-content').style.display = 'none';
       const resultDiv = document.getElementById('quiz-result-display');
       resultDiv.innerHTML = `
         <div class="quiz-result">
@@ -1096,7 +1085,7 @@
           <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="margin-top: 20px;">Schedule Free Assessment</a>
         </div>
       `;
-      resultDiv.classList.remove('hidden');
+      resultDiv.style.display = 'block';
     }
 
     renderQuestion();
