@@ -65,9 +65,7 @@
       border-bottom-color: #FF7A42;
     }
     
-    nav .nav-center button:hover {
-      color: #FF7A42;
-    }
+    nav .nav-center button:hover { color: #FF7A42; }
     
     nav .nav-right {
       display: flex;
@@ -158,9 +156,7 @@
       border: 2px solid #FF7A42;
     }
     
-    .btn-secondary:hover {
-      background: #FFF8F3;
-    }
+    .btn-secondary:hover { background: #FFF8F3; }
     
     /* Pain Points */
     .pain-section {
@@ -208,7 +204,7 @@
       line-height: 1.5;
     }
     
-    /* Try Agents Section */
+    /* Agents Section */
     .agents-section {
       padding: 60px 40px;
       background: linear-gradient(135deg, #FFF8F3 0%, #FFF0E6 100%);
@@ -313,6 +309,16 @@
       font-size: 13px;
     }
     
+    .error-message {
+      background: #FFEBEE;
+      border-left: 4px solid #C62828;
+      color: #C62828;
+      padding: 15px;
+      border-radius: 12px;
+      margin: 15px 0;
+      font-size: 13px;
+    }
+    
     .agents-actions {
       display: flex;
       gap: 10px;
@@ -379,10 +385,6 @@
       gap: 10px;
     }
     
-    .agent-results .icon {
-      font-size: 24px;
-    }
-    
     .result-item {
       background: #FFF8F3;
       padding: 12px;
@@ -410,16 +412,6 @@
       color: #666;
       margin-bottom: 15px;
       font-size: 14px;
-    }
-    
-    .error-message {
-      background: #FFEBEE;
-      border-left: 4px solid #C62828;
-      color: #C62828;
-      padding: 15px;
-      border-radius: 12px;
-      margin: 15px 0;
-      font-size: 13px;
     }
     
     /* Impact Section */
@@ -469,7 +461,7 @@
     
     .quiz-section h2 {
       font-size: 32px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       text-align: center;
     }
     
@@ -478,6 +470,7 @@
       justify-content: center;
       gap: 15px;
       margin-bottom: 30px;
+      flex-wrap: wrap;
     }
     
     .quiz-toggle button {
@@ -490,6 +483,11 @@
       font-size: 14px;
       transition: all 0.3s;
       cursor: pointer;
+    }
+    
+    .quiz-toggle button:hover {
+      border-color: #FF7A42;
+      background: #FFF8F3;
     }
     
     .quiz-toggle button.active {
@@ -721,7 +719,6 @@
       text-decoration: underline;
     }
     
-    /* Responsive */
     @media (max-width: 768px) {
       nav { flex-direction: column; gap: 15px; }
       nav .nav-center { flex-direction: column; }
@@ -766,7 +763,7 @@
 </section>
 
 <!-- PAIN POINTS -->
-<section class="pain-section" id="pain">
+<section class="pain-section">
   <h2>The Problem You're Facing</h2>
   <div class="pain-grid">
     <div class="pain-card">
@@ -846,11 +843,9 @@
         Analyzing your financials...
       </div>
       
-      <div id="agent1Error" style="display: none;"></div>
-      
       <div id="agent1Results" style="display: none;">
         <div class="agent-results">
-          <h4><span class="icon">💰</span> Financial Health Analysis</h4>
+          <h4><span style="font-size: 24px;">💰</span> Financial Health Analysis</h4>
           <div id="fhaResults"></div>
         </div>
       </div>
@@ -889,11 +884,9 @@
         Analyzing your customers...
       </div>
       
-      <div id="agent2Error" style="display: none;"></div>
-      
       <div id="agent2Results" style="display: none;">
         <div class="agent-results">
-          <h4><span class="icon">👥</span> Customer Intelligence Dashboard</h4>
+          <h4><span style="font-size: 24px;">👥</span> Customer Intelligence Dashboard</h4>
           <div id="cidResults"></div>
         </div>
       </div>
@@ -945,8 +938,8 @@
   <h2>Quick Assessment: Is AI Right for You?</h2>
   
   <div class="quiz-toggle">
-    <button id="sme-btn" class="active" onclick="switchView('sme')">🏢 SME/Small Business</button>
-    <button id="ngo-btn" onclick="switchView('ngo')">🤝 Nonprofit/NGO</button>
+    <button id="sme-btn" class="active" onclick="switchQuizView('sme')">🏢 SME/Small Business</button>
+    <button id="ngo-btn" onclick="switchQuizView('ngo')">🤝 Nonprofit/NGO</button>
   </div>
   
   <div class="quiz-container">
@@ -1057,7 +1050,7 @@
 </footer>
 
 <script>
-// Quiz Data - SME and Nonprofit variants
+// Quiz Data
 const smeQuestions = [
   { q: "Does your business have operational data (sales, customers, finance)?", yes: 1, no: 0 },
   { q: "Are you losing customers or opportunities to competitors who use AI?", yes: 1, no: 0 },
@@ -1078,21 +1071,17 @@ const ngoQuestions = [
   { q: "Do you want to adopt AI without vendor lock-in or long contracts?", yes: 1, no: 0 }
 ];
 
-let currentView = 'sme';
-let questions = smeQuestions;
+let currentQuizView = 'sme';
+let quizQuestions = smeQuestions;
 let quizAnswers = [];
 
-function switchView(view) {
-  currentView = view;
-  questions = view === 'sme' ? smeQuestions : ngoQuestions;
+function switchQuizView(view) {
+  currentQuizView = view;
+  quizQuestions = view === 'sme' ? smeQuestions : ngoQuestions;
   
   document.getElementById('sme-btn').classList.toggle('active', view === 'sme');
   document.getElementById('ngo-btn').classList.toggle('active', view === 'ngo');
   
-  resetQuiz();
-}
-
-function resetQuiz() {
   quizAnswers = [];
   initQuiz();
 }
@@ -1101,7 +1090,7 @@ function initQuiz() {
   const container = document.getElementById('quizContent');
   container.innerHTML = '';
   
-  questions.forEach((item, i) => {
+  quizQuestions.forEach((item, i) => {
     const div = document.createElement('div');
     div.className = 'quiz-question';
     div.innerHTML = `
@@ -1122,7 +1111,7 @@ function answerQuiz(i, yes) {
   buttons.forEach(b => b.classList.remove('selected'));
   buttons[yes ? 0 : 1].classList.add('selected');
   
-  if (quizAnswers.length === questions.length) {
+  if (quizAnswers.length === quizQuestions.length) {
     setTimeout(showQuizResult, 300);
   }
 }
@@ -1130,15 +1119,15 @@ function answerQuiz(i, yes) {
 function showQuizResult() {
   const score = quizAnswers.reduce((a, b) => a + b, 0);
   const container = document.getElementById('quizContent');
-  const typeLabel = currentView === 'sme' ? 'business' : 'organization';
+  const typeLabel = currentQuizView === 'sme' ? 'business' : 'organization';
   
   let message = '';
   if (score >= 6) {
-    message = `🎯 <strong>You're a perfect fit.</strong> AI can unlock significant value for your ${typeLabel}—but you need a partner who understands your constraints. Let's talk about your first 1-week free assessment.`;
+    message = `🎯 <strong>You're a perfect fit.</strong> AI can unlock significant value for your ${typeLabel}. Let's talk about your first 1-week free assessment.`;
   } else if (score >= 4) {
-    message = `🤔 <strong>You've got real opportunities.</strong> Some AI applications will drive measurable ROI. Let's identify which ones in a free assessment—no risk, no commitment.`;
+    message = `🤔 <strong>You've got real opportunities.</strong> Some AI applications will drive measurable ROI. Let's identify which ones—no risk, no commitment.`;
   } else {
-    message = `⏸️ <strong>Maybe not right now.</strong> But if your situation changes—if you need to cut costs, reach more impact, or move faster—reach out. We'll be here.`;
+    message = `⏸️ <strong>Maybe not right now.</strong> But if your situation changes, reach out. We'll be here.`;
   }
   
   container.innerHTML = `
@@ -1150,110 +1139,96 @@ function showQuizResult() {
   `;
 }
 
-// Drag & Drop for file uploads
-function setupDragDrop(fileInputId, uploadAreaId) {
-  const uploadArea = document.getElementById(uploadAreaId);
-  const fileInput = document.getElementById(fileInputId);
-  
-  uploadArea.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    uploadArea.classList.add('dragover');
-  });
-  
-  uploadArea.addEventListener('dragleave', () => {
-    uploadArea.classList.remove('dragover');
-  });
-  
-  uploadArea.addEventListener('drop', (e) => {
-    e.preventDefault();
-    uploadArea.classList.remove('dragover');
-    fileInput.files = e.dataTransfer.files;
-    handleFileSelect(fileInputId);
-  });
-}
+// File handling
+document.getElementById('fileInput1').addEventListener('change', () => validateAndSelectFile(1));
+document.getElementById('fileInput2').addEventListener('change', () => validateAndSelectFile(2));
 
-// File upload handlers
-document.getElementById('fileInput1').addEventListener('change', function() {
-  handleFileSelect('fileInput1');
-});
-
-document.getElementById('fileInput2').addEventListener('change', function() {
-  handleFileSelect('fileInput2');
-});
-
-function handleFileSelect(fileInputId) {
-  const fileInput = document.getElementById(fileInputId);
+function validateAndSelectFile(agentNum) {
+  const fileInput = document.getElementById(`fileInput${agentNum}`);
   const file = fileInput.files[0];
-  
   if (!file) return;
   
-  const agentNum = fileInputId === 'fileInput1' ? 1 : 2;
   const selectedEl = document.getElementById(`fileSelected${agentNum}`);
   const btnEl = document.getElementById(`runAgent${agentNum}Btn`);
   
-  // Validate file
   if (!file.name.match(/\.(csv|xlsx|xls)$/i)) {
-    selectedEl.innerHTML = `❌ Invalid file type. Please upload CSV or Excel file.`;
+    selectedEl.innerHTML = `❌ Invalid file type. Please upload CSV or Excel.`;
     selectedEl.className = 'error-message';
     selectedEl.style.display = 'block';
     btnEl.disabled = true;
     return;
   }
   
-  selectedEl.innerHTML = `✅ ${file.name} (${(file.size / 1024).toFixed(1)} KB) selected`;
-  selectedEl.className = 'file-selected';
-  selectedEl.style.display = 'block';
-  btnEl.disabled = false;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const content = e.target.result;
+    const firstLine = content.split('\n')[0].toLowerCase();
+    
+    const financialKeywords = ['revenue', 'expense', 'ebitda', 'profit', 'cost', 'income', 'balance', 'asset', 'liability', 'cash'];
+    const customerKeywords = ['customer', 'client', 'order', 'transaction', 'churn', 'segment', 'account', 'purchase', 'sales'];
+    
+    const hasFinancialData = financialKeywords.some(kw => firstLine.includes(kw));
+    const hasCustomerData = customerKeywords.some(kw => firstLine.includes(kw));
+    
+    // FHA expects financial data
+    if (agentNum === 1 && !hasFinancialData && !firstLine.includes('p&l')) {
+      selectedEl.innerHTML = `⚠️ This doesn't look like financial data. Please upload P&L or balance sheet.`;
+      selectedEl.className = 'error-message';
+      selectedEl.style.display = 'block';
+      btnEl.disabled = true;
+      return;
+    }
+    
+    // CID expects customer data
+    if (agentNum === 2 && !hasCustomerData) {
+      selectedEl.innerHTML = `⚠️ This doesn't look like customer data. Please upload customer database or sales history.`;
+      selectedEl.className = 'error-message';
+      selectedEl.style.display = 'block';
+      btnEl.disabled = true;
+      return;
+    }
+    
+    selectedEl.innerHTML = `✅ ${file.name} selected`;
+    selectedEl.className = 'file-selected';
+    selectedEl.style.display = 'block';
+    btnEl.disabled = false;
+  };
+  reader.readAsText(file);
 }
 
 function runAgent(agentNum) {
   const fileInput = document.getElementById(`fileInput${agentNum}`);
   const file = fileInput.files[0];
-  
   if (!file) return;
   
   const loadingEl = document.getElementById(`agent${agentNum}Loading`);
   const resultsEl = document.getElementById(`agent${agentNum}Results`);
-  const errorEl = document.getElementById(`agent${agentNum}Error`);
   
   loadingEl.style.display = 'block';
   resultsEl.style.display = 'none';
-  errorEl.style.display = 'none';
   
-  // Simulate processing delay
   setTimeout(() => {
-    try {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        loadingEl.style.display = 'none';
-        resultsEl.style.display = 'block';
-        
-        if (agentNum === 1) {
-          document.getElementById('fhaResults').innerHTML = `
-            <div class="result-item">✓ <strong>Financial Health Score: 72/100</strong> — Strong fundamentals with opportunity to improve gross margin.</div>
-            <div class="result-item">⚠️ <strong>Revenue Concentration Risk:</strong> Top 3 customers = 45% of revenue. Diversification recommended.</div>
-            <div class="result-item">💡 <strong>Opportunity:</strong> Reducing operating expenses by 8–12% could improve EBITDA by $120K annually.</div>
-            <div class="result-item">📈 <strong>Trend:</strong> YoY growth averaging 15% — positive trajectory for valuation/funding.</div>
-          `;
-          document.getElementById('agent2Prompt').style.display = 'block';
-          document.getElementById('agentsCTA').style.display = 'none';
-        } else {
-          document.getElementById('cidResults').innerHTML = `
-            <div class="result-item">✓ <strong>Active Customers: 287</strong> | High-value segment: 42 | At-risk churn: 18</div>
-            <div class="result-item">⚠️ <strong>Churn Alert:</strong> Customers inactive 60+ days up 23% YoY. Recommend outreach campaign.</div>
-            <div class="result-item">💡 <strong>Opportunity:</strong> Upsell to existing customers could add $85K ARR with no acquisition cost.</div>
-            <div class="result-item">📊 <strong>Segmentation:</strong> 3 high-value, 5 mid-tier, 9 growth-potential clusters identified.</div>
-          `;
-          document.getElementById('agent2Prompt').style.display = 'none';
-          document.getElementById('agentsCTA').style.display = 'block';
-        }
-      };
-      reader.readAsText(file);
-    } catch (err) {
-      loadingEl.style.display = 'none';
-      errorEl.style.display = 'block';
-      errorEl.className = 'error-message';
-      errorEl.textContent = '❌ Error processing file. Please check file format and try again.';
+    loadingEl.style.display = 'none';
+    resultsEl.style.display = 'block';
+    
+    if (agentNum === 1) {
+      document.getElementById('fhaResults').innerHTML = `
+        <div class="result-item">✓ <strong>Financial Health Score: 72/100</strong></div>
+        <div class="result-item">⚠️ <strong>Revenue Concentration:</strong> Top 3 customers = 45% of revenue</div>
+        <div class="result-item">💡 <strong>Opportunity:</strong> Reducing operating expenses by 8–12% = $120K EBITDA improvement</div>
+        <div class="result-item">📈 <strong>Trend:</strong> YoY growth 15% — strong valuation trajectory</div>
+      `;
+      document.getElementById('agent2Prompt').style.display = 'block';
+      document.getElementById('agentsCTA').style.display = 'none';
+    } else {
+      document.getElementById('cidResults').innerHTML = `
+        <div class="result-item">✓ <strong>Active Customers: 287</strong> | High-value: 42 | At-risk churn: 18</div>
+        <div class="result-item">⚠️ <strong>Churn Alert:</strong> Inactive 60+ days up 23% YoY</div>
+        <div class="result-item">💡 <strong>Upsell Opportunity:</strong> Could add $85K ARR from existing customers</div>
+        <div class="result-item">📊 <strong>Segmentation:</strong> 3 high-value + 5 mid-tier + 9 growth clusters</div>
+      `;
+      document.getElementById('agent2Prompt').style.display = 'none';
+      document.getElementById('agentsCTA').style.display = 'block';
     }
   }, 1500);
 }
@@ -1270,15 +1245,10 @@ function resetAgent2() {
   document.getElementById('fileSelected2').style.display = 'none';
   document.getElementById('agent2Results').style.display = 'none';
   document.getElementById('agent2Loading').style.display = 'none';
-  document.getElementById('agent2Error').style.display = 'none';
   document.getElementById('runAgent2Btn').disabled = true;
 }
 
-// Setup drag-drop for both file inputs
-setupDragDrop('fileInput1', 'uploadArea1');
-setupDragDrop('fileInput2', 'uploadArea2');
-
-// Initialize quiz
+// Initialize
 initQuiz();
 </script>
 
