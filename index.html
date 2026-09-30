@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mango Intel — AI for Small Business</title>
+  <title>Mango Intel — AI for Small Business & NGOs</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23e8640d' width='100' height='100'/><ellipse cx='50' cy='45' rx='28' ry='32' fill='%23f5a623'/><ellipse cx='50' cy='48' rx='22' ry='24' fill='%23ffc107'/><path d='M50 15 Q55 20 50 28 Q45 20 50 15' fill='%23228B22'/></svg>">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
@@ -41,6 +42,13 @@
       text-decoration: none;
     }
 
+    .tagline {
+      font-size: 12px;
+      color: #999;
+      font-weight: 500;
+      margin-left: 8px;
+    }
+
     .nav-links {
       display: flex;
       gap: 30px;
@@ -67,32 +75,6 @@
       display: flex;
       align-items: center;
       gap: 20px;
-    }
-
-    .toggle-group {
-      display: flex;
-      gap: 8px;
-      background: #f0f0f0;
-      padding: 4px;
-      border-radius: 6px;
-    }
-
-    .toggle-btn {
-      padding: 6px 12px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 500;
-      color: #666;
-      border-radius: 4px;
-      transition: all 0.2s;
-    }
-
-    .toggle-btn.active {
-      background: white;
-      color: #e8640d;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
 
     .phone {
@@ -127,8 +109,15 @@
     .hero h1 {
       font-size: 48px;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
       color: #1a1a1a;
+    }
+
+    .hero .subtitle {
+      font-size: 16px;
+      color: #e8640d;
+      font-weight: 600;
+      margin-bottom: 20px;
     }
 
     .hero p {
@@ -471,7 +460,16 @@
 <!-- NAVIGATION -->
 <nav>
   <div class="nav-left">
-    <a href="#hero" class="logo">Mango Intel</a>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+        <rect fill="#e8640d" width="100" height="100" rx="6"/>
+        <ellipse cx="50" cy="45" rx="28" ry="32" fill="#f5a623"/>
+        <ellipse cx="50" cy="48" rx="22" ry="24" fill="#ffc107"/>
+        <path d="M50 15 Q55 20 50 28 Q45 20 50 15" fill="#228B22"/>
+      </svg>
+      <a href="#hero" class="logo">Mango Intel</a>
+      <span class="tagline">Small Business & NGOs</span>
+    </div>
     <ul class="nav-links">
       <li><a href="#impact" data-section="impact">Impact</a></li>
       <li><a href="#try-agents" data-section="try-agents">Try Agents</a></li>
@@ -480,10 +478,6 @@
     </ul>
   </div>
   <div class="nav-right">
-    <div class="toggle-group">
-      <button class="toggle-btn active" onclick="switchView('sme')">SME</button>
-      <button class="toggle-btn" onclick="switchView('npo')">Nonprofit</button>
-    </div>
     <span class="phone">+1-651-428-0749</span>
     <button class="cta-btn" onclick="scrollToCalendly()">Free Assessment</button>
   </div>
@@ -491,15 +485,41 @@
 
 <!-- HERO -->
 <div class="hero" id="hero">
-  <h1 id="hero-title">AI That Works for Your Small Business</h1>
-  <p id="hero-para">Stop losing customers to competitors with AI. We build real solutions, not consulting slides — proven by live systems serving Fortune 500s.</p>
+  <div class="subtitle">Real AI Solutions for Small Business & NGOs</div>
+  <h1>Stop Losing Opportunities to AI</h1>
+  <p>We build real solutions, not consulting slides. Live systems proven with Fortune 500s, now tailored for your business — whether you're scaling revenue or amplifying mission impact.</p>
   <a href="#try-agents" class="hero-cta">See It In Action</a>
 </div>
 
 <!-- PAIN POINTS -->
 <section id="pain-section">
-  <h2>Your Challenges</h2>
-  <div class="pain-grid" id="pain-grid"></div>
+  <h2>Your Challenge</h2>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <h3>Data Everywhere, Insights Nowhere</h3>
+      <p>Customer, sales, financial data scattered across Excel, Quickbooks, Salesforce. You can't see the full picture — let alone act on it.</p>
+    </div>
+    <div class="pain-card">
+      <h3>Time Running Out</h3>
+      <p>Competitors with AI are closing deals faster, personalizing offers, automating follow-up. You're still typing and calling.</p>
+    </div>
+    <div class="pain-card">
+      <h3>No AI Roadmap, Just Hype</h3>
+      <p>Which AI investments pay off? Vendors overpromise. Consultants charge $300/hr. You need proof, not slides. And you need it fast.</p>
+    </div>
+    <div class="pain-card">
+      <h3>Expensive Resources You Can't Afford</h3>
+      <p>Real AI builders and strategists want equity or $200K+ contracts. You have a budget, not a Series A.</p>
+    </div>
+    <div class="pain-card">
+      <h3>Your Team Isn't Technical</h3>
+      <p>You're mission-driven or business-driven, not tech-driven. Building or evaluating AI feels like a foreign language.</p>
+    </div>
+    <div class="pain-card">
+      <h3>Losing Ground to Larger Players</h3>
+      <p>In rural markets or niche segments, AI advantages compound. Fall behind now, and you might not catch up.</p>
+    </div>
+  </div>
 </section>
 
 <!-- TRY AGENTS -->
@@ -514,7 +534,7 @@
     <!-- AGENT 1: FINANCIAL HEALTH -->
     <div id="financial-agent" class="agent-content">
       <h3>Financial Health Analysis</h3>
-      <p style="color: #666; margin-bottom: 20px;">Upload your P&L or financial statement. We'll analyze revenue trends, profitability, debt, cash flow, and valuation — with specific recommendations.</p>
+      <p style="color: #666; margin-bottom: 20px;">Upload your P&L or financial statement. We'll analyze revenue trends, profitability, debt, cash flow, and valuation — with specific, actionable recommendations tailored to your business.</p>
       
       <div class="upload-box">
         <label class="upload-label">Choose File</label>
@@ -534,7 +554,7 @@
       </div>
 
       <div id="agent2-prompt" class="next-agent-prompt" style="display: none;">
-        <p><strong>Great!</strong> Now let's understand your customer base.</p>
+        <p><strong>Great!</strong> Now let's understand your customer base and identify growth opportunities.</p>
         <button onclick="switchAgent('customer')">Try Agent 2: Customer Intelligence →</button>
       </div>
     </div>
@@ -542,7 +562,7 @@
     <!-- AGENT 2: CUSTOMER INTELLIGENCE -->
     <div id="customer-agent" class="agent-content" style="display: none;">
       <h3>Customer Intelligence Analysis</h3>
-      <p style="color: #666; margin-bottom: 20px;">Upload your customer data. We'll identify concentration risk, growth opportunities, churn signals, and segmentation strategies.</p>
+      <p style="color: #666; margin-bottom: 20px;">Upload your customer data. We'll identify concentration risk, growth opportunities, churn signals, and segmentation strategies — so you know exactly where to double down.</p>
       
       <div class="upload-box">
         <label class="upload-label">Choose File</label>
@@ -562,7 +582,7 @@
       </div>
 
       <div id="calendly-prompt" class="next-agent-prompt" style="display: none;">
-        <p><strong>Impressed?</strong> Let's discuss how to build custom AI for your specific problems.</p>
+        <p><strong>Impressed?</strong> Let's discuss how to build custom AI for your specific challenges — and measure ROI from day one.</p>
         <button onclick="scrollToCalendly()">Schedule Free Assessment →</button>
       </div>
     </div>
@@ -571,51 +591,93 @@
 
 <!-- IMPACT -->
 <section id="impact">
-  <h2>Our Impact</h2>
+  <h2>Why We're Different</h2>
   <div class="impact-grid">
     <div class="stat-card">
       <div class="number">2</div>
-      <p>Live AI systems shipped solo</p>
+      <p>Live AI systems shipped solo — not mockups, live production systems</p>
     </div>
     <div class="stat-card">
       <div class="number">6.5M</div>
-      <p>Users across systems I've built</p>
+      <p>Users across systems I've built and scaled</p>
     </div>
     <div class="stat-card">
       <div class="number">F500</div>
-      <p>Enterprise clients served</p>
+      <p>Enterprise clients served with AI solutions</p>
     </div>
     <div class="stat-card">
       <div class="number">30+</div>
-      <p>Years tech leadership</p>
+      <p>Years in technology and architecture</p>
     </div>
     <div class="stat-card">
       <div class="number">15+</div>
-      <p>Years IT audit & SOX</p>
+      <p>Years in IT audit, controls, and compliance</p>
     </div>
     <div class="stat-card">
-      <div class="number">10</div>
-      <p>US patents held</p>
+      <div class="number">Days</div>
+      <p>Not months — production AI in weeks</p>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
 <section id="pricing">
-  <h2 id="pricing-title">Simple, Fixed-Scope Pricing</h2>
-  <div class="pricing-grid" id="pricing-grid"></div>
+  <h2>Simple, Fixed-Scope Pricing</h2>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>Free AI Assessment</h3>
+      <div class="price">$0</div>
+      <div class="duration">1 week commitment</div>
+      <ul>
+        <li>✓ Current AI opportunities</li>
+        <li>✓ Risk & reward analysis</li>
+        <li>✓ Working prototype</li>
+        <li>✓ Custom roadmap</li>
+        <li>✓ No obligation</li>
+      </ul>
+      <button onclick="scrollToCalendly()">Get Started</button>
+    </div>
+
+    <div class="pricing-card">
+      <h3>Strategy Sprint</h3>
+      <div class="price">$5K–$10K</div>
+      <div class="duration">2–4 weeks</div>
+      <ul>
+        <li>✓ Use-case portfolio analysis</li>
+        <li>✓ Build-vs-buy evaluation</li>
+        <li>✓ Phased delivery roadmap</li>
+        <li>✓ Board-ready presentation</li>
+        <li>✓ ROI framework</li>
+      </ul>
+      <button onclick="scrollToCalendly()">Get Started</button>
+    </div>
+
+    <div class="pricing-card">
+      <h3>Custom AI Build</h3>
+      <div class="price">$20K–$50K</div>
+      <div class="duration">8–12 weeks</div>
+      <ul>
+        <li>✓ Production AI system</li>
+        <li>✓ Real data integration</li>
+        <li>✓ Team training & docs</li>
+        <li>✓ Ongoing support included</li>
+        <li>✓ Fixed scope & timeline</li>
+      </ul>
+      <button onclick="scrollToCalendly()">Get Started</button>
+    </div>
+  </div>
 </section>
 
 <!-- FINAL CTA -->
 <section style="text-align: center; background: #fff9f5;">
-  <h2>Ready to Transform Your Business with AI?</h2>
-  <p id="final-cta" style="font-size: 16px; color: #666; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">Start with our free AI assessment: we'll analyze your opportunities, risks, and build a working prototype of your highest-impact use case.</p>
+  <h2>Ready to Transform with Real AI?</h2>
+  <p style="font-size: 16px; color: #666; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">One week. Free. No obligation. We'll analyze your AI opportunities, quantify the risk/reward, and build a working prototype of your highest-impact opportunity.</p>
   <button class="cta-btn" style="padding: 14px 32px; font-size: 16px;" onclick="scrollToCalendly()">Schedule Your Free Assessment</button>
 </section>
 
 <!-- FOOTER / CALENDLY -->
 <section id="contact" style="background: #1a1a1a; color: white; text-align: center;">
-  <h2 style="color: white; margin-bottom: 40px;">Get Started Today</h2>
+  <h2 style="color: white; margin-bottom: 40px;">Let's Get Started</h2>
   <div style="max-width: 600px; margin: 0 auto;">
     <p style="margin-bottom: 30px; color: #ccc;">One week. Free. Real prototype of your biggest AI opportunity.</p>
     <iframe src="https://calendly.com/ashishgadnis/free-ai-assessment" width="100%" height="600" frameborder="0"></iframe>
@@ -623,98 +685,17 @@
 </section>
 
 <footer>
-  <p>&copy; 2026 Mango Intel. Real AI for small business. <a href="tel:+1-651-428-0749">+1-651-428-0749</a></p>
+  <p>&copy; 2026 Mango Intel. Real AI for small business & nonprofits. <a href="tel:+1-651-428-0749">+1-651-428-0749</a></p>
 </footer>
 
 <script>
-const API_BASE = 'http://localhost:3001';
+const API_BASE = 'https://mango-backend-eight.vercel.app';
 
-const content = {
-  sme: {
-    heroTitle: "AI That Works for Your Small Business",
-    heroPara: "Stop losing customers to competitors with AI. We build real solutions, not consulting slides — proven by live systems serving Fortune 500s.",
-    painPoints: [
-      { title: "Data Chaos", text: "Your customer, sales, and financial data lives in Excel, Quickbooks, Salesforce silos. You can't see the full picture." },
-      { title: "Time Running Out", text: "Competitors with AI are closing deals faster, personalizing offers, automating follow-up. You're not." },
-      { title: "No AI Roadmap", text: "You don't know which AI investments pay off first. Vendors overpromise. You want proof, not slides." },
-      { title: "Expensive Resources", text: "AI consultants charge $300/hr for strategy. Implementation takes months. You can't afford that." },
-      { title: "Skill Gaps", text: "Your team can't build or evaluate AI. You're stuck hiring — or doing nothing." },
-      { title: "Rural Markets Losing Out", text: "Big players have AI. You're competing in rural/niche markets where every deal matters. Can't fall behind." }
-    ],
-    pricingTitle: "Simple, Fixed-Scope Pricing",
-    pricingCards: [
-      {
-        title: "Free AI Assessment",
-        price: "$0",
-        duration: "1 week",
-        items: ["Current AI opportunities", "Risk & reward analysis", "Working prototype", "Custom roadmap", "No obligation"]
-      },
-      {
-        title: "AI Strategy Sprint",
-        price: "$5K–$10K",
-        duration: "2–4 weeks",
-        items: ["Full use-case portfolio", "Build-vs-buy analysis", "Phased delivery plan", "Board-ready roadmap", "ROI framing"]
-      },
-      {
-        title: "Custom AI Build",
-        price: "$20K–$50K",
-        duration: "8–12 weeks",
-        items: ["Production AI system", "Real data integration", "Team training", "Ongoing support", "Fixed scope"]
-      }
-    ],
-    finalCtaPara: "Start with our free AI assessment: we'll analyze your opportunities, risks, and build a working prototype of your highest-impact use case — no obligation."
-  },
-  npo: {
-    heroTitle: "AI to Scale Your Nonprofit's Impact",
-    heroPara: "Reach more beneficiaries without stretching your budget. We build real AI solutions tailored to your mission — proven by systems serving global enterprises.",
-    painPoints: [
-      { title: "Limited Budget", text: "Enterprise AI consulting is out of reach. You need affordable solutions designed for tight budgets." },
-      { title: "Manual Processes Drain Time", text: "Grant applications, donor tracking, beneficiary outreach — all manual. Your impact is bottlenecked." },
-      { title: "Donor Fatigue", text: "You can't personalize communication or track impact at scale. Donors don't see their ROI." },
-      { title: "Data Silos", text: "Beneficiary data, donations, outcomes — scattered across spreadsheets. You can't measure impact." },
-      { title: "Scaling Questions", text: "You want to reach 10x more people. But how? With what? Your current approach won't scale." },
-      { title: "No AI Expertise", text: "Your team is mission-driven, not tech-driven. You need affordable AI talent that understands nonprofits." }
-    ],
-    pricingTitle: "Simple, Nonprofit-Focused Pricing",
-    pricingCards: [
-      {
-        title: "Free AI Assessment",
-        price: "$0",
-        duration: "1 week",
-        items: ["Impact scaling opportunities", "Automation potential", "Donor engagement insights", "Working prototype", "Custom roadmap"]
-      },
-      {
-        title: "Mission AI Sprint",
-        price: "$3K–$7K",
-        duration: "2–4 weeks",
-        items: ["Use-case prioritization", "Grant & donor strategy", "Phased delivery plan", "Impact roadmap", "Team training"]
-      },
-      {
-        title: "Custom Impact System",
-        price: "$15K–$40K",
-        duration: "8–12 weeks",
-        items: ["Production AI system", "Donor/beneficiary integration", "Impact measurement", "Ongoing support", "Nonprofit pricing"]
-      }
-    ],
-    finalCtaPara: "Start with our free AI assessment: we'll identify how AI can amplify your mission, build a working prototype, and create a roadmap to reach more people — no cost, no obligation."
-  }
-};
-
-let currentView = 'sme';
 let currentAgent = 'financial';
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderContent();
   setupNavTracking();
 });
-
-function switchView(view) {
-  currentView = view;
-  document.querySelectorAll('.toggle-btn').forEach((btn, i) => {
-    btn.classList.toggle('active', (i === 0 && view === 'sme') || (i === 1 && view === 'npo'));
-  });
-  renderContent();
-}
 
 function switchAgent(agent) {
   currentAgent = agent;
@@ -725,34 +706,6 @@ function switchAgent(agent) {
     content.style.display = 'none';
   });
   document.getElementById(`${agent}-agent`).style.display = 'block';
-}
-
-function renderContent() {
-  const c = content[currentView];
-  
-  document.getElementById('hero-title').textContent = c.heroTitle;
-  document.getElementById('hero-para').textContent = c.heroPara;
-  document.getElementById('pricing-title').textContent = c.pricingTitle;
-  document.getElementById('final-cta').textContent = c.finalCtaPara;
-
-  const painGrid = document.getElementById('pain-grid');
-  painGrid.innerHTML = c.painPoints.map(p => `
-    <div class="pain-card">
-      <h3>${p.title}</h3>
-      <p>${p.text}</p>
-    </div>
-  `).join('');
-
-  const pricingGrid = document.getElementById('pricing-grid');
-  pricingGrid.innerHTML = c.pricingCards.map(p => `
-    <div class="pricing-card">
-      <h3>${p.title}</h3>
-      <div class="price">${p.price}</div>
-      <div class="duration">${p.duration}</div>
-      <ul>${p.items.map(item => `<li>✓ ${item}</li>`).join('')}</ul>
-      <button onclick="scrollToCalendly()">Get Started</button>
-    </div>
-  `).join('');
 }
 
 function setupNavTracking() {
