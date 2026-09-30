@@ -51,8 +51,41 @@
       justify-content: center;
       font-size: 13px;
       font-weight: 500;
+      align-items: center;
     }
     
+    /* Toggle Buttons */
+    .nav-toggle-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border-right: 1px solid #ddd;
+      padding-right: 25px;
+    }
+    
+    .nav-toggle-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: #f0f0f0;
+      border: 1px solid #ddd;
+      color: #666;
+      font-weight: 600;
+      font-size: 12px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    
+    .nav-toggle-btn:hover {
+      background: #e6e6e6;
+    }
+    
+    .nav-toggle-btn.active {
+      background: linear-gradient(135deg, #FF7A42, #FFA500);
+      color: white;
+      border-color: #FF7A42;
+    }
+    
+    /* Nav Links */
     nav .nav-center button {
       background: none;
       padding: 4px 0;
@@ -722,6 +755,7 @@
     @media (max-width: 768px) {
       nav { flex-direction: column; gap: 15px; }
       nav .nav-center { flex-direction: column; }
+      .nav-toggle-group { border-right: none; padding-right: 0; border-bottom: 1px solid #ddd; padding-bottom: 15px; }
       .hero { padding: 40px 20px; }
       .hero h1 { font-size: 32px; }
       .agent-description { grid-template-columns: 1fr; }
@@ -734,18 +768,27 @@
 
 <body>
 
-<!-- NAV -->
+<!-- NAV WITH SME/NONPROFIT TOGGLE -->
 <nav>
   <div class="logo">
     <span>🥭</span>
     <span>Mango Intel</span>
   </div>
+  
   <div class="nav-center">
+    <!-- SME / NONPROFIT TOGGLE -->
+    <div class="nav-toggle-group">
+      <button id="nav-sme-btn" class="nav-toggle-btn active" onclick="switchSiteView('sme')">🏢 SME</button>
+      <button id="nav-npo-btn" class="nav-toggle-btn" onclick="switchSiteView('npo')">🤝 Nonprofit</button>
+    </div>
+    
+    <!-- NAVIGATION LINKS -->
     <button onclick="document.getElementById('impact-section').scrollIntoView({behavior:'smooth'})">Impact</button>
-    <button onclick="document.getElementById('try-agents').scrollIntoView({behavior:'smooth'})" style="color: #FF7A42;">Try Agents</button>
+    <button onclick="document.getElementById('try-agents').scrollIntoView({behavior:'smooth'})">Try Agents</button>
     <button onclick="document.getElementById('pricing-section').scrollIntoView({behavior:'smooth'})">Pricing</button>
     <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
   </div>
+  
   <div class="nav-right">
     <a href="tel:+16514280749">+1-651-428-0749</a>
     <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="cta">Schedule Assessment</a>
@@ -1071,10 +1114,32 @@ const ngoQuestions = [
   { q: "Do you want to adopt AI without vendor lock-in or long contracts?", yes: 1, no: 0 }
 ];
 
+let currentSiteView = 'sme';
 let currentQuizView = 'sme';
 let quizQuestions = smeQuestions;
 let quizAnswers = [];
 
+// Switch entire site view (SME vs Nonprofit)
+function switchSiteView(view) {
+  currentSiteView = view;
+  
+  // Toggle nav buttons
+  const smeNavBtn = document.getElementById('nav-sme-btn');
+  const npoNavBtn = document.getElementById('nav-npo-btn');
+  
+  if (view === 'sme') {
+    smeNavBtn.classList.add('active');
+    npoNavBtn.classList.remove('active');
+  } else {
+    npoNavBtn.classList.add('active');
+    smeNavBtn.classList.remove('active');
+  }
+  
+  // Also sync the quiz
+  switchQuizView(view === 'sme' ? 'sme' : 'ngo');
+}
+
+// Switch quiz view
 function switchQuizView(view) {
   currentQuizView = view;
   quizQuestions = view === 'sme' ? smeQuestions : ngoQuestions;
@@ -1093,6 +1158,7 @@ function switchQuizView(view) {
   quizAnswers = [];
   initQuiz();
 }
+
 function initQuiz() {
   const container = document.getElementById('quizContent');
   container.innerHTML = '';
@@ -1255,7 +1321,7 @@ function resetAgent2() {
   document.getElementById('runAgent2Btn').disabled = true;
 }
 
-// Nav section scroll tracking - highlight nav button based on scroll position
+// Nav section scroll tracking
 document.addEventListener('DOMContentLoaded', function() {
   const sections = [
     { id: 'impact-section', index: 0 },
@@ -1264,15 +1330,12 @@ document.addEventListener('DOMContentLoaded', function() {
     { id: 'contact', index: 3 }
   ];
   
-  const navButtons = document.querySelectorAll('nav .nav-center button');
+  const navButtons = document.querySelectorAll('nav .nav-center > button');
   
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Remove active from all buttons
         navButtons.forEach(btn => btn.classList.remove('active'));
-        
-        // Add active to matching button
         const section = sections.find(s => s.id === entry.target.id);
         if (section !== undefined) {
           navButtons[section.index].classList.add('active');
@@ -1281,7 +1344,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }, { threshold: 0.3 });
   
-  // Observe all sections
   sections.forEach(s => {
     const el = document.getElementById(s.id);
     if (el) observer.observe(el);
@@ -1289,7 +1351,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Initialize
-
 initQuiz();
 </script>
 
