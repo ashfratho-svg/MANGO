@@ -1255,7 +1255,41 @@ function resetAgent2() {
   document.getElementById('runAgent2Btn').disabled = true;
 }
 
+// Nav section scroll tracking - highlight nav button based on scroll position
+document.addEventListener('DOMContentLoaded', function() {
+  const sections = [
+    { id: 'impact-section', index: 0 },
+    { id: 'try-agents', index: 1 },
+    { id: 'pricing-section', index: 2 },
+    { id: 'contact', index: 3 }
+  ];
+  
+  const navButtons = document.querySelectorAll('nav .nav-center button');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Remove active from all buttons
+        navButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active to matching button
+        const section = sections.find(s => s.id === entry.target.id);
+        if (section !== undefined) {
+          navButtons[section.index].classList.add('active');
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  // Observe all sections
+  sections.forEach(s => {
+    const el = document.getElementById(s.id);
+    if (el) observer.observe(el);
+  });
+});
+
 // Initialize
+
 initQuiz();
 </script>
 
