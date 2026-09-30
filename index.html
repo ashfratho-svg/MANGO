@@ -3,1427 +3,877 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mango Intel - AI for SMEs & Nonprofits</title>
+  <title>Mango Intel — AI for Small Business</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: #2c3e50;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: #1a1a1a;
       line-height: 1.6;
+      background: #fafafa;
     }
-    
-    a { color: inherit; text-decoration: none; }
-    button { cursor: pointer; border: none; font-family: inherit; }
-    
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #f1f1f1; }
-    ::-webkit-scrollbar-thumb { background: #FF7A42; border-radius: 4px; }
-    
-    /* Nav */
+
+    /* ===== NAVIGATION ===== */
     nav {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       background: white;
-      border-bottom: 1px solid #eee;
-      padding: 12px 40px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      padding: 0 40px;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 40px;
     }
-    
-    nav .logo {
-      font-size: 20px;
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .logo {
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
+      font-size: 18px;
+      color: #e8640d;
+      text-decoration: none;
     }
-    
-    nav .logo span { color: #FF7A42; }
-    
-    nav .nav-center {
+
+    .nav-links {
       display: flex;
-      gap: 40px;
-      flex: 1;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 500;
-      align-items: center;
+      gap: 30px;
+      list-style: none;
     }
-    
-    /* Toggle Group */
-    .nav-toggle-group {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      background: #f5f5f5;
-      padding: 4px;
-      border-radius: 10px;
-      border-right: 1px solid #ddd;
-      padding-right: 30px;
-      margin-right: 10px;
-    }
-    
-    .nav-toggle-btn {
-      padding: 8px 14px;
-      border-radius: 8px;
-      background: transparent;
-      border: none;
+
+    .nav-links a {
+      text-decoration: none;
       color: #666;
-      font-weight: 600;
-      font-size: 12px;
-      transition: all 0.3s;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
       cursor: pointer;
-    }
-    
-    .nav-toggle-btn:hover {
-      background: #e6e6e6;
-    }
-    
-    .nav-toggle-btn.active {
-      background: linear-gradient(135deg, #FF7A42, #FFA500);
-      color: white;
-    }
-    
-    /* Nav Links */
-    nav .nav-center button {
-      background: none;
-      padding: 4px 0;
-      transition: all 0.3s;
       border-bottom: 2px solid transparent;
+      padding-bottom: 6px;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #e8640d;
+      border-bottom-color: #e8640d;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .toggle-group {
+      display: flex;
+      gap: 8px;
+      background: #f0f0f0;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .toggle-btn {
+      padding: 6px 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
       font-size: 13px;
       font-weight: 500;
-      color: #2c3e50;
+      color: #666;
+      border-radius: 4px;
+      transition: all 0.2s;
     }
-    
-    nav .nav-center button.active {
-      color: #FF7A42;
-      border-bottom-color: #FF7A42;
+
+    .toggle-btn.active {
+      background: white;
+      color: #e8640d;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     }
-    
-    nav .nav-center button:hover { color: #FF7A42; }
-    
-    nav .nav-right {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      font-size: 13px;
-      white-space: nowrap;
+
+    .phone {
+      color: #666;
+      font-size: 14px;
+      font-weight: 500;
     }
-    
-    nav .nav-right a {
-      padding: 4px 0;
-      transition: color 0.3s;
-    }
-    
-    nav .nav-right a:hover { color: #FF7A42; }
-    
-    nav .nav-right .cta {
-      background: linear-gradient(135deg, #FF7A42, #FFA500);
+
+    .cta-btn {
+      background: #e8640d;
       color: white;
-      padding: 8px 16px;
-      border-radius: 12px;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
       font-weight: 600;
-      font-size: 12px;
-      transition: all 0.3s;
+      transition: background 0.2s;
     }
-    
-    nav .nav-right .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 122, 66, 0.3);
+
+    .cta-btn:hover {
+      background: #d45a0a;
     }
-    
-    /* Hero */
+
+    /* ===== HERO ===== */
     .hero {
-      background: linear-gradient(135deg, #FFF8F3 0%, #FFF0E6 100%);
+      background: linear-gradient(135deg, #fff9f5 0%, #f5f5f5 100%);
       padding: 80px 40px;
       text-align: center;
-      border-bottom: 1px solid #ffe6cc;
-      min-height: 500px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
-    
+
     .hero h1 {
       font-size: 48px;
       font-weight: 700;
-      margin-bottom: 15px;
-      background: linear-gradient(135deg, #FF7A42, #FFA500);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      height: auto;
-      min-height: 60px;
+      margin-bottom: 20px;
+      color: #1a1a1a;
     }
-    
+
     .hero p {
       font-size: 18px;
       color: #666;
-      margin-bottom: 30px;
       max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      height: auto;
-      min-height: 50px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
     }
-    
-    .hero .cta-group {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    
-    .btn {
-      padding: 12px 24px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 14px;
-      transition: all 0.3s;
-      text-align: center;
+
+    .hero-cta {
       display: inline-block;
-    }
-    
-    .btn-primary {
-      background: linear-gradient(135deg, #FF7A42, #FFA500);
+      background: #e8640d;
       color: white;
+      padding: 14px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s;
     }
-    
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 122, 66, 0.3);
+
+    .hero-cta:hover {
+      background: #d45a0a;
     }
-    
-    .btn-secondary {
-      background: white;
-      color: #FF7A42;
-      border: 2px solid #FF7A42;
-    }
-    
-    .btn-secondary:hover { background: #FFF8F3; }
-    
-    /* Pain Points */
-    .pain-section {
-      padding: 60px 40px;
-      background: white;
-    }
-    
-    .pain-section h2 {
-      font-size: 32px;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-    
-    .pain-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+
+    /* ===== SECTION ===== */
+    section {
+      padding: 80px 40px;
       max-width: 1200px;
       margin: 0 auto;
     }
-    
-    .pain-card {
-      background: #FFF8F3;
-      border-left: 4px solid #FF7A42;
-      padding: 20px;
-      border-radius: 16px;
-      transition: all 0.3s;
-      min-height: 160px;
-    }
-    
-    .pain-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 122, 66, 0.1);
-    }
-    
-    .pain-card .icon {
-      font-size: 28px;
-      margin-bottom: 12px;
-      display: block;
-    }
-    
-    .pain-card h3 {
-      color: #FF7A42;
-      font-size: 14px;
+
+    h2 {
+      font-size: 36px;
       font-weight: 700;
-      margin-bottom: 10px;
-    }
-    
-    .pain-card p {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.5;
-    }
-    
-    /* Agents Section */
-    .agents-section {
-      padding: 60px 40px;
-      background: linear-gradient(135deg, #FFF8F3 0%, #FFF0E6 100%);
-    }
-    
-    .agents-section h2 {
-      font-size: 32px;
-      margin-bottom: 30px;
+      margin-bottom: 50px;
       text-align: center;
     }
-    
-    .agents-container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    .agent-description {
+
+    /* ===== PAIN POINTS ===== */
+    .pain-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      margin-bottom: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
     }
-    
-    .agent-card {
+
+    .pain-card {
       background: white;
-      padding: 20px;
-      border-radius: 16px;
-      border-left: 4px solid #FF7A42;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    
-    .agent-card .icon {
-      font-size: 32px;
+
+    .pain-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    .pain-card h3 {
+      font-size: 18px;
       margin-bottom: 12px;
-      display: block;
+      color: #e8640d;
     }
-    
-    .agent-card h3 {
-      color: #FF7A42;
-      font-weight: 700;
-      margin-bottom: 10px;
+
+    .pain-card p {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ===== AGENTS / TRY AGENTS ===== */
+    .agents-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .upload-box {
+      border: 2px dashed #ddd;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      background: #f9f9f9;
+      margin-bottom: 30px;
+      transition: all 0.2s;
+    }
+
+    .upload-box:hover {
+      border-color: #e8640d;
+      background: #fff9f5;
+    }
+
+    .upload-box input[type="file"] {
+      display: none;
+    }
+
+    .upload-label {
+      display: inline-block;
+      background: #e8640d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .upload-label:hover {
+      background: #d45a0a;
+    }
+
+    .upload-box p {
+      color: #666;
+      margin-top: 12px;
       font-size: 14px;
     }
-    
-    .agent-card p {
+
+    .file-name {
+      color: #e8640d;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    .analysis-result {
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 8px;
+      margin-top: 30px;
+      max-height: 600px;
+      overflow-y: auto;
+      border-left: 4px solid #e8640d;
+    }
+
+    .analysis-result h4 {
+      font-size: 16px;
+      margin-bottom: 15px;
+      color: #1a1a1a;
+    }
+
+    .analysis-result pre {
       font-size: 13px;
       color: #666;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'Courier New', monospace;
       line-height: 1.5;
     }
-    
-    .disclaimer {
-      background: #FFF8E6;
-      border: 2px solid #FFD700;
-      border-radius: 12px;
-      padding: 15px;
-      margin: 20px 0;
-      font-size: 12px;
-      color: #856404;
-    }
-    
-    .upload-area {
-      background: white;
-      border: 2px dashed #FF7A42;
-      border-radius: 16px;
-      padding: 30px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin: 20px 0;
-    }
-    
-    .upload-area:hover {
-      background: #FFF8F3;
-      border-color: #FFA500;
-    }
-    
-    .upload-area p {
-      margin-bottom: 10px;
-      font-size: 14px;
-      font-weight: 600;
-      color: #FF7A42;
-    }
-    
-    .upload-area .info {
-      font-size: 12px;
-      color: #999;
-    }
-    
-    #fileInput1, #fileInput2 { display: none; }
-    
-    .file-selected {
-      background: #E8F5E9;
-      border-color: #4CAF50;
-      color: #2E7D32;
-      padding: 15px;
-      border-radius: 12px;
-      margin: 15px 0;
-      font-size: 13px;
-    }
-    
-    .error-message {
-      background: #FFEBEE;
-      border-left: 4px solid #C62828;
-      color: #C62828;
-      padding: 15px;
-      border-radius: 12px;
-      margin: 15px 0;
-      font-size: 13px;
-    }
-    
-    .agents-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin: 20px 0;
-    }
-    
-    .btn-run {
-      background: linear-gradient(135deg, #FF7A42, #FFA500);
-      color: white;
-      padding: 12px 30px;
-      font-weight: 600;
-      border-radius: 12px;
-      transition: all 0.3s;
-    }
-    
-    .btn-run:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 122, 66, 0.3);
-    }
-    
-    .btn-run:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-    
+
     .loading {
       text-align: center;
       padding: 20px;
-      color: #FF7A42;
-      font-weight: 600;
+      color: #e8640d;
     }
-    
+
     .spinner {
-      border: 3px solid #f3f3f3;
-      border-top: 3px solid #FF7A42;
+      display: inline-block;
+      border: 3px solid #f0f0f0;
+      border-top: 3px solid #e8640d;
       border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 10px;
+      width: 24px;
+      height: 24px;
+      animation: spin 0.8s linear infinite;
+      margin-right: 10px;
     }
-    
+
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    
-    .agent-results {
-      background: white;
-      border-radius: 16px;
-      padding: 20px;
-      margin-top: 20px;
-      border-left: 4px solid #FF7A42;
-    }
-    
-    .agent-results h4 {
-      color: #FF7A42;
-      font-weight: 700;
-      margin-bottom: 15px;
-      font-size: 14px;
+
+    .agent-tabs {
       display: flex;
-      align-items: center;
       gap: 10px;
-    }
-    
-    .result-item {
-      background: #FFF8F3;
-      padding: 12px;
-      border-radius: 12px;
-      margin-bottom: 10px;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-    
-    .try-other-agent {
-      background: #FFF8F3;
-      border-radius: 16px;
-      padding: 25px;
-      text-align: center;
-      margin: 30px 0;
-    }
-    
-    .try-other-agent h4 {
-      color: #FF7A42;
-      font-size: 16px;
-      margin-bottom: 15px;
-    }
-    
-    .try-other-agent p {
-      color: #666;
-      margin-bottom: 15px;
-      font-size: 14px;
-    }
-    
-    /* Impact Section */
-    .impact-section {
-      padding: 60px 40px;
-      background: white;
-    }
-    
-    .impact-section h2 {
-      font-size: 32px;
       margin-bottom: 30px;
-      text-align: center;
+      border-bottom: 1px solid #ddd;
     }
-    
+
+    .agent-tab {
+      padding: 12px 20px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: #666;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .agent-tab.active {
+      color: #e8640d;
+      border-bottom-color: #e8640d;
+    }
+
+    .next-agent-prompt {
+      background: #fff9f5;
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 20px;
+      border-left: 4px solid #e8640d;
+    }
+
+    .next-agent-prompt button {
+      background: #e8640d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+
+    .next-agent-prompt button:hover {
+      background: #d45a0a;
+    }
+
+    /* ===== IMPACT ===== */
     .impact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
     }
-    
-    .impact-card {
-      background: linear-gradient(135deg, #FF7A42, #FFA500);
-      color: white;
-      padding: 25px;
-      border-radius: 16px;
+
+    .stat-card {
       text-align: center;
     }
-    
-    .impact-card h3 {
-      font-size: 24px;
+
+    .stat-card .number {
+      font-size: 42px;
       font-weight: 700;
+      color: #e8640d;
       margin-bottom: 10px;
     }
-    
-    .impact-card p {
-      font-size: 13px;
-      opacity: 0.9;
+
+    .stat-card p {
+      color: #666;
+      font-size: 15px;
     }
-    
-    /* Quiz Section */
-    .quiz-section {
-      padding: 60px 40px;
-      background: linear-gradient(135deg, #FFF8F3 0%, #FFF0E6 100%);
-    }
-    
-    .quiz-section h2 {
-      font-size: 32px;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-    
-    .quiz-toggle {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-    
-    .quiz-toggle button {
-      padding: 10px 20px;
-      border-radius: 12px;
-      background: white;
-      border: 2px solid #FFE6CC;
-      color: #FF7A42;
-      font-weight: 600;
-      font-size: 14px;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-    
-    .quiz-toggle button:hover {
-      border-color: #FF7A42;
-      background: #FFF8F3;
-    }
-    
-    .quiz-toggle button.active {
-      background: linear-gradient(135deg, #FF7A42, #FFA500);
-      color: white;
-      border-color: #FF7A42;
-    }
-    
-    .quiz-container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      padding: 30px;
-      border-radius: 16px;
-    }
-    
-    .quiz-question {
-      margin-bottom: 25px;
-    }
-    
-    .quiz-question p {
-      font-weight: 600;
-      margin-bottom: 12px;
-      font-size: 14px;
-    }
-    
-    .quiz-options {
-      display: flex;
-      gap: 10px;
-    }
-    
-    .quiz-options button {
-      flex: 1;
-      padding: 10px;
-      border-radius: 12px;
-      background: #FFF8F3;
-      border: 2px solid #FFE6CC;
-      color: #FF7A42;
-      font-weight: 600;
-      font-size: 13px;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-    
-    .quiz-options button:hover {
-      background: #FFE6CC;
-    }
-    
-    .quiz-options button.selected {
-      background: linear-gradient(135deg, #FF7A42, #FFA500);
-      color: white;
-      border-color: #FF7A42;
-    }
-    
-    .quiz-result {
-      background: #E8F5E9;
-      border-left: 4px solid #4CAF50;
-      padding: 20px;
-      border-radius: 16px;
-      margin-top: 20px;
-    }
-    
-    .quiz-result h3 {
-      color: #2E7D32;
-      margin-bottom: 10px;
-    }
-    
-    .quiz-result p {
-      color: #555;
-      font-size: 13px;
-      margin-bottom: 15px;
-    }
-    
-    /* Pricing Section */
-    .pricing-section {
-      padding: 60px 40px;
-      background: white;
-    }
-    
-    .pricing-section h2 {
-      font-size: 32px;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-    
+
+    /* ===== PRICING ===== */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      max-width: 1100px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
     }
-    
-    .price-card {
+
+    .pricing-card {
       background: white;
-      border: 2px solid #FFE6CC;
-      border-radius: 16px;
-      padding: 25px;
-      text-align: center;
-      transition: all 0.3s;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-top: 4px solid #e8640d;
     }
-    
-    .price-card:hover {
-      border-color: #FF7A42;
-      box-shadow: 0 4px 15px rgba(255, 122, 66, 0.15);
+
+    .pricing-card h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #1a1a1a;
     }
-    
-    .price-card h3 {
-      font-size: 16px;
+
+    .pricing-card .price {
+      font-size: 32px;
       font-weight: 700;
-      color: #FF7A42;
+      color: #e8640d;
       margin-bottom: 10px;
     }
-    
-    .price-card .price {
-      font-size: 28px;
-      font-weight: 700;
-      color: #2c3e50;
-      margin: 15px 0;
-    }
-    
-    .price-card .duration {
-      font-size: 12px;
+
+    .pricing-card .duration {
       color: #999;
+      font-size: 13px;
       margin-bottom: 20px;
     }
-    
-    .price-card ul {
+
+    .pricing-card ul {
       list-style: none;
-      margin: 20px 0;
-      text-align: left;
-      font-size: 12px;
+      margin-bottom: 30px;
     }
-    
-    .price-card li {
-      padding: 6px 0;
+
+    .pricing-card li {
+      padding: 8px 0;
       color: #666;
+      font-size: 14px;
       border-bottom: 1px solid #f0f0f0;
     }
-    
-    .price-card li:last-child { border-bottom: none; }
-    
-    .price-card .btn {
-      margin-top: 20px;
+
+    .pricing-card button {
       width: 100%;
-    }
-    
-    /* Credentials Section */
-    .credentials-section {
-      padding: 60px 40px;
-      background: linear-gradient(135deg, #FFF8F3 0%, #FFF0E6 100%);
-    }
-    
-    .credentials-section h2 {
-      font-size: 32px;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-    
-    .credentials-wall {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 15px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .credential {
-      background: linear-gradient(135deg, #FF7A42, #FFA500);
+      background: #e8640d;
       color: white;
-      padding: 20px;
-      text-align: center;
-      border-radius: 16px;
-    }
-    
-    .credential .number {
-      font-size: 24px;
-      font-weight: 700;
-      display: block;
-      margin-bottom: 8px;
-    }
-    
-    .credential .label {
-      font-size: 11px;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
       font-weight: 600;
-      text-transform: uppercase;
-      line-height: 1.3;
+      transition: background 0.2s;
     }
-    
-    /* Final CTA */
-    .final-cta {
-      background: linear-gradient(135deg, #FF7A42, #FFA500);
-      color: white;
-      padding: 50px 40px;
-      text-align: center;
+
+    .pricing-card button:hover {
+      background: #d45a0a;
     }
-    
-    .final-cta h2 {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-    
-    .final-cta p {
-      font-size: 16px;
-      margin-bottom: 25px;
-      opacity: 0.95;
-    }
-    
-    .final-cta .btn {
-      background: white;
-      color: #FF7A42;
-    }
-    
-    .final-cta .btn:hover {
-      background: #FFF8F3;
-    }
-    
-    /* Footer */
+
+    /* ===== FOOTER ===== */
     footer {
-      background: #2c3e50;
+      background: #1a1a1a;
       color: white;
-      padding: 25px 40px;
+      padding: 40px;
       text-align: center;
-      font-size: 12px;
+      font-size: 14px;
     }
-    
+
     footer a {
-      color: #FF7A42;
+      color: #e8640d;
+      text-decoration: none;
+    }
+
+    footer a:hover {
       text-decoration: underline;
     }
-    
+
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
-      nav { flex-direction: column; gap: 15px; padding: 12px 20px; }
-      nav .nav-center { flex-direction: column; gap: 15px; }
-      .nav-toggle-group { border-right: none; padding-right: 0; border-bottom: 1px solid #ddd; padding-bottom: 15px; margin-right: 0; width: 100%; justify-content: center; }
-      .hero { padding: 40px 20px; }
+      nav { padding: 0 20px; }
+      .nav-links { gap: 15px; }
+      .hero { padding: 60px 20px; }
       .hero h1 { font-size: 32px; }
-      .agent-description { grid-template-columns: 1fr; }
-      .credentials-wall { grid-template-columns: repeat(3, 1fr); }
-      .pain-grid { grid-template-columns: 1fr; }
-      .quiz-toggle { flex-direction: column; }
-      nav .logo { font-size: 16px; }
-      nav .nav-right { flex-direction: column; gap: 10px; }
+      section { padding: 60px 20px; }
+      h2 { font-size: 28px; }
     }
   </style>
 </head>
-
 <body>
 
-<!-- NAV WITH SME/NONPROFIT TOGGLE -->
+<!-- NAVIGATION -->
 <nav>
-  <div class="logo">
-    <span>🥭</span>
-    <span>Mango Intel</span>
+  <div class="nav-left">
+    <a href="#hero" class="logo">Mango Intel</a>
+    <ul class="nav-links">
+      <li><a href="#impact" data-section="impact">Impact</a></li>
+      <li><a href="#try-agents" data-section="try-agents">Try Agents</a></li>
+      <li><a href="#pricing" data-section="pricing">Pricing</a></li>
+      <li><a href="#contact" data-section="contact">Contact</a></li>
+    </ul>
   </div>
-  
-  <div class="nav-center">
-    <!-- SME / NONPROFIT TOGGLE -->
-    <div class="nav-toggle-group">
-      <button id="nav-sme-btn" class="nav-toggle-btn active" onclick="switchView('sme')">🏢 SME</button>
-      <button id="nav-npo-btn" class="nav-toggle-btn" onclick="switchView('npo')">🤝 Nonprofit</button>
-    </div>
-    
-    <!-- NAVIGATION LINKS -->
-    <button onclick="document.getElementById('impact-section').scrollIntoView({behavior:'smooth'})">Impact</button>
-    <button onclick="document.getElementById('try-agents').scrollIntoView({behavior:'smooth'})">Try Agents</button>
-    <button onclick="document.getElementById('pricing-section').scrollIntoView({behavior:'smooth'})">Pricing</button>
-    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
-  </div>
-  
   <div class="nav-right">
-    <a href="tel:+16514280749">+1-651-428-0749</a>
-    <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="cta">Schedule Assessment</a>
+    <div class="toggle-group">
+      <button class="toggle-btn active" onclick="switchView('sme')">SME</button>
+      <button class="toggle-btn" onclick="switchView('npo')">Nonprofit</button>
+    </div>
+    <span class="phone">+1-651-428-0749</span>
+    <button class="cta-btn" onclick="scrollToCalendly()">Free Assessment</button>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <h1 id="heroTitle">AI That Works for Your Small Business</h1>
-  <p id="heroPara">Stop losing customers to competitors with AI. Get a working prototype in 1 week—no long vendor cycles, no nonsense.</p>
-  <div class="cta-group">
-    <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Free 1-Week Assessment</a>
-    <button onclick="document.getElementById('try-agents').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary">Try Agents Now</button>
-  </div>
-</section>
+<div class="hero" id="hero">
+  <h1 id="hero-title">AI That Works for Your Small Business</h1>
+  <p id="hero-para">Stop losing customers to competitors with AI. We build real solutions, not consulting slides — proven by live systems serving Fortune 500s.</p>
+  <a href="#try-agents" class="hero-cta">See It In Action</a>
+</div>
 
 <!-- PAIN POINTS -->
-<section class="pain-section">
-  <h2>The Problem You're Facing</h2>
-  <div class="pain-grid" id="painGrid"></div>
+<section id="pain-section">
+  <h2>Your Challenges</h2>
+  <div class="pain-grid" id="pain-grid"></div>
 </section>
 
-<!-- TRY AGENTS SECTION -->
-<section class="agents-section" id="try-agents">
-  <h2>Try Our Agents Free—See Them Work on Your Data</h2>
+<!-- TRY AGENTS -->
+<section id="try-agents">
+  <h2>Try Our Agents</h2>
   <div class="agents-container">
-    <div class="agent-description">
-      <div class="agent-card">
-        <span class="icon">💰</span>
-        <h3>Agent 1: Financial Health Analysis</h3>
-        <p>Upload your P&L, balance sheet, or transaction data. The agent analyzes your financial metrics, flags anomalies, and tells you exactly what matters to buyers or investors.</p>
-      </div>
-      <div class="agent-card">
-        <span class="icon">👥</span>
-        <h3>Agent 2: Customer Intelligence Dashboard</h3>
-        <p>Upload your customer database or sales history. The agent segments your customers, identifies churn risk, and shows you where revenue concentration is highest.</p>
-      </div>
+    <div class="agent-tabs">
+      <button class="agent-tab active" onclick="switchAgent('financial')">Agent 1: Financial Health</button>
+      <button class="agent-tab" onclick="switchAgent('customer')" id="agent2-tab">Agent 2: Customer Intelligence</button>
     </div>
-    
-    <div class="disclaimer">
-      ⚠️ <strong>For demonstration only:</strong> Use dummy/test data. Results are not stored. This is a live working prototype—the real thing runs on your actual data behind a secure authentication wall.
-    </div>
-    
-    <!-- AGENT 1 UPLOAD -->
-    <div id="agent1Section">
-      <h3 style="color: #FF7A42; margin-bottom: 15px; font-size: 16px;">💰 Step 1: Try Financial Health Analysis</h3>
+
+    <!-- AGENT 1: FINANCIAL HEALTH -->
+    <div id="financial-agent" class="agent-content">
+      <h3>Financial Health Analysis</h3>
+      <p style="color: #666; margin-bottom: 20px;">Upload your P&L or financial statement. We'll analyze revenue trends, profitability, debt, cash flow, and valuation — with specific recommendations.</p>
       
-      <div class="upload-area" onclick="document.getElementById('fileInput1').click()" id="uploadArea1">
-        <p>📁 Upload CSV or Excel (P&L, Transactions, etc.)</p>
-        <div class="info">Drag and drop or click. Your data stays on your device for this demo.</div>
-        <input type="file" id="fileInput1" accept=".csv,.xlsx,.xls">
+      <div class="upload-box">
+        <label class="upload-label">Choose File</label>
+        <input type="file" id="financial-file" accept=".csv,.xlsx" onchange="handleFinancialFile(event)">
+        <p>CSV or Excel P&L statement (Revenue, EBITDA, Net Income columns)</p>
+        <div id="financial-filename" class="file-name"></div>
       </div>
-      
-      <div id="fileSelected1" style="display: none;"></div>
-      
-      <div class="agents-actions">
-        <button id="runAgent1Btn" class="btn-run" onclick="runAgent(1)" disabled>
-          Run Financial Analysis
-        </button>
-      </div>
-      
-      <div id="agent1Loading" style="display: none;" class="loading">
-        <div class="spinner"></div>
-        Analyzing your financials...
-      </div>
-      
-      <div id="agent1Results" style="display: none;">
-        <div class="agent-results">
-          <h4><span style="font-size: 24px;">💰</span> Financial Health Analysis</h4>
-          <div id="fhaResults"></div>
+
+      <button class="cta-btn" style="width: 100%;" onclick="analyzeFinancial()" id="financial-analyze-btn">Analyze My Financials</button>
+
+      <div id="financial-result" class="analysis-result" style="display: none;">
+        <h4>Financial Analysis Report</h4>
+        <div id="financial-loading" class="loading" style="display: none;">
+          <span class="spinner"></span>Analyzing your data...
         </div>
+        <pre id="financial-text"></pre>
+      </div>
+
+      <div id="agent2-prompt" class="next-agent-prompt" style="display: none;">
+        <p><strong>Great!</strong> Now let's understand your customer base.</p>
+        <button onclick="switchAgent('customer')">Try Agent 2: Customer Intelligence →</button>
       </div>
     </div>
-    
-    <!-- AGENT 2 PROMPT -->
-    <div id="agent2Prompt" style="display: none;">
-      <div class="try-other-agent">
-        <h4>👥 Now Try Agent 2: Customer Intelligence</h4>
-        <p>Upload your customer data to see revenue concentration, churn risk, and growth opportunities.</p>
-        <button class="btn btn-primary" onclick="scrollToAgent2()">Upload Customer Data</button>
+
+    <!-- AGENT 2: CUSTOMER INTELLIGENCE -->
+    <div id="customer-agent" class="agent-content" style="display: none;">
+      <h3>Customer Intelligence Analysis</h3>
+      <p style="color: #666; margin-bottom: 20px;">Upload your customer data. We'll identify concentration risk, growth opportunities, churn signals, and segmentation strategies.</p>
+      
+      <div class="upload-box">
+        <label class="upload-label">Choose File</label>
+        <input type="file" id="customer-file" accept=".csv,.xlsx" onchange="handleCustomerFile(event)">
+        <p>CSV or Excel with Customer ID, Revenue, Date columns</p>
+        <div id="customer-filename" class="file-name"></div>
       </div>
-    </div>
-    
-    <!-- AGENT 2 UPLOAD -->
-    <div id="agent2Section" style="display: none;">
-      <h3 style="color: #FF7A42; margin-bottom: 15px; font-size: 16px;">👥 Step 2: Try Customer Intelligence Dashboard</h3>
-      
-      <div class="upload-area" onclick="document.getElementById('fileInput2').click()" id="uploadArea2">
-        <p>📁 Upload CSV or Excel (Customer Data, Sales History, etc.)</p>
-        <div class="info">Drag and drop or click. Your data stays on your device for this demo.</div>
-        <input type="file" id="fileInput2" accept=".csv,.xlsx,.xls">
-      </div>
-      
-      <div id="fileSelected2" style="display: none;"></div>
-      
-      <div class="agents-actions">
-        <button id="runAgent2Btn" class="btn-run" onclick="runAgent(2)" disabled>
-          Run Customer Intelligence
-        </button>
-        <button class="btn btn-secondary" onclick="resetAgent2()" style="width: auto;">Start Over</button>
-      </div>
-      
-      <div id="agent2Loading" style="display: none;" class="loading">
-        <div class="spinner"></div>
-        Analyzing your customers...
-      </div>
-      
-      <div id="agent2Results" style="display: none;">
-        <div class="agent-results">
-          <h4><span style="font-size: 24px;">👥</span> Customer Intelligence Dashboard</h4>
-          <div id="cidResults"></div>
+
+      <button class="cta-btn" style="width: 100%;" onclick="analyzeCustomer()" id="customer-analyze-btn">Analyze Customer Data</button>
+
+      <div id="customer-result" class="analysis-result" style="display: none;">
+        <h4>Customer Intelligence Report</h4>
+        <div id="customer-loading" class="loading" style="display: none;">
+          <span class="spinner"></span>Analyzing your data...
         </div>
+        <pre id="customer-text"></pre>
       </div>
-    </div>
-    
-    <!-- FINAL CTA -->
-    <div id="agentsCTA" style="display: none; text-align: center; margin-top: 30px;">
-      <p style="color: #666; font-size: 14px; margin-bottom: 15px;">
-        See how AI can work on your real data? Let's build a custom system just for you.
-      </p>
-      <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Your Free Assessment</a>
+
+      <div id="calendly-prompt" class="next-agent-prompt" style="display: none;">
+        <p><strong>Impressed?</strong> Let's discuss how to build custom AI for your specific problems.</p>
+        <button onclick="scrollToCalendly()">Schedule Free Assessment →</button>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- IMPACT SECTION -->
-<section class="impact-section" id="impact-section">
-  <h2>Proven Impact</h2>
+<!-- IMPACT -->
+<section id="impact">
+  <h2>Our Impact</h2>
   <div class="impact-grid">
-    <div class="impact-card">
-      <h3>6.5M+</h3>
-      <p>Users on systems I've built</p>
+    <div class="stat-card">
+      <div class="number">2</div>
+      <p>Live AI systems shipped solo</p>
     </div>
-    <div class="impact-card">
-      <h3>50+</h3>
-      <p>Countries reached with AI</p>
+    <div class="stat-card">
+      <div class="number">6.5M</div>
+      <p>Users across systems I've built</p>
     </div>
-    <div class="impact-card">
-      <h3>2x</h3>
-      <p>Average revenue increase</p>
+    <div class="stat-card">
+      <div class="number">F500</div>
+      <p>Enterprise clients served</p>
     </div>
-    <div class="impact-card">
-      <h3>Days</h3>
-      <p>Not months—to production</p>
+    <div class="stat-card">
+      <div class="number">30+</div>
+      <p>Years tech leadership</p>
     </div>
-    <div class="impact-card">
-      <h3>100%</h3>
-      <p>Changes gated in CI/CD</p>
-    </div>
-    <div class="impact-card">
-      <h3>15+</h3>
+    <div class="stat-card">
+      <div class="number">15+</div>
       <p>Years IT audit & SOX</p>
     </div>
-  </div>
-</section>
-
-<!-- QUIZ SECTION -->
-<section class="quiz-section">
-  <h2>Quick Assessment: Is AI Right for You?</h2>
-  
-  <div class="quiz-toggle">
-    <button id="sme-btn" class="active" onclick="switchQuizView('sme')">🏢 SME/Small Business</button>
-    <button id="ngo-btn" onclick="switchQuizView('ngo')">🤝 Nonprofit/NGO</button>
-  </div>
-  
-  <div class="quiz-container">
-    <div id="quizContent"></div>
-  </div>
-</section>
-
-<!-- PRICING SECTION -->
-<section class="pricing-section" id="pricing-section">
-  <h2 id="pricingTitle">Simple, Fixed-Scope Pricing</h2>
-  <div class="pricing-grid" id="pricingGrid"></div>
-</section>
-
-<!-- CREDENTIALS -->
-<section class="credentials-section">
-  <h2>Your Partner Brings Real Depth</h2>
-  <div class="credentials-wall">
-    <div class="credential">
-      <div class="number">30+</div>
-      <div class="label">Years Tech Leadership</div>
-    </div>
-    <div class="credential">
-      <div class="number">2</div>
-      <div class="label">Live AI Apps Built</div>
-    </div>
-    <div class="credential">
-      <div class="number">6.5M</div>
-      <div class="label">Users on Systems</div>
-    </div>
-    <div class="credential">
-      <div class="number">50+</div>
-      <div class="label">Countries Reached</div>
-    </div>
-    <div class="credential">
-      <div class="number">15+</div>
-      <div class="label">Years IT Audit & SOX</div>
-    </div>
-    <div class="credential">
+    <div class="stat-card">
       <div class="number">10</div>
-      <div class="label">US Patents Holder</div>
+      <p>US patents held</p>
     </div>
   </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <h2 id="pricing-title">Simple, Fixed-Scope Pricing</h2>
+  <div class="pricing-grid" id="pricing-grid"></div>
 </section>
 
 <!-- FINAL CTA -->
-<section class="final-cta" id="contact">
-  <h2>Ready to Supercharge Your AI?</h2>
-  <p id="finalCtaPara">Let's start with a free 1-week assessment. You'll see working AI on your data, understand your ROI, and have a clear next step.</p>
-  <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="font-size: 16px; padding: 14px 28px;">Schedule Free Assessment</a>
-  <p style="margin-top: 20px; font-size: 12px; opacity: 0.8;">
-    Or email <a href="mailto:ashishgadnis@gmail.com">ashishgadnis@gmail.com</a> or call <a href="tel:+16514280749">+1-651-428-0749</a>
-  </p>
+<section style="text-align: center; background: #fff9f5;">
+  <h2>Ready to Transform Your Business with AI?</h2>
+  <p id="final-cta" style="font-size: 16px; color: #666; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">Start with our free AI assessment: we'll analyze your opportunities, risks, and build a working prototype of your highest-impact use case.</p>
+  <button class="cta-btn" style="padding: 14px 32px; font-size: 16px;" onclick="scrollToCalendly()">Schedule Your Free Assessment</button>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER / CALENDLY -->
+<section id="contact" style="background: #1a1a1a; color: white; text-align: center;">
+  <h2 style="color: white; margin-bottom: 40px;">Get Started Today</h2>
+  <div style="max-width: 600px; margin: 0 auto;">
+    <p style="margin-bottom: 30px; color: #ccc;">One week. Free. Real prototype of your biggest AI opportunity.</p>
+    <iframe src="https://calendly.com/ashishgadnis/free-ai-assessment" width="100%" height="600" frameborder="0"></iframe>
+  </div>
+</section>
+
 <footer>
-  <p>
-    © 2026 Mango Intel LLC, Austin TX · 
-    <a href="mailto:ashishgadnis@gmail.com">ashishgadnis@gmail.com</a> · 
-    <a href="tel:+16514280749">+1-651-428-0749</a> ·
-    <a href="https://linkedin.com/in/ashishgadnis">LinkedIn</a>
-  </p>
+  <p>&copy; 2026 Mango Intel. Real AI for small business. <a href="tel:+1-651-428-0749">+1-651-428-0749</a></p>
 </footer>
 
 <script>
-// MASTER CONTENT OBJECT
+const API_BASE = 'http://localhost:3001';
+
 const content = {
   sme: {
     heroTitle: "AI That Works for Your Small Business",
-    heroPara: "Stop losing customers to competitors with AI. Get a working prototype in 1 week—no long vendor cycles, no nonsense.",
+    heroPara: "Stop losing customers to competitors with AI. We build real solutions, not consulting slides — proven by live systems serving Fortune 500s.",
     painPoints: [
-      { icon: "🚫", title: "No Access to AI Expertise", text: "You can't afford a full AI team. Vendors claim 'fast AI' but deliver demos that don't work with your real data." },
-      { icon: "🗂️", title: "Data Spread Everywhere", text: "Your operational data lives in Excel, QuickBooks, Salesforce, or worse—homegrown systems. Nothing talks to anything." },
-      { icon: "❓", title: "Can AI Actually Help?", text: "You need to know: can AI increase revenue? Cut costs? Do both? But first you need to see it working on YOUR data." },
-      { icon: "⚡", title: "Speed Matters", text: "Time is your scarcest resource. Multi-month vendor cycles won't work. You need answers now, not in 6 months." },
-      { icon: "🔐", title: "Trust Matters Too", text: "You need systems you understand and can control—not black boxes. Every AI output should be a proposal, not a command." },
-      { icon: "📉", title: "You're Being Left Behind", text: "Larger competitors with AI are pulling ahead. Without a plan, you're at risk of losing customers and opportunities." }
+      { title: "Data Chaos", text: "Your customer, sales, and financial data lives in Excel, Quickbooks, Salesforce silos. You can't see the full picture." },
+      { title: "Time Running Out", text: "Competitors with AI are closing deals faster, personalizing offers, automating follow-up. You're not." },
+      { title: "No AI Roadmap", text: "You don't know which AI investments pay off first. Vendors overpromise. You want proof, not slides." },
+      { title: "Expensive Resources", text: "AI consultants charge $300/hr for strategy. Implementation takes months. You can't afford that." },
+      { title: "Skill Gaps", text: "Your team can't build or evaluate AI. You're stuck hiring — or doing nothing." },
+      { title: "Rural Markets Losing Out", text: "Big players have AI. You're competing in rural/niche markets where every deal matters. Can't fall behind." }
     ],
     pricingTitle: "Simple, Fixed-Scope Pricing",
     pricingCards: [
       {
-        title: "Starter Assessment",
-        price: "Free",
+        title: "Free AI Assessment",
+        price: "$0",
         duration: "1 week",
-        items: ["Current-state AI audit", "Data landscape mapping", "Impact opportunity", "Working prototype", "ROI framework", "No commitment"]
+        items: ["Current AI opportunities", "Risk & reward analysis", "Working prototype", "Custom roadmap", "No obligation"]
       },
       {
         title: "AI Strategy Sprint",
         price: "$5K–$10K",
         duration: "2–4 weeks",
-        items: ["Use-case portfolio", "Build-vs-buy analysis", "ROI framing", "90-day roadmap", "Board-ready deliverable", "Stakeholder sign-off"]
+        items: ["Full use-case portfolio", "Build-vs-buy analysis", "Phased delivery plan", "Board-ready roadmap", "ROI framing"]
       },
       {
         title: "Custom AI Build",
         price: "$20K–$50K",
         duration: "8–12 weeks",
-        items: ["Production AI system", "Spec-first, human-in-the-loop", "Secure, audit-ready", "You own the IP", "Training & handoff", "Same method as ExitReady"]
+        items: ["Production AI system", "Real data integration", "Team training", "Ongoing support", "Fixed scope"]
       }
     ],
-    finalCtaPara: "Let's start with a free 1-week assessment. You'll see working AI on your data, understand your ROI, and have a clear next step."
+    finalCtaPara: "Start with our free AI assessment: we'll analyze your opportunities, risks, and build a working prototype of your highest-impact use case — no obligation."
   },
   npo: {
     heroTitle: "AI to Scale Your Nonprofit's Impact",
-    heroPara: "Reach more beneficiaries without stretching your budget. Get a working proof-of-concept in 1 week to show donors what's possible.",
+    heroPara: "Reach more beneficiaries without stretching your budget. We build real AI solutions tailored to your mission — proven by systems serving global enterprises.",
     painPoints: [
-      { icon: "💰", title: "Limited Tech Budget", text: "Enterprise AI platforms charge enterprise prices. You need affordable, focused tools that don't drain your operating budget." },
-      { icon: "📊", title: "Can't Measure Impact", text: "Donors demand proof. You have data on programs, beneficiaries, and outcomes, but no way to tell the story." },
-      { icon: "👥", title: "Manual Work Crushes You", text: "Your team spends hours on data entry, reporting, and compliance. Time spent on admin is time lost serving your mission." },
-      { icon: "🎯", title: "No AI Strategy", text: "You know AI could help—but how? Where to start? What's actually feasible for a team your size with your budget?" },
-      { icon: "🔐", title: "Data Privacy Matters", text: "Your beneficiaries trust you with sensitive information. You need systems you control, with clear data governance." },
-      { icon: "📈", title: "Funders Want Scale", text: "You're stuck at your current capacity. AI could help you serve more people without proportional cost—but nobody's shown you how." }
+      { title: "Limited Budget", text: "Enterprise AI consulting is out of reach. You need affordable solutions designed for tight budgets." },
+      { title: "Manual Processes Drain Time", text: "Grant applications, donor tracking, beneficiary outreach — all manual. Your impact is bottlenecked." },
+      { title: "Donor Fatigue", text: "You can't personalize communication or track impact at scale. Donors don't see their ROI." },
+      { title: "Data Silos", text: "Beneficiary data, donations, outcomes — scattered across spreadsheets. You can't measure impact." },
+      { title: "Scaling Questions", text: "You want to reach 10x more people. But how? With what? Your current approach won't scale." },
+      { title: "No AI Expertise", text: "Your team is mission-driven, not tech-driven. You need affordable AI talent that understands nonprofits." }
     ],
-    pricingTitle: "Simple, Fixed-Scope Pricing",
+    pricingTitle: "Simple, Nonprofit-Focused Pricing",
     pricingCards: [
       {
-        title: "Impact Assessment",
-        price: "Free",
+        title: "Free AI Assessment",
+        price: "$0",
         duration: "1 week",
-        items: ["Program data audit", "Measurement gap analysis", "Donor reporting opportunity", "Working proof-of-concept", "Scalability roadmap", "No commitment"]
+        items: ["Impact scaling opportunities", "Automation potential", "Donor engagement insights", "Working prototype", "Custom roadmap"]
       },
       {
-        title: "AI for Impact Sprint",
-        price: "$5K–$10K",
+        title: "Mission AI Sprint",
+        price: "$3K–$7K",
         duration: "2–4 weeks",
-        items: ["Outcome tracking model", "Donor dashboard design", "Program efficiency analysis", "90-day impact plan", "Stakeholder presentation", "Foundation-ready brief"]
+        items: ["Use-case prioritization", "Grant & donor strategy", "Phased delivery plan", "Impact roadmap", "Team training"]
       },
       {
         title: "Custom Impact System",
-        price: "$20K–$50K",
+        price: "$15K–$40K",
         duration: "8–12 weeks",
-        items: ["Production system", "Beneficiary-first design", "Secure data governance", "Donor reporting automation", "Staff training & handoff", "Your full IP ownership"]
+        items: ["Production AI system", "Donor/beneficiary integration", "Impact measurement", "Ongoing support", "Nonprofit pricing"]
       }
     ],
-    finalCtaPara: "Let's start with a free 1-week assessment. You'll see how AI can help you measure impact, engage donors, and serve more people—without breaking the budget."
+    finalCtaPara: "Start with our free AI assessment: we'll identify how AI can amplify your mission, build a working prototype, and create a roadmap to reach more people — no cost, no obligation."
   }
 };
 
-// QUIZ DATA
-const smeQuestions = [
-  { q: "Does your business have operational data (sales, customers, finance)?", yes: 1, no: 0 },
-  { q: "Are you losing customers or opportunities to competitors who use AI?", yes: 1, no: 0 },
-  { q: "Do you need to cut costs or increase revenue in the next 6 months?", yes: 1, no: 0 },
-  { q: "Are you comfortable with automation if you can understand and control it?", yes: 1, no: 0 },
-  { q: "Would a working prototype in 1 week change your decision-making?", yes: 1, no: 0 },
-  { q: "Is your team's time your most scarce resource?", yes: 1, no: 0 },
-  { q: "Do you want to move fast instead of running an 18-month vendor process?", yes: 1, no: 0 }
-];
-
-const ngoQuestions = [
-  { q: "Does your organization collect donor, beneficiary, or program data?", yes: 1, no: 0 },
-  { q: "Are you struggling to demonstrate impact and ROI to donors?", yes: 1, no: 0 },
-  { q: "Do you need to scale your impact with limited operational budget?", yes: 1, no: 0 },
-  { q: "Would AI help you reach more beneficiaries or improve outcomes?", yes: 1, no: 0 },
-  { q: "Would a working proof-of-concept help you secure funding?", yes: 1, no: 0 },
-  { q: "Is your team stretched thin trying to do everything manually?", yes: 1, no: 0 },
-  { q: "Do you want to adopt AI without vendor lock-in or long contracts?", yes: 1, no: 0 }
-];
-
 let currentView = 'sme';
-let currentQuizView = 'sme';
-let quizQuestions = smeQuestions;
-let quizAnswers = [];
+let currentAgent = 'financial';
 
-// SWITCH ENTIRE SITE VIEW
+document.addEventListener('DOMContentLoaded', () => {
+  renderContent();
+  setupNavTracking();
+});
+
 function switchView(view) {
   currentView = view;
-  
-  // Update nav toggle
-  const smeNavBtn = document.getElementById('nav-sme-btn');
-  const npoNavBtn = document.getElementById('nav-npo-btn');
-  
-  if (view === 'sme') {
-    smeNavBtn.classList.add('active');
-    npoNavBtn.classList.remove('active');
-  } else {
-    npoNavBtn.classList.add('active');
-    smeNavBtn.classList.remove('active');
-  }
-  
-  // Update hero
-  document.getElementById('heroTitle').textContent = content[view].heroTitle;
-  document.getElementById('heroPara').textContent = content[view].heroPara;
-  
-  // Update pain points
-  renderPainPoints(view);
-  
-  // Update pricing
-  document.getElementById('pricingTitle').textContent = content[view].pricingTitle;
-  renderPricing(view);
-  
-  // Update final CTA
-  document.getElementById('finalCtaPara').textContent = content[view].finalCtaPara;
-  
-  // Sync quiz
-  switchQuizView(view === 'sme' ? 'sme' : 'ngo');
-}
-
-// RENDER PAIN POINTS
-function renderPainPoints(view) {
-  const grid = document.getElementById('painGrid');
-  grid.innerHTML = '';
-  content[view].painPoints.forEach(pain => {
-    const card = document.createElement('div');
-    card.className = 'pain-card';
-    card.innerHTML = `
-      <span class="icon">${pain.icon}</span>
-      <h3>${pain.title}</h3>
-      <p>${pain.text}</p>
-    `;
-    grid.appendChild(card);
+  document.querySelectorAll('.toggle-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', (i === 0 && view === 'sme') || (i === 1 && view === 'npo'));
   });
+  renderContent();
 }
 
-// RENDER PRICING
-function renderPricing(view) {
-  const grid = document.getElementById('pricingGrid');
-  grid.innerHTML = '';
-  content[view].pricingCards.forEach(card => {
-    const priceCard = document.createElement('div');
-    priceCard.className = 'price-card';
-    priceCard.innerHTML = `
-      <h3>${card.title}</h3>
-      <div class="price">${card.price}</div>
-      <div class="duration">${card.duration}</div>
-      <ul>
-        ${card.items.map(item => `<li>✓ ${item}</li>`).join('')}
-      </ul>
-      <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Now</a>
-    `;
-    grid.appendChild(priceCard);
+function switchAgent(agent) {
+  currentAgent = agent;
+  document.querySelectorAll('.agent-tab').forEach((tab, i) => {
+    tab.classList.toggle('active', (i === 0 && agent === 'financial') || (i === 1 && agent === 'customer'));
   });
-}
-
-// SWITCH QUIZ VIEW
-function switchQuizView(view) {
-  currentQuizView = view;
-  quizQuestions = view === 'sme' ? smeQuestions : ngoQuestions;
-  
-  const smeBtn = document.getElementById('sme-btn');
-  const ngoBtn = document.getElementById('ngo-btn');
-  
-  if (view === 'sme') {
-    smeBtn.classList.add('active');
-    ngoBtn.classList.remove('active');
-  } else {
-    ngoBtn.classList.add('active');
-    smeBtn.classList.remove('active');
-  }
-  
-  quizAnswers = [];
-  initQuiz();
-}
-
-// INITIALIZE QUIZ
-function initQuiz() {
-  const container = document.getElementById('quizContent');
-  container.innerHTML = '';
-  
-  quizQuestions.forEach((item, i) => {
-    const div = document.createElement('div');
-    div.className = 'quiz-question';
-    div.innerHTML = `
-      <p>${i + 1}. ${item.q}</p>
-      <div class="quiz-options">
-        <button onclick="answerQuiz(${i}, true)">Yes</button>
-        <button onclick="answerQuiz(${i}, false)">No</button>
-      </div>
-    `;
-    container.appendChild(div);
+  document.querySelectorAll('.agent-content').forEach(content => {
+    content.style.display = 'none';
   });
+  document.getElementById(`${agent}-agent`).style.display = 'block';
 }
 
-// ANSWER QUIZ
-function answerQuiz(i, yes) {
-  quizAnswers[i] = yes ? 1 : 0;
+function renderContent() {
+  const c = content[currentView];
   
-  const buttons = document.querySelectorAll(`.quiz-question:nth-child(${i + 1}) button`);
-  buttons.forEach(b => b.classList.remove('selected'));
-  buttons[yes ? 0 : 1].classList.add('selected');
-  
-  if (quizAnswers.length === quizQuestions.length) {
-    setTimeout(showQuizResult, 300);
-  }
-}
+  document.getElementById('hero-title').textContent = c.heroTitle;
+  document.getElementById('hero-para').textContent = c.heroPara;
+  document.getElementById('pricing-title').textContent = c.pricingTitle;
+  document.getElementById('final-cta').textContent = c.finalCtaPara;
 
-// SHOW QUIZ RESULT
-function showQuizResult() {
-  const score = quizAnswers.reduce((a, b) => a + b, 0);
-  const container = document.getElementById('quizContent');
-  const typeLabel = currentQuizView === 'sme' ? 'business' : 'organization';
-  
-  let message = '';
-  if (score >= 6) {
-    message = `🎯 <strong>You're a perfect fit.</strong> AI can unlock significant value for your ${typeLabel}. Let's talk about your first 1-week free assessment.`;
-  } else if (score >= 4) {
-    message = `🤔 <strong>You've got real opportunities.</strong> Some AI applications will drive measurable ROI. Let's identify which ones—no risk, no commitment.`;
-  } else {
-    message = `⏸️ <strong>Maybe not right now.</strong> But if your situation changes, reach out. We'll be here.`;
-  }
-  
-  container.innerHTML = `
-    <div class="quiz-result">
-      <h3>Your Assessment: ${score}/7</h3>
-      <p>${message}</p>
-      <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="display: inline-block;">Schedule Free Assessment</a>
+  const painGrid = document.getElementById('pain-grid');
+  painGrid.innerHTML = c.painPoints.map(p => `
+    <div class="pain-card">
+      <h3>${p.title}</h3>
+      <p>${p.text}</p>
     </div>
-  `;
+  `).join('');
+
+  const pricingGrid = document.getElementById('pricing-grid');
+  pricingGrid.innerHTML = c.pricingCards.map(p => `
+    <div class="pricing-card">
+      <h3>${p.title}</h3>
+      <div class="price">${p.price}</div>
+      <div class="duration">${p.duration}</div>
+      <ul>${p.items.map(item => `<li>✓ ${item}</li>`).join('')}</ul>
+      <button onclick="scrollToCalendly()">Get Started</button>
+    </div>
+  `).join('');
 }
 
-// FILE HANDLING
-document.getElementById('fileInput1').addEventListener('change', () => validateAndSelectFile(1));
-document.getElementById('fileInput2').addEventListener('change', () => validateAndSelectFile(2));
-
-function validateAndSelectFile(agentNum) {
-  const fileInput = document.getElementById(`fileInput${agentNum}`);
-  const file = fileInput.files[0];
-  if (!file) return;
-  
-  const selectedEl = document.getElementById(`fileSelected${agentNum}`);
-  const btnEl = document.getElementById(`runAgent${agentNum}Btn`);
-  
-  if (!file.name.match(/\.(csv|xlsx|xls)$/i)) {
-    selectedEl.innerHTML = `❌ Invalid file type. Please upload CSV or Excel.`;
-    selectedEl.className = 'error-message';
-    selectedEl.style.display = 'block';
-    btnEl.disabled = true;
-    return;
-  }
-  
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const content = e.target.result;
-    const firstLine = content.split('\n')[0].toLowerCase();
-    
-    const financialKeywords = ['revenue', 'expense', 'ebitda', 'profit', 'cost', 'income', 'balance', 'asset', 'liability', 'cash'];
-    const customerKeywords = ['customer', 'client', 'order', 'transaction', 'churn', 'segment', 'account', 'purchase', 'sales'];
-    
-    const hasFinancialData = financialKeywords.some(kw => firstLine.includes(kw));
-    const hasCustomerData = customerKeywords.some(kw => firstLine.includes(kw));
-    
-    if (agentNum === 1 && !hasFinancialData && !firstLine.includes('p&l')) {
-      selectedEl.innerHTML = `⚠️ This doesn't look like financial data. Please upload P&L or balance sheet.`;
-      selectedEl.className = 'error-message';
-      selectedEl.style.display = 'block';
-      btnEl.disabled = true;
-      return;
-    }
-    
-    if (agentNum === 2 && !hasCustomerData) {
-      selectedEl.innerHTML = `⚠️ This doesn't look like customer data. Please upload customer database or sales history.`;
-      selectedEl.className = 'error-message';
-      selectedEl.style.display = 'block';
-      btnEl.disabled = true;
-      return;
-    }
-    
-    selectedEl.innerHTML = `✅ ${file.name} selected`;
-    selectedEl.className = 'file-selected';
-    selectedEl.style.display = 'block';
-    btnEl.disabled = false;
-  };
-  reader.readAsText(file);
-}
-
-// RUN AGENT
-function runAgent(agentNum) {
-  const fileInput = document.getElementById(`fileInput${agentNum}`);
-  const file = fileInput.files[0];
-  if (!file) return;
-  
-  const loadingEl = document.getElementById(`agent${agentNum}Loading`);
-  const resultsEl = document.getElementById(`agent${agentNum}Results`);
-  
-  loadingEl.style.display = 'block';
-  resultsEl.style.display = 'none';
-  
-  setTimeout(() => {
-    loadingEl.style.display = 'none';
-    resultsEl.style.display = 'block';
-    
-    if (agentNum === 1) {
-      document.getElementById('fhaResults').innerHTML = `
-        <div class="result-item">✓ <strong>Financial Health Score: 72/100</strong></div>
-        <div class="result-item">⚠️ <strong>Revenue Concentration:</strong> Top 3 customers = 45% of revenue</div>
-        <div class="result-item">💡 <strong>Opportunity:</strong> Reducing operating expenses by 8–12% = $120K EBITDA improvement</div>
-        <div class="result-item">📈 <strong>Trend:</strong> YoY growth 15% — strong valuation trajectory</div>
-      `;
-      document.getElementById('agent2Prompt').style.display = 'block';
-      document.getElementById('agentsCTA').style.display = 'none';
-    } else {
-      document.getElementById('cidResults').innerHTML = `
-        <div class="result-item">✓ <strong>Active Customers: 287</strong> | High-value: 42 | At-risk churn: 18</div>
-        <div class="result-item">⚠️ <strong>Churn Alert:</strong> Inactive 60+ days up 23% YoY</div>
-        <div class="result-item">💡 <strong>Upsell Opportunity:</strong> Could add $85K ARR from existing customers</div>
-        <div class="result-item">📊 <strong>Segmentation:</strong> 3 high-value + 5 mid-tier + 9 growth clusters</div>
-      `;
-      document.getElementById('agent2Prompt').style.display = 'none';
-      document.getElementById('agentsCTA').style.display = 'block';
-    }
-  }, 1500);
-}
-
-// SCROLL TO AGENT 2
-function scrollToAgent2() {
-  document.getElementById('agent2Section').style.display = 'block';
-  setTimeout(() => {
-    document.getElementById('agent2Section').scrollIntoView({behavior:'smooth'});
-  }, 100);
-}
-
-// RESET AGENT 2
-function resetAgent2() {
-  document.getElementById('fileInput2').value = '';
-  document.getElementById('fileSelected2').style.display = 'none';
-  document.getElementById('agent2Results').style.display = 'none';
-  document.getElementById('agent2Loading').style.display = 'none';
-  document.getElementById('runAgent2Btn').disabled = true;
-}
-
-// NAV SCROLL TRACKING
-document.addEventListener('DOMContentLoaded', function() {
-  const sections = [
-    { id: 'impact-section', index: 0 },
-    { id: 'try-agents', index: 1 },
-    { id: 'pricing-section', index: 2 },
-    { id: 'contact', index: 3 }
-  ];
-  
-  const navButtons = document.querySelectorAll('nav .nav-center > button:not(.nav-toggle-btn)');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navButtons.forEach(btn => btn.classList.remove('active'));
-        const section = sections.find(s => s.id === entry.target.id);
-        if (section !== undefined && navButtons[section.index]) {
-          navButtons[section.index].classList.add('active');
-        }
+function setupNavTracking() {
+  const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    navLinks.forEach(link => {
+      const section = document.getElementById(link.getAttribute('data-section'));
+      if (section && section.offsetTop <= window.scrollY + 100) {
+        current = link.getAttribute('data-section');
       }
     });
-  }, { threshold: 0.3 });
-  
-  sections.forEach(s => {
-    const el = document.getElementById(s.id);
-    if (el) observer.observe(el);
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('data-section') === current);
+    });
   });
   
-  // Initialize
-  initQuiz();
-  renderPainPoints('sme');
-  renderPricing('sme');
-});
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const section = document.getElementById(link.getAttribute('data-section'));
+      if (section) section.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+}
+
+function handleFinancialFile(event) {
+  const file = event.target.files[0];
+  if (file) {
+    document.getElementById('financial-filename').textContent = `✓ ${file.name}`;
+  }
+}
+
+function handleCustomerFile(event) {
+  const file = event.target.files[0];
+  if (file) {
+    document.getElementById('customer-filename').textContent = `✓ ${file.name}`;
+  }
+}
+
+async function analyzeFinancial() {
+  const file = document.getElementById('financial-file').files[0];
+  if (!file) {
+    alert('Please select a file');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const resultDiv = document.getElementById('financial-result');
+  const loadingDiv = document.getElementById('financial-loading');
+  const textDiv = document.getElementById('financial-text');
+
+  resultDiv.style.display = 'block';
+  loadingDiv.style.display = 'block';
+  textDiv.textContent = '';
+
+  try {
+    const response = await fetch(`${API_BASE}/api/agents/financial-analysis`, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    loadingDiv.style.display = 'none';
+    textDiv.textContent = data.analysis;
+    
+    document.getElementById('agent2-prompt').style.display = 'block';
+  } catch (error) {
+    loadingDiv.style.display = 'none';
+    textDiv.textContent = `Error: ${error.message}\n\nMake sure the backend server is running on port 3001.\n\nIn another terminal:\ncd ~/code/MANGO/mango-backend\nnpm start`;
+  }
+}
+
+async function analyzeCustomer() {
+  const file = document.getElementById('customer-file').files[0];
+  if (!file) {
+    alert('Please select a file');
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const resultDiv = document.getElementById('customer-result');
+  const loadingDiv = document.getElementById('customer-loading');
+  const textDiv = document.getElementById('customer-text');
+
+  resultDiv.style.display = 'block';
+  loadingDiv.style.display = 'block';
+  textDiv.textContent = '';
+
+  try {
+    const response = await fetch(`${API_BASE}/api/agents/customer-intelligence`, {
+      method: 'POST',
+      body: formData
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    loadingDiv.style.display = 'none';
+    textDiv.textContent = data.analysis;
+    
+    document.getElementById('calendly-prompt').style.display = 'block';
+  } catch (error) {
+    loadingDiv.style.display = 'none';
+    textDiv.textContent = `Error: ${error.message}\n\nMake sure the backend server is running on port 3001.`;
+  }
+}
+
+function scrollToCalendly() {
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+}
 </script>
 
 </body>
