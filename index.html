@@ -1079,13 +1079,20 @@ function switchQuizView(view) {
   currentQuizView = view;
   quizQuestions = view === 'sme' ? smeQuestions : ngoQuestions;
   
-  document.getElementById('sme-btn').classList.toggle('active', view === 'sme');
-  document.getElementById('ngo-btn').classList.toggle('active', view === 'ngo');
+  const smeBtn = document.getElementById('sme-btn');
+  const ngoBtn = document.getElementById('ngo-btn');
+  
+  if (view === 'sme') {
+    smeBtn.classList.add('active');
+    ngoBtn.classList.remove('active');
+  } else {
+    ngoBtn.classList.add('active');
+    smeBtn.classList.remove('active');
+  }
   
   quizAnswers = [];
   initQuiz();
 }
-
 function initQuiz() {
   const container = document.getElementById('quizContent');
   container.innerHTML = '';
