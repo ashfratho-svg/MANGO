@@ -31,7 +31,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 30px;
+      gap: 40px;
     }
     
     nav .logo {
@@ -40,13 +40,14 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      white-space: nowrap;
     }
     
     nav .logo span { color: #FF7A42; }
     
     nav .nav-center {
       display: flex;
-      gap: 25px;
+      gap: 40px;
       flex: 1;
       justify-content: center;
       font-size: 13px;
@@ -54,20 +55,24 @@
       align-items: center;
     }
     
-    /* Toggle Buttons */
+    /* Toggle Group */
     .nav-toggle-group {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
+      background: #f5f5f5;
+      padding: 4px;
+      border-radius: 10px;
       border-right: 1px solid #ddd;
-      padding-right: 25px;
+      padding-right: 30px;
+      margin-right: 10px;
     }
     
     .nav-toggle-btn {
-      padding: 6px 12px;
+      padding: 8px 14px;
       border-radius: 8px;
-      background: #f0f0f0;
-      border: 1px solid #ddd;
+      background: transparent;
+      border: none;
       color: #666;
       font-weight: 600;
       font-size: 12px;
@@ -82,7 +87,6 @@
     .nav-toggle-btn.active {
       background: linear-gradient(135deg, #FF7A42, #FFA500);
       color: white;
-      border-color: #FF7A42;
     }
     
     /* Nav Links */
@@ -91,6 +95,9 @@
       padding: 4px 0;
       transition: all 0.3s;
       border-bottom: 2px solid transparent;
+      font-size: 13px;
+      font-weight: 500;
+      color: #2c3e50;
     }
     
     nav .nav-center button.active {
@@ -105,6 +112,7 @@
       gap: 15px;
       align-items: center;
       font-size: 13px;
+      white-space: nowrap;
     }
     
     nav .nav-right a {
@@ -135,6 +143,10 @@
       padding: 80px 40px;
       text-align: center;
       border-bottom: 1px solid #ffe6cc;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     
     .hero h1 {
@@ -145,15 +157,19 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      height: auto;
+      min-height: 60px;
     }
     
     .hero p {
       font-size: 18px;
       color: #666;
       margin-bottom: 30px;
-      max-width: 600px;
+      max-width: 700px;
       margin-left: auto;
       margin-right: auto;
+      height: auto;
+      min-height: 50px;
     }
     
     .hero .cta-group {
@@ -216,6 +232,13 @@
       border-left: 4px solid #FF7A42;
       padding: 20px;
       border-radius: 16px;
+      transition: all 0.3s;
+      min-height: 160px;
+    }
+    
+    .pain-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 122, 66, 0.1);
     }
     
     .pain-card .icon {
@@ -311,11 +334,6 @@
     .upload-area:hover {
       background: #FFF8F3;
       border-color: #FFA500;
-    }
-    
-    .upload-area.dragover {
-      background: #FFF0E6;
-      border-color: #FF7A42;
     }
     
     .upload-area p {
@@ -753,15 +771,17 @@
     }
     
     @media (max-width: 768px) {
-      nav { flex-direction: column; gap: 15px; }
-      nav .nav-center { flex-direction: column; }
-      .nav-toggle-group { border-right: none; padding-right: 0; border-bottom: 1px solid #ddd; padding-bottom: 15px; }
+      nav { flex-direction: column; gap: 15px; padding: 12px 20px; }
+      nav .nav-center { flex-direction: column; gap: 15px; }
+      .nav-toggle-group { border-right: none; padding-right: 0; border-bottom: 1px solid #ddd; padding-bottom: 15px; margin-right: 0; width: 100%; justify-content: center; }
       .hero { padding: 40px 20px; }
       .hero h1 { font-size: 32px; }
       .agent-description { grid-template-columns: 1fr; }
       .credentials-wall { grid-template-columns: repeat(3, 1fr); }
       .pain-grid { grid-template-columns: 1fr; }
       .quiz-toggle { flex-direction: column; }
+      nav .logo { font-size: 16px; }
+      nav .nav-right { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
@@ -778,8 +798,8 @@
   <div class="nav-center">
     <!-- SME / NONPROFIT TOGGLE -->
     <div class="nav-toggle-group">
-      <button id="nav-sme-btn" class="nav-toggle-btn active" onclick="switchSiteView('sme')">🏢 SME</button>
-      <button id="nav-npo-btn" class="nav-toggle-btn" onclick="switchSiteView('npo')">🤝 Nonprofit</button>
+      <button id="nav-sme-btn" class="nav-toggle-btn active" onclick="switchView('sme')">🏢 SME</button>
+      <button id="nav-npo-btn" class="nav-toggle-btn" onclick="switchView('npo')">🤝 Nonprofit</button>
     </div>
     
     <!-- NAVIGATION LINKS -->
@@ -797,8 +817,8 @@
 
 <!-- HERO -->
 <section class="hero">
-  <h1>AI That Works for Small Teams</h1>
-  <p>Not another vendor demo. Production agentic AI built for SMEs & nonprofits—with measurable impact on revenue, cost, and risk.</p>
+  <h1 id="heroTitle">AI That Works for Your Small Business</h1>
+  <p id="heroPara">Stop losing customers to competitors with AI. Get a working prototype in 1 week—no long vendor cycles, no nonsense.</p>
   <div class="cta-group">
     <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Free 1-Week Assessment</a>
     <button onclick="document.getElementById('try-agents').scrollIntoView({behavior:'smooth'})" class="btn btn-secondary">Try Agents Now</button>
@@ -808,38 +828,7 @@
 <!-- PAIN POINTS -->
 <section class="pain-section">
   <h2>The Problem You're Facing</h2>
-  <div class="pain-grid">
-    <div class="pain-card">
-      <span class="icon">🚫</span>
-      <h3>No Access to AI Expertise</h3>
-      <p>You can't afford a full AI team. Vendors claim "fast AI" but deliver demos that don't work with your real data.</p>
-    </div>
-    <div class="pain-card">
-      <span class="icon">🗂️</span>
-      <h3>Data Spread Everywhere</h3>
-      <p>Your operational data lives in Excel, QuickBooks, Salesforce, or worse—homegrown systems. Nothing talks to anything.</p>
-    </div>
-    <div class="pain-card">
-      <span class="icon">❓</span>
-      <h3>Can AI Actually Help?</h3>
-      <p>You need to know: can AI increase revenue? Cut costs? Do both? But first you need to see it working on YOUR data.</p>
-    </div>
-    <div class="pain-card">
-      <span class="icon">⚡</span>
-      <h3>Speed Matters</h3>
-      <p>Time is your scarcest resource. Multi-month vendor cycles won't work. You need answers now, not in 6 months.</p>
-    </div>
-    <div class="pain-card">
-      <span class="icon">🔐</span>
-      <h3>Trust Matters Too</h3>
-      <p>You need systems you understand and can control—not black boxes. Every AI output should be a proposal, not a command.</p>
-    </div>
-    <div class="pain-card">
-      <span class="icon">📉</span>
-      <h3>You're Being Left Behind</h3>
-      <p>Larger competitors with AI are pulling ahead. Without a plan, you're at risk of losing customers and opportunities.</p>
-    </div>
-  </div>
+  <div class="pain-grid" id="painGrid"></div>
 </section>
 
 <!-- TRY AGENTS SECTION -->
@@ -992,53 +981,8 @@
 
 <!-- PRICING SECTION -->
 <section class="pricing-section" id="pricing-section">
-  <h2>Simple, Fixed-Scope Pricing</h2>
-  <div class="pricing-grid">
-    <div class="price-card">
-      <h3>Starter Assessment</h3>
-      <div class="price">Free</div>
-      <div class="duration">1 week</div>
-      <ul>
-        <li>✓ Current-state AI audit</li>
-        <li>✓ Data landscape mapping</li>
-        <li>✓ Impact opportunity</li>
-        <li>✓ Working prototype</li>
-        <li>✓ ROI framework</li>
-        <li>✓ No commitment</li>
-      </ul>
-      <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Now</a>
-    </div>
-    
-    <div class="price-card">
-      <h3>AI Strategy Sprint</h3>
-      <div class="price">$5K–$10K</div>
-      <div class="duration">2–4 weeks</div>
-      <ul>
-        <li>✓ Use-case portfolio</li>
-        <li>✓ Build-vs-buy analysis</li>
-        <li>✓ ROI framing</li>
-        <li>✓ 90-day roadmap</li>
-        <li>✓ Board-ready deliverable</li>
-        <li>✓ Stakeholder sign-off</li>
-      </ul>
-      <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Now</a>
-    </div>
-    
-    <div class="price-card">
-      <h3>Custom AI Build</h3>
-      <div class="price">$20K–$50K</div>
-      <div class="duration">8–12 weeks</div>
-      <ul>
-        <li>✓ Production AI system</li>
-        <li>✓ Spec-first, human-in-the-loop</li>
-        <li>✓ Secure, audit-ready</li>
-        <li>✓ You own the IP</li>
-        <li>✓ Training & handoff</li>
-        <li>✓ Same method as ExitReady</li>
-      </ul>
-      <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Now</a>
-    </div>
-  </div>
+  <h2 id="pricingTitle">Simple, Fixed-Scope Pricing</h2>
+  <div class="pricing-grid" id="pricingGrid"></div>
 </section>
 
 <!-- CREDENTIALS -->
@@ -1075,7 +1019,7 @@
 <!-- FINAL CTA -->
 <section class="final-cta" id="contact">
   <h2>Ready to Supercharge Your AI?</h2>
-  <p>Let's start with a free 1-week assessment. You'll see working AI on your data, understand your ROI, and have a clear next step.</p>
+  <p id="finalCtaPara">Let's start with a free 1-week assessment. You'll see working AI on your data, understand your ROI, and have a clear next step.</p>
   <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary" style="font-size: 16px; padding: 14px 28px;">Schedule Free Assessment</a>
   <p style="margin-top: 20px; font-size: 12px; opacity: 0.8;">
     Or email <a href="mailto:ashishgadnis@gmail.com">ashishgadnis@gmail.com</a> or call <a href="tel:+16514280749">+1-651-428-0749</a>
@@ -1093,7 +1037,79 @@
 </footer>
 
 <script>
-// Quiz Data
+// MASTER CONTENT OBJECT
+const content = {
+  sme: {
+    heroTitle: "AI That Works for Your Small Business",
+    heroPara: "Stop losing customers to competitors with AI. Get a working prototype in 1 week—no long vendor cycles, no nonsense.",
+    painPoints: [
+      { icon: "🚫", title: "No Access to AI Expertise", text: "You can't afford a full AI team. Vendors claim 'fast AI' but deliver demos that don't work with your real data." },
+      { icon: "🗂️", title: "Data Spread Everywhere", text: "Your operational data lives in Excel, QuickBooks, Salesforce, or worse—homegrown systems. Nothing talks to anything." },
+      { icon: "❓", title: "Can AI Actually Help?", text: "You need to know: can AI increase revenue? Cut costs? Do both? But first you need to see it working on YOUR data." },
+      { icon: "⚡", title: "Speed Matters", text: "Time is your scarcest resource. Multi-month vendor cycles won't work. You need answers now, not in 6 months." },
+      { icon: "🔐", title: "Trust Matters Too", text: "You need systems you understand and can control—not black boxes. Every AI output should be a proposal, not a command." },
+      { icon: "📉", title: "You're Being Left Behind", text: "Larger competitors with AI are pulling ahead. Without a plan, you're at risk of losing customers and opportunities." }
+    ],
+    pricingTitle: "Simple, Fixed-Scope Pricing",
+    pricingCards: [
+      {
+        title: "Starter Assessment",
+        price: "Free",
+        duration: "1 week",
+        items: ["Current-state AI audit", "Data landscape mapping", "Impact opportunity", "Working prototype", "ROI framework", "No commitment"]
+      },
+      {
+        title: "AI Strategy Sprint",
+        price: "$5K–$10K",
+        duration: "2–4 weeks",
+        items: ["Use-case portfolio", "Build-vs-buy analysis", "ROI framing", "90-day roadmap", "Board-ready deliverable", "Stakeholder sign-off"]
+      },
+      {
+        title: "Custom AI Build",
+        price: "$20K–$50K",
+        duration: "8–12 weeks",
+        items: ["Production AI system", "Spec-first, human-in-the-loop", "Secure, audit-ready", "You own the IP", "Training & handoff", "Same method as ExitReady"]
+      }
+    ],
+    finalCtaPara: "Let's start with a free 1-week assessment. You'll see working AI on your data, understand your ROI, and have a clear next step."
+  },
+  npo: {
+    heroTitle: "AI to Scale Your Nonprofit's Impact",
+    heroPara: "Reach more beneficiaries without stretching your budget. Get a working proof-of-concept in 1 week to show donors what's possible.",
+    painPoints: [
+      { icon: "💰", title: "Limited Tech Budget", text: "Enterprise AI platforms charge enterprise prices. You need affordable, focused tools that don't drain your operating budget." },
+      { icon: "📊", title: "Can't Measure Impact", text: "Donors demand proof. You have data on programs, beneficiaries, and outcomes, but no way to tell the story." },
+      { icon: "👥", title: "Manual Work Crushes You", text: "Your team spends hours on data entry, reporting, and compliance. Time spent on admin is time lost serving your mission." },
+      { icon: "🎯", title: "No AI Strategy", text: "You know AI could help—but how? Where to start? What's actually feasible for a team your size with your budget?" },
+      { icon: "🔐", title: "Data Privacy Matters", text: "Your beneficiaries trust you with sensitive information. You need systems you control, with clear data governance." },
+      { icon: "📈", title: "Funders Want Scale", text: "You're stuck at your current capacity. AI could help you serve more people without proportional cost—but nobody's shown you how." }
+    ],
+    pricingTitle: "Simple, Fixed-Scope Pricing",
+    pricingCards: [
+      {
+        title: "Impact Assessment",
+        price: "Free",
+        duration: "1 week",
+        items: ["Program data audit", "Measurement gap analysis", "Donor reporting opportunity", "Working proof-of-concept", "Scalability roadmap", "No commitment"]
+      },
+      {
+        title: "AI for Impact Sprint",
+        price: "$5K–$10K",
+        duration: "2–4 weeks",
+        items: ["Outcome tracking model", "Donor dashboard design", "Program efficiency analysis", "90-day impact plan", "Stakeholder presentation", "Foundation-ready brief"]
+      },
+      {
+        title: "Custom Impact System",
+        price: "$20K–$50K",
+        duration: "8–12 weeks",
+        items: ["Production system", "Beneficiary-first design", "Secure data governance", "Donor reporting automation", "Staff training & handoff", "Your full IP ownership"]
+      }
+    ],
+    finalCtaPara: "Let's start with a free 1-week assessment. You'll see how AI can help you measure impact, engage donors, and serve more people—without breaking the budget."
+  }
+};
+
+// QUIZ DATA
 const smeQuestions = [
   { q: "Does your business have operational data (sales, customers, finance)?", yes: 1, no: 0 },
   { q: "Are you losing customers or opportunities to competitors who use AI?", yes: 1, no: 0 },
@@ -1114,16 +1130,16 @@ const ngoQuestions = [
   { q: "Do you want to adopt AI without vendor lock-in or long contracts?", yes: 1, no: 0 }
 ];
 
-let currentSiteView = 'sme';
+let currentView = 'sme';
 let currentQuizView = 'sme';
 let quizQuestions = smeQuestions;
 let quizAnswers = [];
 
-// Switch entire site view (SME vs Nonprofit)
-function switchSiteView(view) {
-  currentSiteView = view;
+// SWITCH ENTIRE SITE VIEW
+function switchView(view) {
+  currentView = view;
   
-  // Toggle nav buttons
+  // Update nav toggle
   const smeNavBtn = document.getElementById('nav-sme-btn');
   const npoNavBtn = document.getElementById('nav-npo-btn');
   
@@ -1135,11 +1151,61 @@ function switchSiteView(view) {
     smeNavBtn.classList.remove('active');
   }
   
-  // Also sync the quiz
+  // Update hero
+  document.getElementById('heroTitle').textContent = content[view].heroTitle;
+  document.getElementById('heroPara').textContent = content[view].heroPara;
+  
+  // Update pain points
+  renderPainPoints(view);
+  
+  // Update pricing
+  document.getElementById('pricingTitle').textContent = content[view].pricingTitle;
+  renderPricing(view);
+  
+  // Update final CTA
+  document.getElementById('finalCtaPara').textContent = content[view].finalCtaPara;
+  
+  // Sync quiz
   switchQuizView(view === 'sme' ? 'sme' : 'ngo');
 }
 
-// Switch quiz view
+// RENDER PAIN POINTS
+function renderPainPoints(view) {
+  const grid = document.getElementById('painGrid');
+  grid.innerHTML = '';
+  content[view].painPoints.forEach(pain => {
+    const card = document.createElement('div');
+    card.className = 'pain-card';
+    card.innerHTML = `
+      <span class="icon">${pain.icon}</span>
+      <h3>${pain.title}</h3>
+      <p>${pain.text}</p>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// RENDER PRICING
+function renderPricing(view) {
+  const grid = document.getElementById('pricingGrid');
+  grid.innerHTML = '';
+  content[view].pricingCards.forEach(card => {
+    const priceCard = document.createElement('div');
+    priceCard.className = 'price-card';
+    priceCard.innerHTML = `
+      <h3>${card.title}</h3>
+      <div class="price">${card.price}</div>
+      <div class="duration">${card.duration}</div>
+      <ul>
+        ${card.items.map(item => `<li>✓ ${item}</li>`).join('')}
+      </ul>
+      <a href="https://calendly.com/ashishgadnis/free-ai-assessment" class="btn btn-primary">Schedule Now</a>
+    `;
+    grid.appendChild(priceCard);
+  });
+}
+
+// SWITCH QUIZ VIEW
 function switchQuizView(view) {
   currentQuizView = view;
   quizQuestions = view === 'sme' ? smeQuestions : ngoQuestions;
@@ -1159,6 +1225,7 @@ function switchQuizView(view) {
   initQuiz();
 }
 
+// INITIALIZE QUIZ
 function initQuiz() {
   const container = document.getElementById('quizContent');
   container.innerHTML = '';
@@ -1177,6 +1244,7 @@ function initQuiz() {
   });
 }
 
+// ANSWER QUIZ
 function answerQuiz(i, yes) {
   quizAnswers[i] = yes ? 1 : 0;
   
@@ -1189,6 +1257,7 @@ function answerQuiz(i, yes) {
   }
 }
 
+// SHOW QUIZ RESULT
 function showQuizResult() {
   const score = quizAnswers.reduce((a, b) => a + b, 0);
   const container = document.getElementById('quizContent');
@@ -1212,7 +1281,7 @@ function showQuizResult() {
   `;
 }
 
-// File handling
+// FILE HANDLING
 document.getElementById('fileInput1').addEventListener('change', () => validateAndSelectFile(1));
 document.getElementById('fileInput2').addEventListener('change', () => validateAndSelectFile(2));
 
@@ -1243,7 +1312,6 @@ function validateAndSelectFile(agentNum) {
     const hasFinancialData = financialKeywords.some(kw => firstLine.includes(kw));
     const hasCustomerData = customerKeywords.some(kw => firstLine.includes(kw));
     
-    // FHA expects financial data
     if (agentNum === 1 && !hasFinancialData && !firstLine.includes('p&l')) {
       selectedEl.innerHTML = `⚠️ This doesn't look like financial data. Please upload P&L or balance sheet.`;
       selectedEl.className = 'error-message';
@@ -1252,7 +1320,6 @@ function validateAndSelectFile(agentNum) {
       return;
     }
     
-    // CID expects customer data
     if (agentNum === 2 && !hasCustomerData) {
       selectedEl.innerHTML = `⚠️ This doesn't look like customer data. Please upload customer database or sales history.`;
       selectedEl.className = 'error-message';
@@ -1269,6 +1336,7 @@ function validateAndSelectFile(agentNum) {
   reader.readAsText(file);
 }
 
+// RUN AGENT
 function runAgent(agentNum) {
   const fileInput = document.getElementById(`fileInput${agentNum}`);
   const file = fileInput.files[0];
@@ -1306,6 +1374,7 @@ function runAgent(agentNum) {
   }, 1500);
 }
 
+// SCROLL TO AGENT 2
 function scrollToAgent2() {
   document.getElementById('agent2Section').style.display = 'block';
   setTimeout(() => {
@@ -1313,6 +1382,7 @@ function scrollToAgent2() {
   }, 100);
 }
 
+// RESET AGENT 2
 function resetAgent2() {
   document.getElementById('fileInput2').value = '';
   document.getElementById('fileSelected2').style.display = 'none';
@@ -1321,7 +1391,7 @@ function resetAgent2() {
   document.getElementById('runAgent2Btn').disabled = true;
 }
 
-// Nav section scroll tracking
+// NAV SCROLL TRACKING
 document.addEventListener('DOMContentLoaded', function() {
   const sections = [
     { id: 'impact-section', index: 0 },
@@ -1330,14 +1400,14 @@ document.addEventListener('DOMContentLoaded', function() {
     { id: 'contact', index: 3 }
   ];
   
-  const navButtons = document.querySelectorAll('nav .nav-center > button');
+  const navButtons = document.querySelectorAll('nav .nav-center > button:not(.nav-toggle-btn)');
   
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         navButtons.forEach(btn => btn.classList.remove('active'));
         const section = sections.find(s => s.id === entry.target.id);
-        if (section !== undefined) {
+        if (section !== undefined && navButtons[section.index]) {
           navButtons[section.index].classList.add('active');
         }
       }
@@ -1348,10 +1418,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const el = document.getElementById(s.id);
     if (el) observer.observe(el);
   });
+  
+  // Initialize
+  initQuiz();
+  renderPainPoints('sme');
+  renderPricing('sme');
 });
-
-// Initialize
-initQuiz();
 </script>
 
 </body>
