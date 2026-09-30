@@ -537,7 +537,7 @@
       <p style="color: #666; margin-bottom: 20px;">Upload your P&L or financial statement. We'll analyze revenue trends, profitability, debt, cash flow, and valuation — with specific, actionable recommendations tailored to your business.</p>
       
       <div class="upload-box">
-        <label class="upload-label">Choose File</label>
+        <label for="financial-file" class="upload-label">Choose File</label>
         <input type="file" id="financial-file" accept=".csv,.xlsx" onchange="handleFinancialFile(event)">
         <p>CSV or Excel P&L statement (Revenue, EBITDA, Net Income columns)</p>
         <div id="financial-filename" class="file-name"></div>
@@ -565,7 +565,7 @@
       <p style="color: #666; margin-bottom: 20px;">Upload your customer data. We'll identify concentration risk, growth opportunities, churn signals, and segmentation strategies — so you know exactly where to double down.</p>
       
       <div class="upload-box">
-        <label class="upload-label">Choose File</label>
+        <label for="customer-file" class="upload-label">Choose File</label>
         <input type="file" id="customer-file" accept=".csv,.xlsx" onchange="handleCustomerFile(event)">
         <p>CSV or Excel with Customer ID, Revenue, Date columns</p>
         <div id="customer-filename" class="file-name"></div>
