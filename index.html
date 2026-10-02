@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mango Intel — AI for Small Business & NGOs</title>
+    <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCY7SH5CFT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VCY7SH5CFT');
+  </script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23e8640d' width='100' height='100'/><ellipse cx='50' cy='45' rx='28' ry='32' fill='%23f5a623'/><ellipse cx='50' cy='48' rx='22' ry='24' fill='%23ffc107'/><path d='M50 15 Q55 20 50 28 Q45 20 50 15' fill='%23228B22'/></svg>">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -543,7 +551,7 @@
         <div id="financial-filename" class="file-name"></div>
       </div>
 
-      <button class="cta-btn" style="width: 100%;" onclick="analyzeFinancial()" id="financial-analyze-btn">Analyze My Financials</button>
+      <button class="cta-btn" style="width: 100%;" onclick="trackAgentClick(1); analyzeFinancial()" id="financial-analyze-btn">Analyze My Financials</button>
 
       <div id="financial-result" class="analysis-result" style="display: none;">
         <h4>Financial Analysis Report</h4>
@@ -555,7 +563,7 @@
 
       <div id="agent2-prompt" class="next-agent-prompt" style="display: none;">
         <p><strong>Great!</strong> Now let's understand your customer base and identify growth opportunities.</p>
-        <button onclick="switchAgent('customer')">Try Agent 2: Customer Intelligence →</button>
+        <button onclick="trackConversion(); switchAgent('customer')">Try Agent 2: Customer Intelligence →</button>
       </div>
     </div>
 
@@ -571,7 +579,7 @@
         <div id="customer-filename" class="file-name"></div>
       </div>
 
-      <button class="cta-btn" style="width: 100%;" onclick="analyzeCustomer()" id="customer-analyze-btn">Analyze Customer Data</button>
+      <button class="cta-btn" style="width: 100%;" onclick="trackAgentClick(2); analyzeCustomer()" id="customer-analyze-btn">Analyze Customer Data</button>
 
       <div id="customer-result" class="analysis-result" style="display: none;">
         <h4>Customer Intelligence Report</h4>
@@ -827,6 +835,58 @@ async function analyzeCustomer() {
 function scrollToCalendly() {
   document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
 }
+
+// GA4 Event Tracking
+function trackAgentClick(agentNumber) {
+  if (window.gtag) {
+    gtag('event', `agent_${agentNumber}_analyze_clicked`, {
+      agent_id: agentNumber,
+      timestamp: new Date().toISOString()
+    });
+  }
+  console.log(`Tracked: agent_${agentNumber}_analyze_clicked`);
+}
+
+function trackConversion() {
+  if (window.gtag) {
+    gtag('event', 'agent_1_to_agent_2_conversion', {
+      conversion_type: 'upsell',
+      timestamp: new Date().toISOString()
+    });
+  }
+  console.log('Tracked: agent_1_to_agent_2_conversion');
+}
+
+// Email Full Plan Request
+function requestFullPlan() {
+  const recipientEmail = prompt('What\'s your email address?');
+  if (!recipientEmail) return;
+
+  const companyName = 'Your Company';
+  const reportType = 'Financial Analysis';
+
+  fetch(`${API_BASE}/api/email/request-full-plan`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      recipientEmail,
+      companyName,
+      reportType
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert('✅ Full plan request sent! Check your email within 24 hours.');
+    if (window.gtag) {
+      gtag('event', 'full_plan_requested', { email: recipientEmail });
+    }
+  })
+  .catch(err => {
+    console.error('Error:', err);
+    alert('❌ Something went wrong. Try again or email ashishgadnis@gmail.com');
+  });
+}
+
 </script>
 
 </body>
