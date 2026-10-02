@@ -1,0 +1,26 @@
+{
+  "name": "mango-agents-backend",
+  "version": "1.0.0",
+  "description": "AI-powered financial and customer intelligence analysis for SMEs",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.28.0",
+    "@sendgrid/mail": "^8.1.6",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.2.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
